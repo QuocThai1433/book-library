@@ -105,7 +105,7 @@ public class WriteExcel {
     
     public static void main(String[] args) throws IOException {
         final List<Book> books = getBooks();
-        final String excelFilePath = "/Users/huyhanhat/Documents/My_Projects/book-library/books.xls";
+        final String excelFilePath = "books.xls";
         writeExcel(books, excelFilePath);
     }
 }
