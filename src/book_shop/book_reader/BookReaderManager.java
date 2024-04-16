@@ -1,16 +1,11 @@
 package book_shop.book_reader;
 
-import book_shop.book.Book;
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.ss.usermodel.Sheet;
-import org.apache.poi.ss.usermodel.Workbook;
-import student.ConnectDB;
+import book_shop.ConnectDB;
 
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.Date;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.format.DateTimeFormatter;
@@ -23,15 +18,15 @@ public class BookReaderManager {
     Scanner scanner = new Scanner(System.in);
     List<BookReader> authors = new ArrayList<>();
     List<BookCategory> bookCategories = new ArrayList<>();
-
+    
     String formatter = ("^(?:(?:31(\\/|-|\\.)(?:0?[13578]|1[02]))\\1|(?:(?:29|30)(\\/|-|\\.)(?:0?[13-9]|1[0-2])\\2))(?:(?:1[6-9]|[2-9]\\d)?\\d{2})$|^(?:29(\\/|-|\\.)0?2\\3(?:(?:(?:1[6-9]|[2-9]\\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\\d|2[0-8])(\\/|-|\\.)(?:(?:0?[1-9])|(?:1[0-2]))\\4(?:(?:1[6-9]|[2-9]\\d)?\\d{2})$");
-
+    
     private DateTimeFormatter dateFormatter;
-
+    
     public BookReader input(
-
+    
     ) throws ParseException {
-
+        
         System.out.println("Input Book Id:");
         int bookId = scanner.nextInt();
         scanner.nextLine();
@@ -46,7 +41,7 @@ public class BookReaderManager {
         java.sql.Date returnSql = formatDate(returnDate);
         return new BookReader(bookId, readId, borrowSql, returnSql);
     }
-
+    
     public int create() throws Exception {
         int kq = 0;
         BookReader bookReader = input();
@@ -63,12 +58,12 @@ public class BookReaderManager {
         }
         return kq;
     }
-
+    
     public List<BookCategory> filter(BookCategory category) {
         String query = "select b.id,b.book_name, c.id as categoryId,c.category_name \n" +
-                "from books b, category c \n" +
-                "where c.categozry_name like ?\n" +
-                "and b.category_id= c.id;\n ";
+            "from books b, category c \n" +
+            "where c.categozry_name like ?\n" +
+            "and b.category_id= c.id;\n ";
         System.out.println("Input Category Name: ");
         String categoryName = scanner.nextLine();
         try {
@@ -76,29 +71,29 @@ public class BookReaderManager {
             ps.setString(1, categoryName);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-
+                
                 int bookId = rs.getInt("id");
                 String nameBook = rs.getString("book_name");
                 int categoryId = rs.getInt("categoryId");
                 String categoryName1 = rs.getString("category_name");
-
+                
                 System.out.println(bookId);
                 System.out.println(nameBook);
                 System.out.println(categoryId);
                 System.out.println(categoryName1);
             }
-
+            
         } catch (Exception e) {
             e.printStackTrace();
         }
         return bookCategories;
     }
-
+    
     public void statistical() {
         String query = "select c.category_name,count(b.id) as total\n" +
-                "from books b\n" +
-                "INNER JOIN category c ON b.category_id = c.id\n" +
-                "group by c.category_name\n";
+            "from books b\n" +
+            "INNER JOIN category c ON b.category_id = c.id\n" +
+            "group by c.category_name\n";
         try {
             PreparedStatement ps = connection.prepareStatement(query);
             ResultSet rs = ps.executeQuery();
@@ -111,16 +106,16 @@ public class BookReaderManager {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
+        
     }
-
+    
     public List<BookReader> getList() {
         String query = "select * from bookReader";
         try {
             PreparedStatement ps = connection.prepareStatement(query);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-
+                
                 int bookId = rs.getInt("book_id");
                 String readerId = rs.getString("reader_Id");
                 String borrowedDay = rs.getString("borrowed_day");
@@ -129,36 +124,36 @@ public class BookReaderManager {
                 System.out.println(readerId);
                 System.out.println(borrowedDay);
                 System.out.println(returnDate);
-
+                
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
         return authors;
     }
-
+    
     public void totalBook() {
         String query = "select sum(b.quantity) as total  from book_shop.books b";
         try {
             PreparedStatement ps = connection.prepareStatement(query);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-              int total=  rs.getInt("total");
+                int total = rs.getInt("total");
                 System.out.println(total);
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-
+    
     public java.sql.Date formatDate(String date) throws ParseException {
         SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
         java.util.Date dateUtil = format.parse(date);
         return new java.sql.Date(dateUtil.getTime());
-
-
+        
+        
     }
-
+    
     public void lateLog() throws ParseException {
         String query = "SELECT * FROM book_shop.book_reader b where DATE(borrowed_day) > ? and DATE(borrowed_day) < ? ";
         BookReader bookReader = new BookReader();
@@ -167,7 +162,7 @@ public class BookReaderManager {
             System.out.println("Input  Borrow Date:");
             String borrowDate = scanner.nextLine();
             Date borrowDateSql = formatDate(borrowDate);
-
+            
             System.out.println("Input  Return Date Id:");
             String returnDateSql = scanner.nextLine();
             Date returnSql = formatDate(returnDateSql);
@@ -178,7 +173,7 @@ public class BookReaderManager {
                 int bookId = rs.getInt("book_id");
                 java.util.Date brdate = rs.getDate("borrowed_day");
                 java.util.Date rtdate = rs.getDate("return_day");
-
+                
                 System.out.println(bookId);
                 System.out.println(brdate);
                 System.out.println(rtdate);
@@ -187,7 +182,7 @@ public class BookReaderManager {
             e.printStackTrace();
         }
     }
-
+    
     public static void main(String[] args) throws Exception {
         BookReader bookReader = new BookReader();
         BookCategory category = new BookCategory();

@@ -80,7 +80,7 @@ public class BookManager {
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setInt(1, book.getId());
             statement.setString(2, book.getBookName());
-            statement.setInt(3, book.getPublication_year());
+            statement.setInt(3, book.getPublicationYear());
             statement.setInt(4, book.getQuantity());
             statement.setFloat(5, book.getPrice());
             statement.setFloat(6, book.getRatingAverage());

@@ -1,0 +1,21 @@
+
+w
+java:S1172>"/Remove this unused method parameter "category".(ŸÀ¤‡şÿÿÿÿ8İÖ§î1J$32682d5b-3a60-4fd1-a1b2-72b15142d8c7
+z
+java:S6126?"2Replace this String concatenation with Text block.(É°ìÚıÿÿÿÿ8ŞÖ§î1J$a9fe2bb5-0e8f-4efc-b9ac-ce3523ce1a68
+z
+java:S6126]"2Replace this String concatenation with Text block.(ê¹õşüÿÿÿÿ8áÖ§î1J$5e416e4d-a713-4031-b14c-353d593cc7d4
+‡
+java:S1854Ÿ">Remove this useless assignment to local variable "bookReader".(£ë¦ùÿÿÿÿÿ8èÖ§î1J$c567d8cf-2cf7-4e03-97be-134a34af25b4
+x
+java:S1481Ÿ"/Remove this unused "bookReader" local variable.(£ë¦ùÿÿÿÿÿ8éÖ§î1J$ed817dec-e5ea-44ce-a21d-75c600787282
+€
+java:S1854¼"<Remove this useless assignment to local variable "category".(–æ’œ8íÖ§î1J$0224d172-7396-46cb-bf37-2c74bd195b3e
+‡
+java:S1854»">Remove this useless assignment to local variable "bookReader".(£ë¦ùÿÿÿÿÿ8íÖ§î1J$8425c67a-ef91-405b-99d2-33eb85885046
+x
+java:S1481»"/Remove this unused "bookReader" local variable.(£ë¦ùÿÿÿÿÿ8íÖ§î1J$4120abc9-585c-4822-945d-3c1440c97a0f
+q
+java:S1481¼"-Remove this unused "category" local variable.(–æ’œ8íÖ§î1J$e7ce5146-5574-4833-bd50-3d2f81bae325
+t
+java:S1068"1Remove this unused "dateFormatter" private field.(áĞóê8îÖ§î1J$769901a5-7032-4aa2-bbea-31f9c04fd85c
