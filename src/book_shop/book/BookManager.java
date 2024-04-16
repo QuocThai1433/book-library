@@ -149,37 +149,37 @@ public class BookManager {
         return bookList;
     }
 
-    public  int filter(Book book) {
+    public  int filter( ) {
         int kq = 0;
-        String query = "select * from books where ma_sach = ?";
+        String query = "select * from books where category_id = ?";
         try {
             PreparedStatement ps = ConnectDB.connectDB.prepareStatement(query);
-            System.out.println("Moi nhap ma sach can tim: ");
+            System.out.println("InputCategory: ");
             int id = scanner.nextInt();
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                id = rs.getInt("ma_sach");
-                String tenSach = rs.getString("ten_sach");
-                String tacGia = rs.getString("tac_gia");
-                String nhaXuatBan = rs.getString("nha_xuat_ban");
-                int namSanXuat = rs.getInt("nam_san_xuat");
-                int soLuog = rs.getInt("so_luong");
-                float giaBan = rs.getFloat("gia_ban");
+                id = rs.getInt("id");
+                String bookName = rs.getString("book_name");
+                String publicationYear = rs.getString("publication_year");
+                String quantity = rs.getString("quantity");
+                int price = rs.getInt("price");
+                int ratingAverage = rs.getInt("rating_average");
+                float categoryId = rs.getFloat("category_id");
 
                 System.out.println(id);
 
-                System.out.println(tenSach);
+                System.out.println(bookName);
 
-                System.out.println(tacGia);
+                System.out.println(publicationYear);
 
-                System.out.println(nhaXuatBan);
+                System.out.println(quantity);
 
-                System.out.println(namSanXuat);
+                System.out.println(price);
 
-                System.out.println(soLuog);
+                System.out.println(ratingAverage);
 
-                System.out.println(giaBan);
+                System.out.println(categoryId);
             }
         } catch (Exception e) {
             e.printStackTrace();

@@ -42,7 +42,7 @@ public class ReaderManager {
         return kq;
     }
 
-    public  List<ReaderManager> getListBook() {
+    public  List<ReaderManager> getList() {
         List<ReaderManager> readerManagerList = new ArrayList<>();
         String query = "select * from readers";
         try {

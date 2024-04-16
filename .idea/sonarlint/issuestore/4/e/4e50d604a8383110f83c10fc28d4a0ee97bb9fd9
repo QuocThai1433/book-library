@@ -1,3 +1,5 @@
 
-´
-java:S11303"lRemove the declaration of thrown exception 'java.io.IOException', as it cannot be thrown from method's body.(ï€Ü±üÿÿÿÿ8¸Õê§î1J$c8f09b33-8864-44ca-93b0-2a2b6e3ca188
+
+java:S1117"9Rename "books" which hides the field declared at line 28.(ğ¦Üòùÿÿÿÿ8 ı®®î1J$1c55bd20-5771-4eb5-8acc-40dbfee160c4
+„
+java:S1075€"ARefactor your code to get this URI from a customizable parameter.(ÎËÄ`8é·ü©î1J$94420ae5-8f3a-44fe-99fa-6bc23f6ceadf

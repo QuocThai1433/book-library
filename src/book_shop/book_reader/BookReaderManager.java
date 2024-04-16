@@ -8,7 +8,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -20,8 +19,7 @@ public class BookReaderManager {
     List<BookCategory> bookCategories = new ArrayList<>();
     
     String formatter = ("^(?:(?:31(\\/|-|\\.)(?:0?[13578]|1[02]))\\1|(?:(?:29|30)(\\/|-|\\.)(?:0?[13-9]|1[0-2])\\2))(?:(?:1[6-9]|[2-9]\\d)?\\d{2})$|^(?:29(\\/|-|\\.)0?2\\3(?:(?:(?:1[6-9]|[2-9]\\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\\d|2[0-8])(\\/|-|\\.)(?:(?:0?[1-9])|(?:1[0-2]))\\4(?:(?:1[6-9]|[2-9]\\d)?\\d{2})$");
-    
-    private DateTimeFormatter dateFormatter;
+
     
     public BookReader input(
     
@@ -42,7 +40,7 @@ public class BookReaderManager {
         return new BookReader(bookId, readId, borrowSql, returnSql);
     }
     
-    public int create() throws Exception {
+    public int create() throws ParseException {
         int kq = 0;
         BookReader bookReader = input();
         String query = " insert into book_reader value (?,?,?,?)";
@@ -59,11 +57,8 @@ public class BookReaderManager {
         return kq;
     }
     
-    public List<BookCategory> filter(BookCategory category) {
-        String query = "select b.id,b.book_name, c.id as categoryId,c.category_name \n" +
-            "from books b, category c \n" +
-            "where c.categozry_name like ?\n" +
-            "and b.category_id= c.id;\n ";
+    public List<BookCategory> filter( ) {
+        String query = "select b.id,b.book_name, c.id as categoryId,c.category_name from books b, category c where c.categozry_name like ? and b.category_id= c.id;\n ";
         System.out.println("Input Category Name: ");
         String categoryName = scanner.nextLine();
         try {
@@ -90,10 +85,7 @@ public class BookReaderManager {
     }
     
     public void statistical() {
-        String query = "select c.category_name,count(b.id) as total\n" +
-            "from books b\n" +
-            "INNER JOIN category c ON b.category_id = c.id\n" +
-            "group by c.category_name\n";
+        String query =  "select c.category_name,count(b.id) as total from books b INNER JOIN category c ON b.category_id = c.id group by c.category_name\n";
         try {
             PreparedStatement ps = connection.prepareStatement(query);
             ResultSet rs = ps.executeQuery();
@@ -153,8 +145,31 @@ public class BookReaderManager {
         
         
     }
+    public void  report()
+    {
+        String query = "SELECT * FROM books b  inner join book_reader br on b.id = br.book_id inner join readers r on br.reader_id =r.id";
+       try{
+           PreparedStatement ps = connection.prepareStatement(query);
+           ResultSet rs = ps.executeQuery();
+           while (rs.next()) {
+               int bookId = rs.getInt("id");
+               java.util.Date brdate = rs.getDate("borrowed_day");
+               java.util.Date rtdate = rs.getDate("return_day");
+               String nameReader = rs.getString("name_reader");
+               System.out.println(bookId);
+               System.out.println(brdate);
+               System.out.println(rtdate);
+               System.out.println(nameReader);
+           }
+       }
+       catch (Exception e)
+       {
+           e.printStackTrace();
+       }
+    }
+
     
-    public void lateLog() throws ParseException {
+    public void lateLog()   {
         String query = "SELECT * FROM book_shop.book_reader b where DATE(borrowed_day) > ? and DATE(borrowed_day) < ? ";
         BookReader bookReader = new BookReader();
         try {
@@ -183,10 +198,10 @@ public class BookReaderManager {
         }
     }
     
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
         BookReader bookReader = new BookReader();
         BookCategory category = new BookCategory();
         BookReaderManager manager = new BookReaderManager();
-        manager.totalBook();
+        manager.report();
     }
 }

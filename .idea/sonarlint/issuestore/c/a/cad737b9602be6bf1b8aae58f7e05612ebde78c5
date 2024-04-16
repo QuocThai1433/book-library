@@ -1,24 +1,16 @@
 
-D
-java:S1121(".Extract the assignment out of this expression.(¡ä†
-k	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Î¼Úûÿÿÿÿ
-W
-java:S1226("AIntroduce a new variable instead of reusing the parameter "book".(¡ä†
-N
-java:S1854("8Remove this useless assignment to local variable "book".(¡ä†
-V	java:S125a"<This block of commented-out lines of code should be removed.(Öúæ«ÿÿÿÿÿ
-B
-java:S1172˜"+Remove this unused method parameter "book".(òÅ¼¸
-T
-java:S1854"8Remove this useless assignment to local variable "book".(·ç…áşÿÿÿÿ
-B
-java:S1172Œ"+Remove this unused method parameter "args".(Î½ºğ
-R	java:S125¿"<This block of commented-out lines of code should be removed.(€³™
-R	java:S125È"<This block of commented-out lines of code should be removed.(Áª
-R	java:S125Ô"<This block of commented-out lines of code should be removed.(àñİ¢
-W	java:S125ã"<This block of commented-out lines of code should be removed.(û¶Íáûÿÿÿÿ
-W	java:S125ó"<This block of commented-out lines of code should be removed.(äÛÆõÿÿÿÿÿ
-R	java:S125‰"<This block of commented-out lines of code should be removed.(ê„ê÷
-E
-java:S1481")Remove this unused "book" local variable.(·ç…áşÿÿÿÿ
-W	java:S125"<This block of commented-out lines of code should be removed.(“ß ğûÿÿÿÿ
+j
+java:S1121(".Extract the assignment out of this expression.(¡ä†J$7d53e8fa-1dad-4c34-9f1b-3680365e511c
+‘	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Î¼ÚûÿÿÿÿJ$f819dabc-5cea-4f9c-876a-bedbf7fa35c4
+„
+java:S1226("AIntroduce a new variable instead of reusing the parameter "book".(¡ä†8ü”Ø­î1J$7cdeb2e2-03c5-47f7-b99f-38e4bb0ac51b
+ƒ	java:S125a"<This block of commented-out lines of code should be removed.(Öúæ«ÿÿÿÿÿ8 öÙ­î1J$c6eea8de-d1b8-498c-bd08-3dce22fadf68
+h
+java:S1172Œ"+Remove this unused method parameter "args".(Î½ºğJ$5600a403-28fb-45d7-a687-4ca2abd77d7d
+x	java:S125¿"<This block of commented-out lines of code should be removed.(€³™J$5dd694f7-e01a-4a72-9881-57b4e9c1b8d1
+x	java:S125È"<This block of commented-out lines of code should be removed.(ÁªJ$b24fd97b-4f76-470a-88d0-17505f036728
+x	java:S125Ô"<This block of commented-out lines of code should be removed.(àñİ¢J$5e05f80b-12cb-4a1c-ab10-5de9166bd7c7
+}	java:S125ã"<This block of commented-out lines of code should be removed.(û¶ÍáûÿÿÿÿJ$23635726-7db6-4f27-a97b-101d2012fdb2
+}	java:S125ó"<This block of commented-out lines of code should be removed.(äÛÆõÿÿÿÿÿJ$e3868335-df10-440c-b732-df5c4fc72279
+x	java:S125‰"<This block of commented-out lines of code should be removed.(ê„ê÷J$9d4597d5-010a-49eb-a2db-71b9e9bfa971
+}	java:S125"<This block of commented-out lines of code should be removed.(“ß ğûÿÿÿÿJ$ea6e5a13-76f3-49ae-bf3a-0dd22d871370

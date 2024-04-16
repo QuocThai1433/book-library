@@ -2,26 +2,26 @@ package book_shop.publisher;
 
 public class Publisher {
     private int id;
-    private String publisher_name;
+    private String publisherName;
 
-    private  int  book_id;
+    private  int  bookId;
 
-    public void setBook_id(int book_id) {
-        this.book_id = book_id;
+    public void setBookId(int bookId) {
+        this.bookId = bookId;
     }
 
-    public int getBook_id() {
-        return book_id;
+    public int getBookId() {
+        return bookId;
     }
 
     public Publisher() {
     }
 
-    public Publisher(int id, String publisher_name,int book_id) {
+    public Publisher(int id, String publisherName,int bookId) {
         super();
         this.id = id;
-        this.publisher_name = publisher_name;
-        this.book_id= book_id;
+        this.publisherName = publisherName;
+        this.bookId= bookId;
     }
 
     public void setId(int id) {
@@ -29,7 +29,7 @@ public class Publisher {
     }
 
     public void setPublisher_name(String publisher_name) {
-        this.publisher_name = publisher_name;
+        this.publisherName = publisherName;
     }
 
     public int getId() {
@@ -37,6 +37,6 @@ public class Publisher {
     }
 
     public String getPublisher_name() {
-        return publisher_name;
+        return publisherName;
     }
 }

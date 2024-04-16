@@ -1,5 +1,6 @@
 package book_shop.book_reader;
 
+import book_shop.ConnectDB;
 import book_shop.book.Book;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.*;
@@ -8,10 +9,14 @@ import org.apache.poi.ss.util.CellReference;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
 public class WriteExcel {
+   static Connection connection= ConnectDB.getConnection();
     public static final int COLUMN_INDEX_ID = 0;
     public static final int COLUMN_INDEX_BOOKNAME = 1;
     public static final int COLUMN_INDEX_PUBLICATION_YEAR = 2;
@@ -48,7 +53,7 @@ public class WriteExcel {
         }
     }
     
-    private static Workbook getWorkbook(String excelFilePath) throws IOException {
+    private static Workbook getWorkbook(String excelFilePath)  {
         Workbook workbook;
         if (excelFilePath.endsWith("xls")) {
             workbook = new HSSFWorkbook();
@@ -59,13 +64,28 @@ public class WriteExcel {
         return workbook;
     }
     
-    private static List<Book> getBooks() {
-        List<Book> listBook = new ArrayList<>();
-        for (int i = 1; i <= 5; i++) {
-            Book book = new Book(i, "Book " + i, i * 2, i * 1000);
-            listBook.add(book);
+    private static List<Book> getListBooks() {
+        String query = "SELECT * FROM books;";
+        try {
+            PreparedStatement ps = connection.prepareStatement(query);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+
+                int id = rs.getInt("id");
+                String bookName = rs.getString("book_name");
+                int publicationYear = rs.getInt("publication_year");
+                int quantity = rs.getInt("quantity");
+                float price = rs.getFloat("price");
+                float ratingAverage = rs.getFloat("rating_average");
+                int categoryId = rs.getInt("category_id");
+                Book book = new Book(id,bookName,publicationYear,quantity,price,ratingAverage, categoryId);
+            books.add(book);
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        return listBook;
+        return books;
     }
     
     private static void writeBook(Book book, Row row) {
@@ -103,9 +123,9 @@ public class WriteExcel {
         cell.setCellFormula(columnPrice + currentRow + "*" + columnQuantity + currentRow);
     }
     
-    public static void main(String[] args) throws IOException {
-        final List<Book> books = getBooks();
-        final String excelFilePath = "books.xls";
+    public  void expotToExel() throws IOException {
+        final List<Book> books = getListBooks();
+        final String excelFilePath = "D:/Downloads/books.xls";
         writeExcel(books, excelFilePath);
     }
 }

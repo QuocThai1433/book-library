@@ -14,7 +14,7 @@ public class AuthorManager {
     static Scanner scanner = new Scanner(System.in);
     static  List<Author> authors = new ArrayList<>();
 
-    public Author input(Author author) {
+    public Author input( ) {
         System.out.println("Input ID:");
         int id = scanner.nextInt();
         scanner.nextLine();
@@ -28,13 +28,13 @@ public class AuthorManager {
 
     public  int create(Author author) {
         int kq = 0;
-        author = input(author);
+        author = input();
         String query = " insert into author value (?,?,?)";
         try {
             PreparedStatement ps = connection.prepareStatement(query);
             ps.setInt(1, author.getId());
-            ps.setString(2, author.getAuthor_name());
-            ps.setInt(3, author.getBook_id());
+            ps.setString(2, author.getAuthorName());
+            ps.setInt(3, author.getBookId());
 
             kq= ps.executeUpdate();
         }
@@ -65,9 +65,9 @@ public class AuthorManager {
         return authors;
     }
 
-    public void main(String[] args) {
+    public static void main(String[] args) {
         Author author = new Author();
-        create(author);
-        getList();
+        AuthorManager manager = new AuthorManager();
+        manager.create(author);
     }
 }

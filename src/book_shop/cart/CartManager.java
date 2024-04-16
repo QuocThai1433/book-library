@@ -15,7 +15,7 @@ public class CartManager {
     Scanner scanner = new Scanner(System.in);
     List<Cart> authors = new ArrayList<>();
 
-    public Cart input(Cart cart) {
+    public Cart input( ) {
         System.out.println("Input Book Id:");
         int bookId = scanner.nextInt();
         scanner.nextLine();
@@ -65,7 +65,7 @@ public class CartManager {
 
     public int create(Cart cart) {
         int kq = 0;
-        cart = input(cart);
+        cart = input();
         String query = " insert into carts value (?,?,?,?)";
         try {
             PreparedStatement ps = connection.prepareStatement(query);
@@ -108,7 +108,5 @@ public class CartManager {
         CartManager cartManager = new CartManager();
 
         cartManager.create(cart);
-//cartManager.create(cart);
-
     }
 }

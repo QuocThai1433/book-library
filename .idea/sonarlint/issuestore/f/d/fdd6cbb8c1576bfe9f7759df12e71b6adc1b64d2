@@ -1,0 +1,10 @@
+
+‘	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(°Ê¡óøÿÿÿÿJ$a6f5cb67-2293-437a-a500-293a31e53b92
+³
+java:S4165 "kRemove this useless assignment; "publisherName" already holds the assigned value along all execution paths.(ü­Ã„ûÿÿÿÿ8¶¬—­î1J$797d112a-81b8-40f2-b0fb-dff286984bcb
+Ž	java:S100"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(°Ê¡óøÿÿÿÿJ$61577b66-2d2c-4c92-a5f8-c51acb745398
+}
+java:S1172"5Remove this unused method parameter "publisher_name".(°Ê¡óøÿÿÿÿ8Á¬—­î1J$41e3505d-bfb5-42f3-aee2-74d6ab43e5e1
+Ž	java:S100'"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ôáŸ¡ûÿÿÿÿJ$036330a2-64de-4926-a376-78f47d5c2d02
+w
+java:S1656 "/Remove or correct this useless self-assignment.(ü­Ã„ûÿÿÿÿ8Á¬—­î1J$577daed9-d6bb-4740-b160-150cd10f3d2b

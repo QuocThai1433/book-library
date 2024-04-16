@@ -16,7 +16,7 @@ public class Cart {
         this.quantity = quantity;
     }
 
-    public void setBook_id(int book_id) {
+    public void setBookId(int book_id) {
         this.book_id = book_id;
     }
 

@@ -2,45 +2,45 @@ package book_shop.author;
 
 public class Author {
     private int id;
-    private String author_name;
-    private int book_id;
+    private String authorName;
+    private int bookId;
 
   public  Author ()
   {}
 
-    public Author(int id, String author_name, int book_id) {
+    public Author(int id, String authorName, int bookId) {
         super();
         this.id = id;
-        this.author_name = author_name;
-        this.book_id = book_id;
+        this.authorName = authorName;
+        this.bookId = bookId;
     }
 
-    public void setBook_id(int book_id) {
-        this.book_id = book_id;
+    public void setBookId(int bookId) {
+        this.bookId = bookId;
     }
 
-    public int getBook_id() {
-        return book_id;
+    public int getBookId() {
+        return bookId;
     }
 
     @Override
     public String toString() {
-        return "author{" + "id=" + id + ", author_name='" + author_name + '\'' + '}';
+        return "author{" + "id=" + id + ", authorName='" + authorName + '\'' + '}';
     }
 
     public void setId(int id) {
         this.id = id;
     }
 
-    public void setAuthor_name(String author_name) {
-        this.author_name = author_name;
+    public void setAuthorName(String authorName) {
+        this.authorName = authorName;
     }
 
     public int getId() {
         return id;
     }
 
-    public String getAuthor_name() {
-        return author_name;
+    public String getAuthorName() {
+        return authorName;
     }
 }

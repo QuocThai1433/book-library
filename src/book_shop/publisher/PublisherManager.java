@@ -15,7 +15,7 @@ public class PublisherManager {
      Scanner scanner = new Scanner(System.in);
      List<Publisher> authors = new ArrayList<>();
 
-    public  Publisher input(Publisher publisher) {
+    public  Publisher input( ) {
         System.out.println("Input ID:");
         int id = scanner.nextInt();
         scanner.nextLine();
@@ -28,13 +28,13 @@ public class PublisherManager {
 
     public  int create(Publisher publisher) {
         int kq = 0;
-        publisher = input(publisher);
+        publisher = input();
         String query = " insert into publisher value (?,?,?)";
         try {
             PreparedStatement ps = connection.prepareStatement(query);
             ps.setInt(1, publisher.getId());
             ps.setString(2, publisher.getPublisher_name());
-            ps.setInt(3, publisher.getBook_id());
+            ps.setInt(3, publisher.getBookId());
             kq= ps.executeUpdate();
         }
         catch (Exception e) {
@@ -63,9 +63,10 @@ public class PublisherManager {
         return authors;
     }
 
-    public  void main(String[] args) {
+    public static void main(String[] args) {
         Publisher publisher = new Publisher();
-        create(publisher);
-        getList();
+        PublisherManager manager = new PublisherManager();
+        manager.create(publisher);
+        manager.getList();
     }
 }
