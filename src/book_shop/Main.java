@@ -54,7 +54,6 @@ public class Main {
         System.out.println("14.Add Cart:");
         System.out.println("15.Show Cart:");
         System.out.println("16.Export To Excel:");
-
         System.out.println("Input Choose:");
         choose = scanner.nextInt();
         switch (choose) {

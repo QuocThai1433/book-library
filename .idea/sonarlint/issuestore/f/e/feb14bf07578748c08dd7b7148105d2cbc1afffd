@@ -1,10 +1,10 @@
 
-k	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(†ª†úÿÿÿÿ
-C
-java:S1172"-Remove this unused method parameter "rating".(Ü‰Ú
-M
-java:S6126R"2Replace this String concatenation with Text block.(ß¶´—øÿÿÿÿ
-A
-java:S1172g"+Remove this unused method parameter "args".(Î½ºğ
-F
-java:S1128"0Remove this unused import 'book_shop.book.Book'.(Ù©ÆØ
+‘	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(†ª†úÿÿÿÿJ$b36a74b4-3de5-43e2-b230-495ad9cdcc8f
+i
+java:S1172"-Remove this unused method parameter "rating".(Ü‰ÚJ$177e58c8-3560-43ad-b5bb-37a01db2467d
+s
+java:S6126R"2Replace this String concatenation with Text block.(ß¶´—øÿÿÿÿJ$2837cdb7-137a-48f7-a59b-aecef67e32bf
+g
+java:S1172g"+Remove this unused method parameter "args".(Î½ºğJ$5ccc0148-92f3-413f-ab61-39743db423c7
+l
+java:S1128"0Remove this unused import 'book_shop.book.Book'.(Ù©ÆØJ$754129ec-22a7-46d1-bcb0-3eb97a553a41
