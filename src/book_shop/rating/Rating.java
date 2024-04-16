@@ -2,61 +2,69 @@ package book_shop.rating;
 
 public class Rating {
     private int id;
-    private int star_rating;
+    private int starRating;
 
-    private  int book_id;
+    private  int bookId;
 
     private String comment;
+    private  int readerId;
 
     public Rating() {
     }
 
 
-    public Rating(int id, int star_rating) {
+    public Rating(int id, int starRating) {
         super();
         this.id = id;
-        this.star_rating = star_rating;
+        this.starRating = starRating;
     }
 
-    public Rating(int id, int starRating, int bookId, String comment) {
+    public Rating(int id, int starRating, int bookId, String comment, int readerId) {
         super();
         this.id = id;
-        this.star_rating =starRating;
-        this.book_id = bookId;
+        this.starRating =starRating;
+        this.bookId = bookId;
         this.comment=comment;
+        this.readerId= readerId;
     }
 
-    public void setBook_id(int id) {
+    public void setStarRating(int starRating) {
+        this.starRating = starRating;
+    }
 
-        this.book_id =id;
-
+    public void setBookId(int bookId) {
+        this.bookId = bookId;
     }
 
     public void setComment(String comment) {
         this.comment = comment;
     }
 
-    public int getBook_id() {
-        return id;
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setReaderId(int readerId) {
+        this.readerId = readerId;
+    }
+
+    public int getStarRating() {
+        return starRating;
+    }
+
+    public int getBookId() {
+        return bookId;
     }
 
     public String getComment() {
         return comment;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public void setStar_rating(int star_rating) {
-        this.star_rating = star_rating;
-    }
-
     public int getId() {
         return id;
     }
 
-    public int getStar_rating() {
-        return star_rating;
+    public int getReaderId() {
+        return readerId;
     }
 }

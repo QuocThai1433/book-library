@@ -1,11 +1,10 @@
 package student;
 
-import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Scanner;
 
-public class file {
+public class File {
     public static void main(String[] args) throws  Exception {
         Scanner scanner= new Scanner( System.in);
         System.out.println("Nhap ngay:");

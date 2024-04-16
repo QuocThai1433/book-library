@@ -1,7 +1,6 @@
 package book_shop.publisher;
 
-import book_shop.publisher.Publisher;
-import student.connectDB;
+import student.ConnectDB;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -11,12 +10,12 @@ import java.util.List;
 import java.util.Scanner;
 
 public class PublisherManager {
-    static Connection connection = connectDB.getConnection();
+     Connection connection = ConnectDB.getConnection();
 
-    static Scanner scanner = new Scanner(System.in);
-    static List<Publisher> authors = new ArrayList<>();
+     Scanner scanner = new Scanner(System.in);
+     List<Publisher> authors = new ArrayList<>();
 
-    public static Publisher input(Publisher publisher) {
+    public  Publisher input(Publisher publisher) {
         System.out.println("Input ID:");
         int id = scanner.nextInt();
         scanner.nextLine();
@@ -27,7 +26,7 @@ public class PublisherManager {
         return new Publisher(id, name,bookId);
     }
 
-    public static int create(Publisher publisher) {
+    public  int create(Publisher publisher) {
         int kq = 0;
         publisher = input(publisher);
         String query = " insert into publisher value (?,?,?)";
@@ -44,7 +43,7 @@ public class PublisherManager {
         return kq;
     }
 
-    public static List<Publisher> getList() {
+    public  List<Publisher> getList() {
         String query = "select * from publisher";
         try {
             PreparedStatement ps = connection.prepareStatement(query);
@@ -64,7 +63,7 @@ public class PublisherManager {
         return authors;
     }
 
-    public static void main(String[] args) {
+    public  void main(String[] args) {
         Publisher publisher = new Publisher();
         create(publisher);
         getList();

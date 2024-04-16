@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class StudentManager {
-    static Connection connection = connectDB.getConnection();
+    static Connection connection = ConnectDB.getConnection();
     static Scanner scanner = new Scanner(System.in);
 
 //    static student.Student student = new student.Student(); // chỉ có một thằng thôi mà buiur

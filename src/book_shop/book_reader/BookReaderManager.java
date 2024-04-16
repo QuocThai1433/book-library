@@ -1,33 +1,32 @@
 package book_shop.book_reader;
 
-import book_shop.book.Book;
-import book_shop.category.Category;
-import student.connectDB;
+import book_shop.ConnectDB;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.text.DateFormat;
-import java.text.Format;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.format.DateTimeFormatter;
-import java.util.*;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
 
 public class BookReaderManager {
-    static Connection connection = connectDB.getConnection();
-    static Scanner scanner = new Scanner(System.in);
-    static List<BookReader> authors = new ArrayList<>();
-    static List<BookCategory> bookCategories = new ArrayList<>();
-
-
-    //static String formatter =("^(?:(?:31(\\/|-|\\.)(?:0?[13578]|1[02]))\\1|(?:(?:29|30)(\\/|-|\\.)(?:0?[13-9]|1[0-2])\\2))(?:(?:1[6-9]|[2-9]\\d)?\\d{2})$|^(?:29(\\/|-|\\.)0?2\\3(?:(?:(?:1[6-9]|[2-9]\\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\\d|2[0-8])(\\/|-|\\.)(?:(?:0?[1-9])|(?:1[0-2]))\\4(?:(?:1[6-9]|[2-9]\\d)?\\d{2})$");
-
-    private static DateTimeFormatter dateFormatter;
-
-    public static BookReader input(BookReader book_reader) throws Exception {
-        String pattern = "MM-dd-yyyy";
+    Connection connection = ConnectDB.getConnection();
+    Scanner scanner = new Scanner(System.in);
+    List<BookReader> authors = new ArrayList<>();
+    List<BookCategory> bookCategories = new ArrayList<>();
+    
+    String formatter = ("^(?:(?:31(\\/|-|\\.)(?:0?[13578]|1[02]))\\1|(?:(?:29|30)(\\/|-|\\.)(?:0?[13-9]|1[0-2])\\2))(?:(?:1[6-9]|[2-9]\\d)?\\d{2})$|^(?:29(\\/|-|\\.)0?2\\3(?:(?:(?:1[6-9]|[2-9]\\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\\d|2[0-8])(\\/|-|\\.)(?:(?:0?[1-9])|(?:1[0-2]))\\4(?:(?:1[6-9]|[2-9]\\d)?\\d{2})$");
+    
+    private DateTimeFormatter dateFormatter;
+    
+    public BookReader input(
+    
+    ) throws ParseException {
+        
         System.out.println("Input Book Id:");
         int bookId = scanner.nextInt();
         scanner.nextLine();
@@ -36,75 +35,62 @@ public class BookReaderManager {
         scanner.nextLine();
         System.out.println("Input  Borrow Date:");
         String borrowDate = scanner.nextLine();
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
-        borrowDate = simpleDateFormat.format(new Date());
-        simpleDateFormat.parse(borrowDate);
-
-//        if (dateFormatter.parse(borrowDate)) {
-//            System.out.println("Chuỗi  đúng định dạng.");
-//        } else {
-//            System.out.println("Chuỗi không đúng định dạng.");
-//        }
+        java.sql.Date borrowSql = formatDate(borrowDate);
         System.out.println("Input  Return Date Id:");
         String returnDate = scanner.nextLine();
-        SimpleDateFormat simpleDateFormat1 = new SimpleDateFormat(pattern);
-        returnDate = simpleDateFormat1.format(new Date());
-        simpleDateFormat.parse(returnDate);
-        return new BookReader(bookId, readId, borrowDate, returnDate);
-
+        java.sql.Date returnSql = formatDate(returnDate);
+        return new BookReader(bookId, readId, borrowSql, returnSql);
     }
-
-    public static int create(BookReader book_reader) throws Exception {
+    
+    public int create() throws Exception {
         int kq = 0;
-        book_reader = input(book_reader);
+        BookReader bookReader = input();
         String query = " insert into book_reader value (?,?,?,?)";
         try {
             PreparedStatement ps = connection.prepareStatement(query);
-            ps.setInt(1, book_reader.getBook_id());
-            ps.setInt(2, book_reader.getReader_id());
-            ps.setString(3, book_reader.getBorrow_date());
-            ps.setString(4, book_reader.getReturn_date());
+            ps.setInt(1, bookReader.getBook_id());
+            ps.setInt(2, bookReader.getReader_id());
+            ps.setDate(3, bookReader.getBorrow_date());
+            ps.setDate(4, bookReader.getReturn_date());
             kq = ps.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
         }
         return kq;
     }
-
-    public static List<BookCategory> filter(BookCategory category) {
+    
+    public List<BookCategory> filter(BookCategory category) {
         String query = "select b.id,b.book_name, c.id as categoryId,c.category_name \n" +
-                "from books b, category c \n" +
-                "where c.category_name like ?\n" +
-                "and b.category_id= c.id;\n ";
+            "from books b, category c \n" +
+            "where c.categozry_name like ?\n" +
+            "and b.category_id= c.id;\n ";
         System.out.println("Input Category Name: ");
         String categoryName = scanner.nextLine();
         try {
             PreparedStatement ps = connection.prepareStatement(query);
-
             ps.setString(1, categoryName);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-
+                
                 int bookId = rs.getInt("id");
                 String nameBook = rs.getString("book_name");
                 int categoryId = rs.getInt("categoryId");
                 String categoryName1 = rs.getString("category_name");
-
+                
                 System.out.println(bookId);
                 System.out.println(nameBook);
                 System.out.println(categoryId);
                 System.out.println(categoryName1);
-
             }
-
+            
         } catch (Exception e) {
             e.printStackTrace();
         }
         return bookCategories;
     }
-
-    public static void statistical() {
-    String query ="select c.category_name,count(b.id) as total\n" +
+    
+    public void statistical() {
+        String query = "select c.category_name,count(b.id) as total\n" +
             "from books b\n" +
             "INNER JOIN category c ON b.category_id = c.id\n" +
             "group by c.category_name\n";
@@ -112,55 +98,95 @@ public class BookReaderManager {
             PreparedStatement ps = connection.prepareStatement(query);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-
-
                 String categoryName = rs.getString("category_name");
                 int total = rs.getInt("total");
-
-
                 System.out.println(categoryName);
                 System.out.println(total);
-
             }
-
         } catch (Exception e) {
             e.printStackTrace();
         }
-
+        
     }
-
-    public static List<BookReader> getList() {
-        String query = "select * from book_reader";
+    
+    public List<BookReader> getList() {
+        String query = "select * from bookReader";
         try {
             PreparedStatement ps = connection.prepareStatement(query);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-
+                
                 int bookId = rs.getInt("book_id");
                 String readerId = rs.getString("reader_Id");
                 String borrowedDay = rs.getString("borrowed_day");
                 String returnDate = rs.getString("return_day");
-
                 System.out.println(bookId);
                 System.out.println(readerId);
                 System.out.println(borrowedDay);
                 System.out.println(returnDate);
-
+                
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
         return authors;
     }
-
-    public static void lateLog() {
-        System.out.println("Nhap ngay hien tai:");
-
+    
+    public void totalBook() {
+        String query = "select sum(b.quantity) as total  from book_shop.books b";
+        try {
+            PreparedStatement ps = connection.prepareStatement(query);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                int total = rs.getInt("total");
+                System.out.println(total);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
-
+    
+    public java.sql.Date formatDate(String date) throws ParseException {
+        SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
+        java.util.Date dateUtil = format.parse(date);
+        return new java.sql.Date(dateUtil.getTime());
+        
+        
+    }
+    
+    public void lateLog() throws ParseException {
+        String query = "SELECT * FROM book_shop.book_reader b where DATE(borrowed_day) > ? and DATE(borrowed_day) < ? ";
+        BookReader bookReader = new BookReader();
+        try {
+            PreparedStatement ps = connection.prepareStatement(query);
+            System.out.println("Input  Borrow Date:");
+            String borrowDate = scanner.nextLine();
+            Date borrowDateSql = formatDate(borrowDate);
+            
+            System.out.println("Input  Return Date Id:");
+            String returnDateSql = scanner.nextLine();
+            Date returnSql = formatDate(returnDateSql);
+            ps.setDate(1, borrowDateSql);
+            ps.setDate(2, returnSql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                int bookId = rs.getInt("book_id");
+                java.util.Date brdate = rs.getDate("borrowed_day");
+                java.util.Date rtdate = rs.getDate("return_day");
+                
+                System.out.println(bookId);
+                System.out.println(brdate);
+                System.out.println(rtdate);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
     public static void main(String[] args) throws Exception {
-        BookReader book_reader = new BookReader();
+        BookReader bookReader = new BookReader();
         BookCategory category = new BookCategory();
-        statistical();
+        BookReaderManager manager = new BookReaderManager();
+        manager.totalBook();
     }
 }

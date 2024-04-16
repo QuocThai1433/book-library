@@ -1,0 +1,24 @@
+
+D
+java:S1121(".Extract the assignment out of this expression.(¡ä†
+k	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Î¼Úûÿÿÿÿ
+W
+java:S1226("AIntroduce a new variable instead of reusing the parameter "book".(¡ä†
+N
+java:S1854("8Remove this useless assignment to local variable "book".(¡ä†
+V	java:S125a"<This block of commented-out lines of code should be removed.(Öúæ«ÿÿÿÿÿ
+B
+java:S1172˜"+Remove this unused method parameter "book".(òÅ¼¸
+T
+java:S1854"8Remove this useless assignment to local variable "book".(·ç…áşÿÿÿÿ
+B
+java:S1172Œ"+Remove this unused method parameter "args".(Î½ºğ
+R	java:S125¿"<This block of commented-out lines of code should be removed.(€³™
+R	java:S125È"<This block of commented-out lines of code should be removed.(Áª
+R	java:S125Ô"<This block of commented-out lines of code should be removed.(àñİ¢
+W	java:S125ã"<This block of commented-out lines of code should be removed.(û¶Íáûÿÿÿÿ
+W	java:S125ó"<This block of commented-out lines of code should be removed.(äÛÆõÿÿÿÿÿ
+R	java:S125‰"<This block of commented-out lines of code should be removed.(ê„ê÷
+E
+java:S1481")Remove this unused "book" local variable.(·ç…áşÿÿÿÿ
+W	java:S125"<This block of commented-out lines of code should be removed.(“ß ğûÿÿÿÿ

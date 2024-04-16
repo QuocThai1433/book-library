@@ -1,7 +1,6 @@
 package book_shop.category;
 
-import book_shop.category.Category;
-import student.connectDB;
+import student.ConnectDB;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -11,11 +10,11 @@ import java.util.List;
 import java.util.Scanner;
 
 public class CategoryManager {
-    static Connection connection = connectDB.getConnection();
-    static Scanner scanner = new Scanner(System.in);
-    static List<Category> authors = new ArrayList<>();
+     Connection connection = ConnectDB.getConnection();
+     Scanner scanner = new Scanner(System.in);
+     List<Category> authors = new ArrayList<>();
 
-    public static Category input(Category category) {
+    public  Category input(Category category) {
         System.out.println("Input ID:");
         int id = scanner.nextInt();
         scanner.nextLine();
@@ -26,7 +25,7 @@ public class CategoryManager {
         return new Category(id, name,bookId);
     }
 
-    public static int create(Category category) {
+    public  int create(Category category) {
         int kq = 0;
         category = input(category);
         String query = " insert into category value (?,?,?)";
@@ -43,7 +42,7 @@ public class CategoryManager {
         return kq;
     }
 
-    public static List<Category> getList() {
+    public  List<Category> getList() {
         String query = "select * from category";
         try {
             PreparedStatement ps = connection.prepareStatement(query);
@@ -63,7 +62,7 @@ public class CategoryManager {
         return authors;
     }
 
-    public static void main(String[] args) {
+    public  void main(String[] args) {
         Category category = new Category();
         create(category);
         getList();

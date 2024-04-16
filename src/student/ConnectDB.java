@@ -2,7 +2,7 @@ package student;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-public class connectDB {
+public class ConnectDB {
     static Connection connection = null;
     public static Connection getConnection()  {
         try{
