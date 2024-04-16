@@ -1,6 +1,6 @@
 package book_shop.author;
 
-import student.connectDB;
+import student.ConnectDB;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -10,11 +10,11 @@ import java.util.List;
 import java.util.Scanner;
 
 public class AuthorManager {
-    static Connection connection = connectDB.getConnection();
+    static Connection connection = ConnectDB.getConnection();
     static Scanner scanner = new Scanner(System.in);
     static  List<Author> authors = new ArrayList<>();
 
-    public static Author input(Author author) {
+    public Author input(Author author) {
         System.out.println("Input ID:");
         int id = scanner.nextInt();
         scanner.nextLine();
@@ -26,7 +26,7 @@ public class AuthorManager {
         return new Author(id, name,bookId);
     }
 
-    public static int create(Author author) {
+    public  int create(Author author) {
         int kq = 0;
         author = input(author);
         String query = " insert into author value (?,?,?)";
@@ -44,7 +44,7 @@ public class AuthorManager {
         return kq;
     }
 
-    public static List<Author> getList() {
+    public  List<Author> getList() {
         String query = "select * from author";
         try {
             PreparedStatement ps = connection.prepareStatement(query);
@@ -65,7 +65,7 @@ public class AuthorManager {
         return authors;
     }
 
-    public static void main(String[] args) {
+    public void main(String[] args) {
         Author author = new Author();
         create(author);
         getList();

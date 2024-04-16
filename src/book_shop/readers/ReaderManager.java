@@ -1,6 +1,6 @@
 package book_shop.readers;
 
-import book_shop.connectDB;;
+import book_shop.ConnectDB;;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -10,10 +10,10 @@ import java.util.List;
 import java.util.Scanner;
 
 public class ReaderManager {
-    static Connection connection = connectDB.getConnection();
-    static Scanner scanner = new Scanner(System.in);
+     Connection connection = ConnectDB.getConnection();
+     Scanner scanner = new Scanner(System.in);
 
-    public static Readers inputEmployee(Readers reader) {
+    public  Readers readers (Readers reader) {
         int n = 0;
         System.out.println("Input id:");
         int id = scanner.nextInt();
@@ -25,8 +25,8 @@ public class ReaderManager {
     }
 
 
-    public static int create(Readers reader) {
-        reader = inputEmployee(reader);
+    public  int create(Readers reader) {
+        reader = readers(reader);
         String query = "insert into readers value  (?,?)";
         int kq = 0;
         try {
@@ -42,12 +42,12 @@ public class ReaderManager {
         return kq;
     }
 
-    public static List<ReaderManager> getListBook() {
+    public  List<ReaderManager> getListBook() {
         List<ReaderManager> readerManagerList = new ArrayList<>();
         String query = "select * from readers";
         try {
 
-            PreparedStatement ps = connectDB.connectDB.prepareStatement(query);
+            PreparedStatement ps = ConnectDB.connectDB.prepareStatement(query);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 int id = rs.getInt("id");
@@ -63,8 +63,9 @@ public class ReaderManager {
 
     public static void main(String[] args) {
         Readers reader = new Readers();
-        create(reader);
-        getListBook();
+        ReaderManager readerManager = new ReaderManager();
+        readerManager.create(reader);
+
     }
 
 

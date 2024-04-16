@@ -1,11 +1,9 @@
 package book_shop;
 
-import com.mysql.jdbc.Driver;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 
-public class connectDB {
+public class ConnectDB {
     public static Connection connectDB = null;
     public static Connection getConnection()
     {

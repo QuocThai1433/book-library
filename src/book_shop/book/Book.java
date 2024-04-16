@@ -9,10 +9,11 @@ public class Book implements Serializable {
     int quantity;
     float price;
     float ratingAverage;
+    int categoryId;
 
     public Book() {
     }
-    public  Book(int id, String bookName, int publication_year,int quantity, float price, float ratingAverage)
+    public  Book(int id, String bookName, int publication_year,int quantity, float price, float ratingAverage,int categoryId)
     {
 
         super();
@@ -22,7 +23,23 @@ public class Book implements Serializable {
         this.quantity = quantity;
         this.price= price;
         this.ratingAverage = ratingAverage;
+        this.categoryId = categoryId;
 
+    }
+
+    public Book(int i, String s, int i1, int i2) {
+    }
+
+    public void setBookName(String bookName) {
+        this.bookName = bookName;
+    }
+
+    public void setCategoryId(int categoryId) {
+        this.categoryId = categoryId;
+    }
+
+    public int getCategoryId() {
+        return categoryId;
     }
 
     public void setId(int id) {

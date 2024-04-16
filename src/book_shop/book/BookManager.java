@@ -1,7 +1,7 @@
 package book_shop.book;
 
 
-import book_shop.connectDB;
+import book_shop.ConnectDB;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -9,12 +9,13 @@ import java.sql.ResultSet;
 import java.util.*;
 
 public class BookManager {
-    static Scanner scanner = new Scanner(System.in);
-    static ArrayList<Book> books = new ArrayList<>();
+     Scanner scanner = new Scanner(System.in);
+     ArrayList<Book> books = new ArrayList<>();
 
-    static Connection connection = connectDB.getConnection();
+     Book book1 = new Book();
+     Connection connection = ConnectDB.getConnection();
 
-    public static Book inputBook(Book book) {
+    public  Book inputBook(Book book) {
         System.out.println("Input Book ID:");
         int id = scanner.nextInt();
         scanner.nextLine();
@@ -33,14 +34,47 @@ public class BookManager {
         System.out.println("Input Rating Average:");
         float ratingAverage = scanner.nextInt();
         scanner.nextLine();
+        System.out.println("Input category Id:");
+        int categoryId = scanner.nextInt();
 
-        return book = new Book(id,bookName,publication_year,quantity,price,ratingAverage);
+        return book = new Book(id, bookName, publication_year, quantity, price, ratingAverage,categoryId);
     }
 
+    public  float getAverage(float id) {
+        float kq = 0;
+        String query = "select * from books where id = ?";
+        try {
+            PreparedStatement ps = connection.prepareStatement(query);
+            ps.setFloat(1, id);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                kq = rs.getFloat("rating_average");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return kq;
 
-    public static int create(Book book) {
+    }
+
+    public  void updateStar(float newRating, float bookId) {
+        float ratingAverage = getAverage(bookId);
+        String query = "update books set rating_average = ? where id = ? ";
+        try {
+            PreparedStatement ps = ConnectDB.connectDB.prepareStatement(query);
+            ratingAverage = (ratingAverage + newRating) / 2;
+            ps.setFloat(2, bookId);
+            ps.setFloat(1, ratingAverage);
+             ps.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public  int create(Book book) {
         book = inputBook(book);
-        String query = "insert into books value  (?,?,?,?,?,?)";
+        String query = "insert into books value  (?,?,?,?,?,?,?)";
         int kq = 0;
         try {
             PreparedStatement statement = connection.prepareStatement(query);
@@ -50,6 +84,7 @@ public class BookManager {
             statement.setInt(4, book.getQuantity());
             statement.setFloat(5, book.getPrice());
             statement.setFloat(6, book.getRatingAverage());
+            statement.setInt(7, book.getCategoryId());
             kq = statement.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
@@ -79,12 +114,12 @@ public class BookManager {
 //        return kq;
 //    }
 
-    public static List<Book> getListBook() {
+    public  List<Book> getListBook() {
         List<Book> bookList = new ArrayList<>();
         String query = "select * from books";
         try {
 
-            PreparedStatement ps = connectDB.connectDB.prepareStatement(query);
+            PreparedStatement ps = ConnectDB.connectDB.prepareStatement(query);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 int id = rs.getInt("id");
@@ -92,8 +127,9 @@ public class BookManager {
                 int publicationYear = rs.getInt("publication_year");
                 int quantity = rs.getInt("quantity");
                 int price = rs.getInt("price");
-                float ratingAverage = rs.getFloat("ratingAverage");
-                Book book = new Book(id, bookName, publicationYear, quantity, price,ratingAverage);
+                float ratingAverage = rs.getFloat("rating_average");
+                int categoryId = rs.getInt("category_id");
+
                 System.out.println(id);
                 System.out.println(bookName);
                 System.out.println(publicationYear);
@@ -105,6 +141,7 @@ public class BookManager {
                 System.out.println(price);
 
                 System.out.println(ratingAverage);
+                System.out.println(categoryId);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -112,39 +149,38 @@ public class BookManager {
         return bookList;
     }
 
-    public static int filter(Book book) {
+    public  int filter(Book book) {
         int kq = 0;
         String query = "select * from books where ma_sach = ?";
         try {
-            PreparedStatement ps = connectDB.connectDB.prepareStatement(query);
+            PreparedStatement ps = ConnectDB.connectDB.prepareStatement(query);
             System.out.println("Moi nhap ma sach can tim: ");
             int id = scanner.nextInt();
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
-        while (rs.next())
-        {
-            id = rs.getInt("ma_sach");
-            String tenSach = rs.getString("ten_sach");
-            String tacGia = rs.getString("tac_gia");
-            String nhaXuatBan = rs.getString("nha_xuat_ban");
-            int namSanXuat = rs.getInt("nam_san_xuat");
-            int soLuog = rs.getInt("so_luong");
-            float giaBan = rs.getFloat("gia_ban");
+            while (rs.next()) {
+                id = rs.getInt("ma_sach");
+                String tenSach = rs.getString("ten_sach");
+                String tacGia = rs.getString("tac_gia");
+                String nhaXuatBan = rs.getString("nha_xuat_ban");
+                int namSanXuat = rs.getInt("nam_san_xuat");
+                int soLuog = rs.getInt("so_luong");
+                float giaBan = rs.getFloat("gia_ban");
 
-            System.out.println(id);
+                System.out.println(id);
 
-            System.out.println(tenSach);
+                System.out.println(tenSach);
 
-            System.out.println(tacGia);
+                System.out.println(tacGia);
 
-            System.out.println(nhaXuatBan);
+                System.out.println(nhaXuatBan);
 
-            System.out.println(namSanXuat);
+                System.out.println(namSanXuat);
 
-            System.out.println(soLuog);
+                System.out.println(soLuog);
 
-            System.out.println(giaBan);
-        }
+                System.out.println(giaBan);
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -229,7 +265,7 @@ public class BookManager {
 //}}
 
 
-    public static void main(String[] args) {
+    public  void main(String[] args) {
         Book book = new Book();
 
 //
@@ -254,8 +290,8 @@ public class BookManager {
 //            default:
 //
 //        }
-        create(book);
-        getListBook();
+        int id = scanner.nextInt();
+        getAverage(id);
 
     }
 }
