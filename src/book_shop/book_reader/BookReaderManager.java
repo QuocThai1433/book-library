@@ -174,11 +174,11 @@ public class BookReaderManager {
         BookReader bookReader = new BookReader();
         try {
             PreparedStatement ps = connection.prepareStatement(query);
-            System.out.println("Input  Borrow Date:");
+            System.out.println("Input  Borrow Date (dd-mm-yyyy):");
             String borrowDate = scanner.nextLine();
             Date borrowDateSql = formatDate(borrowDate);
             
-            System.out.println("Input  Return Date Id:");
+            System.out.println("Input  Return Date Id (dd-mm-yyyy) :");
             String returnDateSql = scanner.nextLine();
             Date returnSql = formatDate(returnDateSql);
             ps.setDate(1, borrowDateSql);

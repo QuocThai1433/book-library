@@ -9,6 +9,8 @@ import book_shop.book_reader.BookReaderManager;
 import book_shop.book_reader.WriteExcel;
 import book_shop.cart.Cart;
 import book_shop.cart.CartManager;
+import book_shop.category.Category;
+import book_shop.category.CategoryManager;
 import book_shop.publisher.Publisher;
 import book_shop.publisher.PublisherManager;
 import book_shop.rating.Rating;
@@ -36,6 +38,8 @@ public class Main {
         CartManager cartManager = new CartManager();
         Cart cart = new Cart();
         WriteExcel writeExcel = new WriteExcel();
+        CategoryManager categoryManager = new CategoryManager();
+        Category category = new Category();
         Scanner scanner = new Scanner(System.in);
         int choose = 0;
         System.out.println("1.Add Books:");
@@ -53,7 +57,10 @@ public class Main {
         System.out.println("13.Show lists based on user ratings:");
         System.out.println("14.Add Cart:");
         System.out.println("15.Show Cart:");
-        System.out.println("16.Export To Excel:");
+        System.out.println("16.Add Category:");
+        System.out.println("17.Show Category:");
+        System.out.println("18.Export To Excel:");
+
         System.out.println("Input Choose:");
         choose = scanner.nextInt();
         switch (choose) {
@@ -103,6 +110,12 @@ public class Main {
                 cartManager.getList();
                 break;
             case 16:
+                categoryManager.create(category);
+                break;
+            case 17:
+                categoryManager.getList();
+                break;
+            case 18:
                 writeExcel.expotToExel();
                 break;
             default:

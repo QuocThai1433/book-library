@@ -1,9 +1,9 @@
 
-H
+n
 java:S1172
-"-Remove this unused method parameter "bookId".(«Åâüÿÿÿÿ
-c	java:S100"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(˜»Ãó
-C
-java:S1172"-Remove this unused method parameter "bookId".(˜»Ãó
-h	java:S100"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¯Ú‰Ôÿÿÿÿÿ
-c	java:S100#"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(óõ÷î
+"-Remove this unused method parameter "bookId".(«ÅâüÿÿÿÿJ$65170bf9-ff41-4698-8ac9-0abb459d928d
+‰	java:S100"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(˜»ÃóJ$122aa6dd-1a21-4ba7-b8e1-fa8cb972e69b
+i
+java:S1172"-Remove this unused method parameter "bookId".(˜»ÃóJ$1892215a-24da-49bd-8e2a-5f70988dc88a
+	java:S100"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¯Ú‰ÔÿÿÿÿÿJ$32aeeea7-a42a-4bec-b32e-8cae7bab1bd5
+‰	java:S100#"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(óõ÷îJ$e17152a5-46ee-4cad-a64d-339d9d90bb85

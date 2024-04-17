@@ -2,6 +2,9 @@ package book_shop.book;
 
 
 import book_shop.ConnectDB;
+import book_shop.category.Category;
+import com.mysql.cj.jdbc.SuspendableXAConnection;
+import com.mysql.cj.protocol.Resultset;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -9,22 +12,38 @@ import java.sql.ResultSet;
 import java.util.*;
 
 public class BookManager {
-     Scanner scanner = new Scanner(System.in);
-     ArrayList<Book> books = new ArrayList<>();
+    Scanner scanner = new Scanner(System.in);
+    ArrayList<Book> books = new ArrayList<>();
 
-     Book book1 = new Book();
-     Connection connection = ConnectDB.getConnection();
+    Book book1 = new Book();
+    Connection connection = ConnectDB.getConnection();
 
-    public  Book inputBook(Book book) {
-        System.out.println("Input Book ID:");
-        int id = scanner.nextInt();
-        scanner.nextLine();
+    public boolean isNumber(String str) {
+        try {
+            Integer.parseInt(str);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
 
+    public Book inputBook() {
+        int id = 0;
+        String number = null;
+        do {
+            System.out.println("Input Book ID:");
+            number = scanner.nextLine();
+            if (isNumber(number)) {
+                id = Integer.parseInt(number);
+            } else {
+                System.out.println("Not Number!! Input Again:");
+            }
+        } while (!isNumber(number));
         System.out.println("Input Book Name:");
         String bookName = scanner.nextLine();
 
         System.out.println("Input Publication Year:");
-        int publication_year = scanner.nextInt();
+        int publicationYear = scanner.nextInt();
 
         System.out.println("Input quantity:");
         int quantity = scanner.nextInt();
@@ -36,11 +55,31 @@ public class BookManager {
         scanner.nextLine();
         System.out.println("Input category Id:");
         int categoryId = scanner.nextInt();
-
-        return book = new Book(id, bookName, publication_year, quantity, price, ratingAverage,categoryId);
+        return new Book(id, bookName, publicationYear, quantity, price, ratingAverage, categoryId);
     }
 
-    public  float getAverage(float id) {
+    public boolean checExist(int id) {
+        Category category = new Category();
+        try {
+            String sql = "SELECT * FROM category WHERE id = ?";
+            PreparedStatement pstmt = connection.prepareStatement(sql);
+            pstmt.setInt(1, id);
+            ResultSet rs = pstmt.executeQuery();
+            while (rs.next()) {
+                if (rs.getInt("id") == id) {
+                    return true;
+                }
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        System.out.println("Data not yet available");
+        return false;
+
+    }
+
+    public float getAverage(float id) {
         float kq = 0;
         String query = "select * from books where id = ?";
         try {
@@ -57,7 +96,7 @@ public class BookManager {
 
     }
 
-    public  void updateStar(float newRating, float bookId) {
+    public void updateStar(float newRating, float bookId) {
         float ratingAverage = getAverage(bookId);
         String query = "update books set rating_average = ? where id = ? ";
         try {
@@ -65,26 +104,35 @@ public class BookManager {
             ratingAverage = (ratingAverage + newRating) / 2;
             ps.setFloat(2, bookId);
             ps.setFloat(1, ratingAverage);
-             ps.executeUpdate();
+            ps.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
         }
 
     }
 
-    public  int create(Book book) {
-        book = inputBook(book);
+    public int create(Book book) {
+        book = inputBook();
+        Category category = new Category();
         String query = "insert into books value  (?,?,?,?,?,?,?)";
         int kq = 0;
         try {
             PreparedStatement statement = connection.prepareStatement(query);
+
             statement.setInt(1, book.getId());
             statement.setString(2, book.getBookName());
             statement.setInt(3, book.getPublicationYear());
             statement.setInt(4, book.getQuantity());
             statement.setFloat(5, book.getPrice());
             statement.setFloat(6, book.getRatingAverage());
-            statement.setInt(7, book.getCategoryId());
+            if (checExist(book.getCategoryId())) {
+
+                statement.setInt(7, book.getCategoryId());
+
+            } else {
+                statement.setObject(7, null);
+
+            }
             kq = statement.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
@@ -114,7 +162,7 @@ public class BookManager {
 //        return kq;
 //    }
 
-    public  List<Book> getListBook() {
+    public List<Book> getListBook() {
         List<Book> bookList = new ArrayList<>();
         String query = "select * from books";
         try {
@@ -149,7 +197,7 @@ public class BookManager {
         return bookList;
     }
 
-    public  int filter( ) {
+    public int filter() {
         int kq = 0;
         String query = "select * from books where category_id = ?";
         try {
@@ -265,8 +313,10 @@ public class BookManager {
 //}}
 
 
-    public  void main(String[] args) {
+    public static void main(String[] args) {
         Book book = new Book();
+        BookManager manager = new BookManager();
+        manager.create(book);
 
 //
 //        System.out.println("Menu");
@@ -290,8 +340,7 @@ public class BookManager {
 //            default:
 //
 //        }
-        int id = scanner.nextInt();
-        getAverage(id);
+
 
     }
 }
