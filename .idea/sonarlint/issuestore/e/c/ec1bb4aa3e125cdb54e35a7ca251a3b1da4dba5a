@@ -1,3 +1,10 @@
 
+š	java:S135"YReduce the total number of break and continue statements in this loop to use at most one.(°¨8¹¼Ÿï1J$46025a97-7490-4c3f-81d1-1046a620ea93
 
-java:S1226"FIntroduce a new variable instead of reusing the parameter "publisher".(õÆ½Œúÿÿÿÿ8¾œ­î1J$e750a30b-aa3b-4d01-ac53-841cc30973ae
+java:S12266"FIntroduce a new variable instead of reusing the parameter "publisher".(õÆ½Œúÿÿÿÿ8¾œ­î1J$defc38f6-5c28-4972-a07f-b8f640fa61b6
+›
+java:S4276"XRefactor this code to use the more specialised Functional Interface 'Predicate<Integer>'(¡¤‰”8×¼Ÿï1J$0a7bf9a8-b4af-4275-976f-a3e07c91d3df
+~
+java:S1611,"6Remove the parentheses around the "authorId" parameter(«³óùÿÿÿÿ8²¯½Ÿï1J$ebf6e79e-e159-4751-9d92-aa89f951599f
+~
+java:S16111"6Remove the parentheses around the "authorId" parameter(¤±š«üÿÿÿÿ8­ô¾Ÿï1J$eeb3dd64-2edd-45e1-9644-d18a52a63b77

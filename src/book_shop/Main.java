@@ -74,7 +74,7 @@ public class Main {
                 bookManager.filter();
                 break;
             case 4:
-                authorManager.create(author);
+                authorManager.create();
                 break;
             case 5:
                 authorManager.getList();

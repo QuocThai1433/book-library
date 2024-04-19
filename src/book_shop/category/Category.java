@@ -3,16 +3,15 @@ package book_shop.category;
 public class Category {
     private int id;
     private String categoryName;
-    private int bookId;
+
 
     public Category ()
     {}
-    public Category(int id, String categorName, int bookId) {
+    public Category(int id, String categorName ) {
         super();
 
         this.id = id;
         this.categoryName = categorName;
-        this.bookId =Category.this.bookId;
     }
     public Category(String categorName)
     {
@@ -20,13 +19,6 @@ public class Category {
 
     }
 
-    public void setBook_id(int bookId) {
-        this.bookId = Category.this.bookId;
-    }
-
-    public int getBook_id() {
-        return bookId;
-    }
 
     public void setId(int id) {
         this.id = id;

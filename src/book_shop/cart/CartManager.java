@@ -1,8 +1,10 @@
 package book_shop.cart;
 
+import book_shop.CheckValid;
 import book_shop.cart.Cart;
 import student.ConnectDB;
 
+import java.nio.charset.CharacterCodingException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -15,10 +17,22 @@ public class CartManager {
     Scanner scanner = new Scanner(System.in);
     List<Cart> authors = new ArrayList<>();
 
-    public Cart input( ) {
-        System.out.println("Input Book Id:");
-        int bookId = scanner.nextInt();
-        scanner.nextLine();
+    CheckValid checkValid = new CheckValid();
+
+    public Cart input() {
+        String number = null;
+        int bookId = 0;
+        do {
+            System.out.println("Input Book Id:");
+            number = scanner.nextLine();
+            if (checkValid.isNumber(number)) {
+                bookId = Integer.parseInt(number);
+            }else
+            {
+                System.out.println("Not Number!! Input Again:");
+            }
+        } while (!checkValid.isNumber(number));
+
         System.out.println("Input Book Name:");
         String bookName = scanner.nextLine();
         System.out.println("Input  Price:");
@@ -69,7 +83,12 @@ public class CartManager {
         String query = " insert into carts value (?,?,?,?)";
         try {
             PreparedStatement ps = connection.prepareStatement(query);
-            ps.setInt(1, cart.getBook_id());
+            if (checkValid.checkExistId(cart.getBook_id(), "books")) {
+                ps.setInt(1, cart.getBook_id());
+            } else {
+                ps.setObject(1, null);
+
+            }
             ps.setString(2, cart.getBookName());
             ps.setFloat(3, cart.getPrice());
             ps.setInt(4, cart.getQuantity());

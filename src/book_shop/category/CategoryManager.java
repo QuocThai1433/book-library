@@ -1,5 +1,6 @@
 package book_shop.category;
 
+import book_shop.CheckValid;
 import student.ConnectDB;
 
 import java.sql.Connection;
@@ -8,21 +9,41 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.function.Function;
 
 public class CategoryManager {
      Connection connection = ConnectDB.getConnection();
      Scanner scanner = new Scanner(System.in);
      List<Category> authors = new ArrayList<>();
+     CheckValid checkValid = new CheckValid();
+    public int inputId(Function<Integer, Boolean> checkExist) {
+        int id = 0;
+        boolean flag = false;
 
+        while (!flag) {
+            String number = scanner.nextLine();
+
+            if (!checkValid.isNumber(number)) {
+                System.out.println("Not Number!! Input Again:");
+                continue;
+            }
+            id = Integer.parseInt(number);
+            if (Boolean.TRUE.equals(checkExist.apply(id))) {
+                System.out.println("Id exist!! Input Again");
+                continue;
+            }
+            flag = true;
+        }
+        return id;
+    }
     public  Category input(Category category) {
         System.out.println("Input ID:");
-        int id = scanner.nextInt();
+        int id = inputId((authorId) -> checkValid.checkExistId(authorId, "category"));
         scanner.nextLine();
         System.out.println("Input Category Name:");
         String name = scanner.nextLine();
-        System.out.println("Input  Book Id:");
-        int bookId = scanner.nextInt();
-        return new Category(id, name,bookId);
+
+        return new Category(id, name);
     }
 
     public  int create(Category category) {
@@ -33,7 +54,6 @@ public class CategoryManager {
             PreparedStatement ps = connection.prepareStatement(query);
             ps.setInt(1, category.getId());
             ps.setString(2, category.getCategoryName());
-            ps.setInt(3, category.getBook_id());
             kq= ps.executeUpdate();
         }
         catch (Exception e) {

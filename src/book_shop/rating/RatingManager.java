@@ -1,5 +1,6 @@
 package book_shop.rating;
 
+import book_shop.CheckValid;
 import book_shop.book.Book;
 import book_shop.book.BookManager;
 import student.ConnectDB;
@@ -10,6 +11,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.function.Function;
 
 public class RatingManager {
      Connection connection = ConnectDB.getConnection();
@@ -18,24 +20,43 @@ public class RatingManager {
      List<RatingReader> ratingReaders = new ArrayList<>();
 
      BookManager bookManager = new BookManager();
+     CheckValid checkValid = new CheckValid();
 
+    public int inputId(Function<Integer, Boolean> checkExist) {
+        int id = 0;
+        boolean flag = false;
+
+        while (!flag) {
+            String number = scanner.nextLine();
+
+            if (!checkValid.isNumber(number)) {
+                System.out.println("Not Number!! Input Again:");
+                continue;
+            }
+            id = Integer.parseInt(number);
+            if (Boolean.TRUE.equals(checkExist.apply(id))) {
+                System.out.println("Id exist!! Input Again");
+                continue;
+            }
+            flag = true;
+        }
+        return id;
+    }
     public  Rating input(Rating rating) {
         System.out.println("Input ID:");
-        int id = scanner.nextInt();
+        int id = inputId((authorId) -> checkValid.checkExistId(authorId, "rating"));
         scanner.nextLine();
         System.out.println("Input Star Rating");
         int star_rating = scanner.nextInt();
         scanner.nextLine();
 
         System.out.println("Input  Book Id:");
-        int bookId = scanner.nextInt();
-        scanner.nextLine();
+        int bookId = inputId((authorId) -> checkValid.checkExistId(authorId, "books"));
         bookManager.updateStar(star_rating,bookId);
         System.out.println("Input Comment:");
-
         String comment = scanner.nextLine();
         System.out.println("Input ReaderId:");
-        int readerId = scanner.nextInt();
+        int readerId = inputId((authorId) -> checkValid.checkExistId(authorId, "reader"));
         return new Rating(id, star_rating, bookId, comment, readerId);
     }
 
@@ -49,7 +70,13 @@ public class RatingManager {
             ps.setInt(2, rating.getStarRating());
             ps.setInt(3, rating.getBookId());
             ps.setString(4, rating.getComment());
-            ps.setInt(5, rating.getReaderId());
+
+            if (checkValid.checkExistId(rating.getBookId(), "readers")) {
+                ps.setInt(5, rating.getReaderId());
+            } else {
+                ps.setObject(1, null);
+
+            }
             kq = ps.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();

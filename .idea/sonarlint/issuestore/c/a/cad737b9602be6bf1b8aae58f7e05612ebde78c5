@@ -1,15 +1,22 @@
 
-^
-java:S1226s"AIntroduce a new variable instead of reusing the parameter "book".(ÞÕúç8ïË§Îî1
-^	java:S125‘"<This block of commented-out lines of code should be removed.(Öúæ«ÿÿÿÿÿ8¾Ì§Îî1
-Y	java:S125ï"<This block of commented-out lines of code should be removed.(€³™8ÃÌ§Îî1
-Y	java:S125ø"<This block of commented-out lines of code should be removed.(Áª8ÃÌ§Îî1
-Y	java:S125„"<This block of commented-out lines of code should be removed.(àñÝ¢8ÃÌ§Îî1
-^	java:S125“"<This block of commented-out lines of code should be removed.(û¶Íáûÿÿÿÿ8ÄÌ§Îî1
-^	java:S125£"<This block of commented-out lines of code should be removed.(äÛÆõÿÿÿÿÿ8ÄÌ§Îî1
-Y	java:S125¹"<This block of commented-out lines of code should be removed.(ê„ê÷8ÄÌ§Îî1
-^	java:S125Â"<This block of commented-out lines of code should be removed.(“ß ðûÿÿÿÿ8ÅÌ§Îî1
-h
-java:S1128"FRemove this unused import 'com.mysql.cj.jdbc.SuspendableXAConnection'.(´´ç—ÿÿÿÿÿ8ÅÌ§Îî1
-^
-java:S1128"<Remove this unused import 'com.mysql.cj.protocol.Resultset'.(«‹’ûÿÿÿÿ8ÅÌ§Îî1
+š	java:S135"YReduce the total number of break and continue statements in this loop to use at most one.(°¨8š……„ï1J$3d08b5df-cd99-4151-9a8f-bf09b7d51188
+„
+java:S1226e"AIntroduce a new variable instead of reusing the parameter "book".(ÞÕúç8ž……„ï1J$e4c3a87a-f82d-46a8-a150-f8bcef01f59a
+›
+java:S4276"XRefactor this code to use the more specialised Functional Interface 'Predicate<Integer>'(¡¤‰”8½……„ï1J$162afb20-3ed3-4202-b05b-8c39122143c0
+y
+java:S1611."6Remove the parentheses around the "authorId" parameter(Î¬¡ö8¿……„ï1J$faa1cf11-7400-4ce6-a035-7f773139be08
+y
+java:S1611?"6Remove the parentheses around the "authorId" parameter(ÒÆ€ƒ8Á……„ï1J$c8ad283f-b38f-4e07-af53-3e6cccbe6efa
+^	java:S125„"<This block of commented-out lines of code should be removed.(Öúæ«ÿÿÿÿÿ8áÿ“ ï1
+Y	java:S125â"<This block of commented-out lines of code should be removed.(€³™8æÿ“ ï1
+Y	java:S125ë"<This block of commented-out lines of code should be removed.(Áª8æÿ“ ï1
+Y	java:S125÷"<This block of commented-out lines of code should be removed.(àñÝ¢8çÿ“ ï1
+^	java:S125†"<This block of commented-out lines of code should be removed.(û¶Íáûÿÿÿÿ8çÿ“ ï1
+^	java:S125–"<This block of commented-out lines of code should be removed.(äÛÆõÿÿÿÿÿ8çÿ“ ï1
+Y	java:S125¬"<This block of commented-out lines of code should be removed.(ê„ê÷8çÿ“ ï1
+^	java:S125µ"<This block of commented-out lines of code should be removed.(“ß ðûÿÿÿÿ8èÿ“ ï1
+Ž
+java:S1128"FRemove this unused import 'com.mysql.cj.jdbc.SuspendableXAConnection'.(´´ç—ÿÿÿÿÿ8žõ’ ï1J$26be65d9-d8b6-4047-9df5-bf512d640e37
+„
+java:S1128"<Remove this unused import 'com.mysql.cj.protocol.Resultset'.(«‹’ûÿÿÿÿ8žõ’ ï1J$ddd5fb5d-13b0-4568-a443-9328d00cf23b

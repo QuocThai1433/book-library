@@ -1,6 +1,7 @@
 package book_shop.book;
 
 
+import book_shop.CheckValid;
 import book_shop.ConnectDB;
 import book_shop.category.Category;
 import com.mysql.cj.jdbc.SuspendableXAConnection;
@@ -10,35 +11,40 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.*;
+import java.util.function.Function;
 
 public class BookManager {
     Scanner scanner = new Scanner(System.in);
     ArrayList<Book> books = new ArrayList<>();
-
-    Book book1 = new Book();
+    CheckValid check = new CheckValid();
     Connection connection = ConnectDB.getConnection();
 
-    public boolean isNumber(String str) {
-        try {
-            Integer.parseInt(str);
-            return true;
-        } catch (NumberFormatException e) {
-            return false;
+    public int inputId(Function<Integer, Boolean> checkExist) {
+        int id = 0;
+        boolean flag = false;
+
+        while (!flag) {
+            String number = scanner.nextLine();
+
+            if (!check.isNumber(number)) {
+                System.out.println("Not Number!! Input Again:");
+                continue;
+            }
+            id = Integer.parseInt(number);
+            if (Boolean.TRUE.equals(checkExist.apply(id))) {
+                System.out.println("Id exist!! Input Again");
+                continue;
+            }
+            flag = true;
         }
+        return id;
     }
 
     public Book inputBook() {
-        int id = 0;
         String number = null;
-        do {
-            System.out.println("Input Book ID:");
-            number = scanner.nextLine();
-            if (isNumber(number)) {
-                id = Integer.parseInt(number);
-            } else {
-                System.out.println("Not Number!! Input Again:");
-            }
-        } while (!isNumber(number));
+        System.out.println("Input Book ID:");
+        int id = inputId((authorId) -> check.checkExistId(authorId, "author"));
+
         System.out.println("Input Book Name:");
         String bookName = scanner.nextLine();
 
@@ -54,30 +60,10 @@ public class BookManager {
         float ratingAverage = scanner.nextInt();
         scanner.nextLine();
         System.out.println("Input category Id:");
-        int categoryId = scanner.nextInt();
+        int categoryId = inputId((authorId) -> check.checkExistId(authorId, "author"));
         return new Book(id, bookName, publicationYear, quantity, price, ratingAverage, categoryId);
     }
 
-    public boolean checExist(int id) {
-        Category category = new Category();
-        try {
-            String sql = "SELECT * FROM category WHERE id = ?";
-            PreparedStatement pstmt = connection.prepareStatement(sql);
-            pstmt.setInt(1, id);
-            ResultSet rs = pstmt.executeQuery();
-            while (rs.next()) {
-                if (rs.getInt("id") == id) {
-                    return true;
-                }
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        System.out.println("Data not yet available");
-        return false;
-
-    }
 
     public float getAverage(float id) {
         float kq = 0;
@@ -118,18 +104,19 @@ public class BookManager {
         int kq = 0;
         try {
             PreparedStatement statement = connection.prepareStatement(query);
-
             statement.setInt(1, book.getId());
             statement.setString(2, book.getBookName());
             statement.setInt(3, book.getPublicationYear());
             statement.setInt(4, book.getQuantity());
             statement.setFloat(5, book.getPrice());
             statement.setFloat(6, book.getRatingAverage());
-            if (checExist(book.getCategoryId())) {
-
+            if (check.checkExistId(book.getCategoryId(),"category"))
+            {
                 statement.setInt(7, book.getCategoryId());
 
-            } else {
+            }
+            else
+            {
                 statement.setObject(7, null);
 
             }

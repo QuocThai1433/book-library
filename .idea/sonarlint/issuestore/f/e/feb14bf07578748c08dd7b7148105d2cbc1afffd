@@ -1,10 +1,19 @@
 
-‘	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(†ª†úÿÿÿÿJ$610df308-432e-4fd7-8eaf-69da08c878ac
-i
-java:S1172"-Remove this unused method parameter "rating".(Ü‰ÚJ$0c091dc6-a8b4-4f60-9630-be3f9d061716
+š	java:S135"YReduce the total number of break and continue statements in this loop to use at most one.(°¨8¿âÂŸï1J$3691b228-c82e-4b37-8a21-5c42abb792f8
+˜	java:S1172"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(†ª†úÿÿÿÿ8ï­ÁŸï1J$d13bc185-6256-4c88-9092-181bc8545aaf
+›
+java:S4276"XRefactor this code to use the more specialised Functional Interface 'Predicate<Integer>'(¡¤‰”8å‰ÃŸï1J$62d2ca97-a745-47f0-b9ff-b2105ea6b628
+p
+java:S1172-"-Remove this unused method parameter "rating".(Ü‰Ú8İâÂŸï1J$6a79a80e-e00e-4270-af3e-ff4305b0e931
+~
+java:S1611/"6Remove the parentheses around the "authorId" parameter(™­í¶üÿÿÿÿ8×¢ÄŸï1J$33d1fee8-e141-4d5f-9bff-4e99e0761f18
+~
+java:S16116"6Remove the parentheses around the "authorId" parameter(¤±š«üÿÿÿÿ8µÅŸï1J$bca2e552-6636-4837-9293-b3f97158c6c5
+~
+java:S1611;"6Remove the parentheses around the "authorId" parameter(±¶½ªùÿÿÿÿ8ÍÇŸï1J$cb825099-563e-4eab-ab1e-ef43c0a0057e
+z
+java:S6126m"2Replace this String concatenation with Text block.(ß¶´—øÿÿÿÿ8åâÂŸï1J$43ef29c4-0650-4efa-bc83-27fc1e43ae9c
+o
+java:S1172‚"+Remove this unused method parameter "args".(Î½ºğ8çâÂŸï1J$083481d9-af2b-49a2-b87b-f6dd79175200
 s
-java:S6126R"2Replace this String concatenation with Text block.(ß¶´—øÿÿÿÿJ$17382190-36c4-4c44-8396-01433eeeb4e5
-g
-java:S1172g"+Remove this unused method parameter "args".(Î½ºğJ$5025f243-cd4c-4d72-b07a-37908fe9dae7
-l
-java:S1128"0Remove this unused import 'book_shop.book.Book'.(Ù©ÆØJ$723f3309-ac34-4f62-b5c6-e6d0ac8b5e27
+java:S1128"0Remove this unused import 'book_shop.book.Book'.(Ù©ÆØ8Ç°–¡ï1J$55c464a2-0f31-47aa-af38-7b6b3067f64f

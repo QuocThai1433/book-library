@@ -39,3 +39,15 @@ V
 -src/book_shop/publisher/PublisherManager.java,e\c\ec1bb4aa3e125cdb54e35a7ca251a3b1da4dba5a
 X
 (src/book_shop/readers/ReaderManager.java,9\9\9938dfb4bc15d441891055d14aef9b44df1e3ed6
+]
+-.idea/sonarlint/securityhotspotstore/index.pb,8\8\88a9255124c95bdc913197c120a8d560edc59c8e
+S
+#.idea/sonarlint/issuestore/index.pb,9\f\9fe84ebb15faf917b7def6236dba604453cc61e0
+U
+%src/book_shop/author/CheckAuthor.java,f\9\f990bc7e1ae7166da8615c30e5c7a37ecf6fb2d8
+P
+ src/book_shop/author/SaveId.java,1\0\10a87e852f31ac15fdeb9ce58d016e618c56409a
+S
+#src/book_shop/book/CheckBookId.java,5\c\5c3fdedb573c401863e546a9f6eea0761f9cbbed
+M
+src/book_shop/CheckValid.java,5\f\5ff13af97caa38a4ecebe43f51d6344c43e1c69b

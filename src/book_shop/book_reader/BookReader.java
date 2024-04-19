@@ -42,19 +42,19 @@ public class BookReader {
         this.returnDate = returnDate;
     }
 
-    public int getReader_id() {
+    public int getReaderId() {
         return readerId;
     }
 
-    public int getBook_id() {
+    public int getBookId() {
         return bookId;
     }
 
-    public Date getBorrow_date() {
+    public Date getBorrowDate() {
         return borrowDate;
     }
 
-    public Date getReturn_date() {
+    public Date getReturnDate() {
         return returnDate;
     }
 }

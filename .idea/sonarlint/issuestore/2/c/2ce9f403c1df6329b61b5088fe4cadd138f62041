@@ -1,5 +1,7 @@
 
-c
-java:S1226D"AIntroduce a new variable instead of reusing the parameter "cart".(‚¹¯½üÿÿÿÿ8Ë‘Ø«î1
-v
-java:S1128"TRemove this unnecessary import: same package classes are always implicitly imported.(×¦Ã’ÿÿÿÿÿ8ü‘Ø«î1
+‰
+java:S1226R"AIntroduce a new variable instead of reusing the parameter "cart".(‚¹¯½üÿÿÿÿ8ƒƒ» ï1J$e3c56e27-4bad-48b6-8d6b-b15d5af15e62
+œ
+java:S1128"TRemove this unnecessary import: same package classes are always implicitly imported.(×¦Ã’ÿÿÿÿÿ8µƒ» ï1J$e4948b1d-4d4f-48e1-aa81-c1f337ddf095
+‰
+java:S1128"FRemove this unused import 'java.nio.charset.CharacterCodingException'.(ì­–æ8¶ƒ» ï1J$9881414b-a773-4884-a996-078985bb523b
