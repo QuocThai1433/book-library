@@ -1,0 +1,9 @@
+
+|
+java:S1128"4Remove this unused import 'book_shop.author.Author'.(´ÑêÀýÿÿÿÿ8Çÿé¬ï1J$57f14d91-738b-487e-944f-61724011c03e
+…
+java:S1128"=Remove this unused import 'book_shop.book_reader.BookReader'.(É¤¬Áûÿÿÿÿ8Çÿé¬ï1J$a0ea3698-0927-4ca6-8744-35833b18401d
+v
+java:S1128"4Remove this unused import 'book_shop.rating.Rating'.(ÿ¶ o8Çÿé¬ï1J$c10c00e3-9d7f-45f4-bf3a-e68e96b1a211
+Š
+java:S6541"ÆA "Brain Method" was detected. Refactor it to reduce at least one of the following metrics: LOC from 109 to 64, Complexity from 25 to 14, Nesting Level from 3 to 2, Number of Variables from 19 to 6.(œû¿Ø8Èÿé¬ï1J$59701c08-1789-4816-9c91-5b0ad80747b7

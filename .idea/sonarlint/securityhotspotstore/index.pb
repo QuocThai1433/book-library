@@ -43,11 +43,7 @@ X
 -.idea/sonarlint/securityhotspotstore/index.pb,8\8\88a9255124c95bdc913197c120a8d560edc59c8e
 S
 #.idea/sonarlint/issuestore/index.pb,9\f\9fe84ebb15faf917b7def6236dba604453cc61e0
-U
-%src/book_shop/author/CheckAuthor.java,f\9\f990bc7e1ae7166da8615c30e5c7a37ecf6fb2d8
-P
- src/book_shop/author/SaveId.java,1\0\10a87e852f31ac15fdeb9ce58d016e618c56409a
-S
-#src/book_shop/book/CheckBookId.java,5\c\5c3fdedb573c401863e546a9f6eea0761f9cbbed
 M
 src/book_shop/CheckValid.java,5\f\5ff13af97caa38a4ecebe43f51d6344c43e1c69b
+J
+src/book_shop/InputId.java,d\4\d4c0c0f5d623f4ca570251cf5e613ab18d9b410e

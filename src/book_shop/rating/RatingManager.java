@@ -94,10 +94,8 @@ public class RatingManager {
                 String nameAuthor = rs.getString("star_rating");
                 int bookId = rs.getInt("book_id");
                 String comment = rs.getString("comment");
-                System.out.println(id);
-                System.out.println(nameAuthor);
-                System.out.println(bookId);
-                System.out.println(comment);
+                System.out.println(id +" | " + nameAuthor + " | "+bookId + " | "+comment);
+
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -127,9 +125,10 @@ public class RatingManager {
     }
 
 
-    public void main(String[] args) {
+    public static void main(String[] args) {
         Rating rating = new Rating();
         RatingReader ratingReader = new RatingReader();
-       create(rating);
+        RatingManager manager= new RatingManager();
+        manager.getList();
     }
 }

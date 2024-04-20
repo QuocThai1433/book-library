@@ -1,6 +1,7 @@
 package book_shop.category;
 
 import book_shop.CheckValid;
+import book_shop.InputId;
 import student.ConnectDB;
 
 import java.sql.Connection;
@@ -12,57 +13,39 @@ import java.util.Scanner;
 import java.util.function.Function;
 
 public class CategoryManager {
-     Connection connection = ConnectDB.getConnection();
-     Scanner scanner = new Scanner(System.in);
-     List<Category> authors = new ArrayList<>();
-     CheckValid checkValid = new CheckValid();
-    public int inputId(Function<Integer, Boolean> checkExist) {
-        int id = 0;
-        boolean flag = false;
+    Connection connection = ConnectDB.getConnection();
+    Scanner scanner = new Scanner(System.in);
+    List<Category> authors = new ArrayList<>();
+    CheckValid checkValid = new CheckValid();
+    InputId inputId = new InputId();
 
-        while (!flag) {
-            String number = scanner.nextLine();
 
-            if (!checkValid.isNumber(number)) {
-                System.out.println("Not Number!! Input Again:");
-                continue;
-            }
-            id = Integer.parseInt(number);
-            if (Boolean.TRUE.equals(checkExist.apply(id))) {
-                System.out.println("Id exist!! Input Again");
-                continue;
-            }
-            flag = true;
-        }
-        return id;
-    }
-    public  Category input(Category category) {
+
+    public Category input(Category category) {
         System.out.println("Input ID:");
-        int id = inputId((authorId) -> checkValid.checkExistId(authorId, "category"));
-        scanner.nextLine();
+        int id = inputId.input((authorId) -> checkValid.checkExistId(authorId, "category"));
         System.out.println("Input Category Name:");
         String name = scanner.nextLine();
 
         return new Category(id, name);
     }
 
-    public  int create(Category category) {
+    public int create(Category category) {
         int kq = 0;
         category = input(category);
-        String query = " insert into category value (?,?,?)";
+        String query = " insert into category value (?,?)";
         try {
             PreparedStatement ps = connection.prepareStatement(query);
             ps.setInt(1, category.getId());
             ps.setString(2, category.getCategoryName());
-            kq= ps.executeUpdate();
-        }
-        catch (Exception e) {
+            kq = ps.executeUpdate();
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return kq;
     }
 
-    public  List<Category> getList() {
+    public List<Category> getList() {
         String query = "select * from category";
         try {
             PreparedStatement ps = connection.prepareStatement(query);
@@ -71,10 +54,9 @@ public class CategoryManager {
 
                 int id = rs.getInt("id");
                 String nameAuthor = rs.getString("category_name");
-                int bookId = rs.getInt("book_id");
-                System.out.println(id );
-                System.out.println(nameAuthor);
-                System.out.println(bookId);
+
+                System.out.println(id + " | " + nameAuthor);
+
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -82,9 +64,9 @@ public class CategoryManager {
         return authors;
     }
 
-    public  void main(String[] args) {
+    public static void main(String[] args) {
         Category category = new Category();
-        create(category);
-        getList();
+        CategoryManager manager = new CategoryManager();
+        manager.getList();
     }
 }

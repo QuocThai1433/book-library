@@ -23,8 +23,7 @@ public class CheckValid {
         }
     }
 
-    public boolean
-    checkExistId(int id, String table) {
+    public boolean checkExistId(int id, String table) {
         try {
             String sql = "SELECT * FROM " + table + " WHERE id = ?";
             PreparedStatement ps = connection.prepareStatement(sql);

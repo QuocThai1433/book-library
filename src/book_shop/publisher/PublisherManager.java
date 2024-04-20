@@ -1,6 +1,7 @@
 package book_shop.publisher;
 
 import book_shop.CheckValid;
+import book_shop.InputId;
 import student.ConnectDB;
 
 import java.sql.Connection;
@@ -17,36 +18,17 @@ public class PublisherManager {
      Scanner scanner = new Scanner(System.in);
      List<Publisher> authors = new ArrayList<>();
      CheckValid checkValid = new CheckValid();
+    InputId inputId = new InputId();
 
-    public int inputId(Function<Integer, Boolean> checkExist) {
-        int id = 0;
-        boolean flag = false;
-
-        while (!flag) {
-            String number = scanner.nextLine();
-
-            if (!checkValid.isNumber(number)) {
-                System.out.println("Not Number!! Input Again:");
-                continue;
-            }
-            id = Integer.parseInt(number);
-            if (Boolean.TRUE.equals(checkExist.apply(id))) {
-                System.out.println("Id exist!! Input Again");
-                continue;
-            }
-            flag = true;
-        }
-        return id;
-    }
 
     public  Publisher input( ) {
         System.out.println("Input ID:");
-        int id = inputId((authorId) -> checkValid.checkExistId(authorId, "publisher"));
+        int id = inputId.input((authorId) -> checkValid.checkExistId(authorId, "publisher"));
         scanner.nextLine();
         System.out.println("Input Publisher Name:");
         String name = scanner.nextLine();
         System.out.println("Input  Book Id:");
-        int bookId = inputId((authorId) -> checkValid.checkExistId(authorId, "books"));
+        int bookId = inputId.input((authorId) -> checkValid.checkExistId(authorId, "books"));
         return new Publisher(id, name,bookId);
     }
     public  int create(Publisher publisher) {
@@ -83,9 +65,8 @@ public class PublisherManager {
                 int id = rs.getInt("id");
                 String nameAuthor = rs.getString("publisher_name");
                 int bookId = rs.getInt("book_id");
-                System.out.println(id );
-                System.out.println(nameAuthor);
-                System.out.println(bookId);
+                System.out.println(id +" | " + nameAuthor + " | "+bookId );
+
             }
         } catch (Exception e) {
             e.printStackTrace();

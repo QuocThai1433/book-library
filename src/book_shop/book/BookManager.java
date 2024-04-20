@@ -3,6 +3,7 @@ package book_shop.book;
 
 import book_shop.CheckValid;
 import book_shop.ConnectDB;
+import book_shop.InputId;
 import book_shop.category.Category;
 import com.mysql.cj.jdbc.SuspendableXAConnection;
 import com.mysql.cj.protocol.Resultset;
@@ -18,32 +19,14 @@ public class BookManager {
     ArrayList<Book> books = new ArrayList<>();
     CheckValid check = new CheckValid();
     Connection connection = ConnectDB.getConnection();
+    InputId inputId = new InputId();
 
-    public int inputId(Function<Integer, Boolean> checkExist) {
-        int id = 0;
-        boolean flag = false;
 
-        while (!flag) {
-            String number = scanner.nextLine();
-
-            if (!check.isNumber(number)) {
-                System.out.println("Not Number!! Input Again:");
-                continue;
-            }
-            id = Integer.parseInt(number);
-            if (Boolean.TRUE.equals(checkExist.apply(id))) {
-                System.out.println("Id exist!! Input Again");
-                continue;
-            }
-            flag = true;
-        }
-        return id;
-    }
 
     public Book inputBook() {
         String number = null;
         System.out.println("Input Book ID:");
-        int id = inputId((authorId) -> check.checkExistId(authorId, "author"));
+        int id = inputId.input((authorId) -> check.checkExistId(authorId, "author"));
 
         System.out.println("Input Book Name:");
         String bookName = scanner.nextLine();
@@ -60,7 +43,7 @@ public class BookManager {
         float ratingAverage = scanner.nextInt();
         scanner.nextLine();
         System.out.println("Input category Id:");
-        int categoryId = inputId((authorId) -> check.checkExistId(authorId, "author"));
+        int categoryId = inputId.input((authorId) -> check.checkExistId(authorId, "author"));
         return new Book(id, bookName, publicationYear, quantity, price, ratingAverage, categoryId);
     }
 
@@ -129,26 +112,6 @@ public class BookManager {
 
     }
 
-//    public static int update(Book book) {
-//        book = inputBook(book);
-//        String query = " UPDATE books  SET ten_sach =?, tac_gia=?, nha_xuat_ban=?,nam_san_xuat=?, so_luong=?, gia_ban=? where ma_sach = ?";
-//        int kq = 0;
-//        try {
-//            PreparedStatement statement = connection.prepareStatement(query);
-//            statement.setInt(7, book.getId());
-//            statement.setString(1, book.getTenSach());
-//            statement.setString(2, book.getTacGia());
-//            statement.setString(3, book.getNhaXuatBan());
-//            statement.setInt(4, book.getNamXuatBan());
-//            statement.setInt(5, book.getSoLuong());
-//            statement.setFloat(6, book.getGiaBan());
-//            kq = statement.executeUpdate();
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//        return kq;
-//    }
-
     public List<Book> getListBook() {
         List<Book> bookList = new ArrayList<>();
         String query = "select * from books";
@@ -164,19 +127,8 @@ public class BookManager {
                 int price = rs.getInt("price");
                 float ratingAverage = rs.getFloat("rating_average");
                 int categoryId = rs.getInt("category_id");
+                System.out.println(id +" | "+ bookName +" | "+ publicationYear +" | "+ quantity +" | "+ price +" | "+ ratingAverage +" | "+ categoryId );
 
-                System.out.println(id);
-                System.out.println(bookName);
-                System.out.println(publicationYear);
-
-                System.out.println(publicationYear);
-
-                System.out.println(quantity);
-
-                System.out.println(price);
-
-                System.out.println(ratingAverage);
-                System.out.println(categoryId);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -190,7 +142,7 @@ public class BookManager {
         try {
             PreparedStatement ps = ConnectDB.connectDB.prepareStatement(query);
             System.out.println("InputCategory: ");
-            int id = scanner.nextInt();
+            int id = inputId.input((authorId) -> check.checkExistId(authorId, "rating"));
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
@@ -202,19 +154,8 @@ public class BookManager {
                 int ratingAverage = rs.getInt("rating_average");
                 float categoryId = rs.getFloat("category_id");
 
-                System.out.println(id);
+                System.out.println(id +" | "+ bookName +" | "+ publicationYear +" | "+ quantity +" | "+ price +" | "+ ratingAverage +" | "+ categoryId );
 
-                System.out.println(bookName);
-
-                System.out.println(publicationYear);
-
-                System.out.println(quantity);
-
-                System.out.println(price);
-
-                System.out.println(ratingAverage);
-
-                System.out.println(categoryId);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -301,32 +242,8 @@ public class BookManager {
 
 
     public static void main(String[] args) {
-        Book book = new Book();
         BookManager manager = new BookManager();
-        manager.create(book);
-
-//
-//        System.out.println("Menu");
-//        System.out.println("1.Them thong tin sach");
-//        System.out.println("2.Hien thi danh sach sach");
-//        System.out.println("3.Tim kiem danh sach");
-//        System.out.println("4.Sua thong tin sach");
-//        System.out.println("5.Thoat");
-//        System.out.println("Moi ban chon chuc nang:");
-//        int chon = scanner.nextInt();
-//        switch (chon) {
-//            case 1:
-//                create(book);
-//            case 2:
-//                getListBook();
-//            case 3:
-//                filter(book);
-//                break;
-//            case 4:
-//                break;
-//            default:
-//
-//        }
+        manager.getListBook();
 
 
     }

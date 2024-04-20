@@ -1,10 +1,5 @@
 
-š	java:S135"YReduce the total number of break and continue statements in this loop to use at most one.(°¨8Ò‡¸Ÿï1J$d0d6649b-a93b-49f1-ade3-aa21dd43b41b
-›
-java:S4276"XRefactor this code to use the more specialised Functional Interface 'Predicate<Integer>'(¡¤‰”8­¸Ÿï1J$1e6b07e8-347b-460d-babf-37a342c8efb5
-p
-java:S1172'"/Remove this unused method parameter "category".(·Æ€œşÿÿÿÿJ$3a8f5ad7-c82e-4ba5-b703-08ff8b7a2053
-~
-java:S1611)"6Remove the parentheses around the "authorId" parameter(€Ş²÷úÿÿÿÿ8çÁ¹Ÿï1J$309c8e32-6941-4d53-9067-986a291f1dbb
-g
-java:S1172U"+Remove this unused method parameter "args".(Î½ºğJ$bbf9c059-ada9-4da6-9c9a-7d3b91dc0501
+w
+java:S1172"/Remove this unused method parameter "category".(·Æ€œşÿÿÿÿ8¬ª§¬ï1J$a559aa41-31ae-4d6b-bad3-4b31eb5e05b6
+y
+java:S1611"6Remove the parentheses around the "authorId" parameter(ß¢ßç8­ª§¬ï1J$da1c7dd3-c010-4c1b-ab16-641c2ba4e1dc

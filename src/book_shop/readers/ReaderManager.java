@@ -1,6 +1,8 @@
 package book_shop.readers;
 
-import book_shop.ConnectDB;;
+import book_shop.CheckValid;
+import book_shop.ConnectDB;
+import book_shop.InputId;;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -13,12 +15,13 @@ public class ReaderManager {
      Connection connection = ConnectDB.getConnection();
      Scanner scanner = new Scanner(System.in);
 
+     InputId inputId = new InputId();
+     CheckValid checkValid = new CheckValid();
+
     public  Readers readers (Readers reader) {
         int n = 0;
         System.out.println("Input id:");
-        int id = scanner.nextInt();
-        scanner.nextLine();
-
+        int id = inputId.input((authorId) -> checkValid.checkExistId(authorId, "rating"));
         System.out.println("Input Name Reader:");
         String nameReader = scanner.nextLine();
         return new Readers(id, nameReader);
@@ -52,8 +55,8 @@ public class ReaderManager {
             while (rs.next()) {
                 int id = rs.getInt("id");
                 String nameReader = rs.getString("name_reader");
-                System.out.println(id);
-                System.out.println(nameReader);
+                System.out.println(id +" | " + nameReader );
+
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -64,7 +67,7 @@ public class ReaderManager {
     public static void main(String[] args) {
         Readers reader = new Readers();
         ReaderManager readerManager = new ReaderManager();
-        readerManager.create(reader);
+        readerManager.getList();
 
     }
 

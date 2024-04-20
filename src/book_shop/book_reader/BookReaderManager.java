@@ -2,6 +2,7 @@ package book_shop.book_reader;
 
 import book_shop.CheckValid;
 import book_shop.ConnectDB;
+import book_shop.InputId;
 
 import java.sql.Connection;
 import java.sql.Date;
@@ -21,26 +22,8 @@ public class BookReaderManager {
     List<BookCategory> bookCategories = new ArrayList<>();
     CheckValid checkValid = new CheckValid();
     String formatter = ("^(?:(?:31(\\/|-|\\.)(?:0?[13578]|1[02]))\\1|(?:(?:29|30)(\\/|-|\\.)(?:0?[13-9]|1[0-2])\\2))(?:(?:1[6-9]|[2-9]\\d)?\\d{2})$|^(?:29(\\/|-|\\.)0?2\\3(?:(?:(?:1[6-9]|[2-9]\\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\\d|2[0-8])(\\/|-|\\.)(?:(?:0?[1-9])|(?:1[0-2]))\\4(?:(?:1[6-9]|[2-9]\\d)?\\d{2})$");
+    InputId inputId = new InputId();
 
-    public int inputId(Function<Integer, Boolean> checkExist) {
-        int id = 0;
-        boolean flag = false;
-
-        while (!flag) {
-            String number = scanner.nextLine();
-            if (!checkValid.isNumber(number)) {
-                System.out.println("Not Number!! Input Again:");
-                continue;
-            }
-            id = Integer.parseInt(number);
-            if (Boolean.TRUE.equals(checkExist.apply(id))) {
-                System.out.println("Id exist!! Input Again");
-                continue;
-            }
-            flag = true;
-        }
-        return id;
-    }
 
     public BookReader input() throws ParseException {
 
@@ -48,7 +31,7 @@ public class BookReaderManager {
         int id = scanner.nextInt();
 
         System.out.println("Input Reader Id:");
-        int readId = inputId((authorId) -> checkValid.checkExistId(authorId, "readers"));
+        int readId = inputId.input((authorId) -> checkValid.checkExistId(authorId, "readers"));
         System.out.println("Input  Borrow Date:");
         String borrowDate = scanner.nextLine();
         java.sql.Date borrowSql = formatDate(borrowDate);
@@ -100,11 +83,8 @@ public class BookReaderManager {
                 String nameBook = rs.getString("book_name");
                 int categoryId = rs.getInt("categoryId");
                 String categoryName1 = rs.getString("category_name");
+                System.out.println(bookId +" | " + nameBook + " | "+categoryId + " | "+categoryName);
 
-                System.out.println(bookId);
-                System.out.println(nameBook);
-                System.out.println(categoryId);
-                System.out.println(categoryName1);
             }
 
         } catch (Exception e) {
@@ -141,10 +121,8 @@ public class BookReaderManager {
                 String readerId = rs.getString("reader_Id");
                 String borrowedDay = rs.getString("borrowed_day");
                 String returnDate = rs.getString("return_day");
-                System.out.println(bookId);
-                System.out.println(readerId);
-                System.out.println(borrowedDay);
-                System.out.println(returnDate);
+                System.out.println(bookId +" | " + readerId + " | "+borrowedDay + " | "+returnDate);
+
 
             }
         } catch (Exception e) {
@@ -185,10 +163,8 @@ public class BookReaderManager {
                 java.util.Date brdate = rs.getDate("borrowed_day");
                 java.util.Date rtdate = rs.getDate("return_day");
                 String nameReader = rs.getString("name_reader");
-                System.out.println(bookId);
-                System.out.println(brdate);
-                System.out.println(rtdate);
-                System.out.println(nameReader);
+                System.out.println(bookId +" | " + brdate + " | "+rtdate + " | "+nameReader);
+
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -215,10 +191,8 @@ public class BookReaderManager {
                 int bookId = rs.getInt("book_id");
                 java.util.Date brdate = rs.getDate("borrowed_day");
                 java.util.Date rtdate = rs.getDate("return_day");
+                System.out.println(bookId +" | " + brdate + " | "+rtdate + " | ");
 
-                System.out.println(bookId);
-                System.out.println(brdate);
-                System.out.println(rtdate);
             }
         } catch (Exception e) {
             e.printStackTrace();

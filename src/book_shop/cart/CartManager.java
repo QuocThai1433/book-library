@@ -110,10 +110,8 @@ public class CartManager {
                 String bookName = rs.getString("book_name");
                 int price = rs.getInt("price");
                 int quantity = rs.getInt("quantity");
-                System.out.println(bookId);
-                System.out.println(bookName);
-                System.out.println(price);
-                System.out.println(quantity);
+                System.out.println(bookId +" | " + bookName + " | "+price + " | "+quantity);
+
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -122,10 +120,8 @@ public class CartManager {
     }
 
     public static void main(String[] args) {
-        Cart cart = new Cart();
-        Scanner scanner = new Scanner(System.in);
         CartManager cartManager = new CartManager();
 
-        cartManager.create(cart);
+        cartManager.getList();
     }
 }

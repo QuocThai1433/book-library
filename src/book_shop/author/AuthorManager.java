@@ -1,6 +1,7 @@
 package book_shop.author;
 
 import book_shop.CheckValid;
+import book_shop.InputId;
 import student.ConnectDB;
 
 import java.sql.Connection;
@@ -16,28 +17,11 @@ public class AuthorManager {
 
     static CheckValid check = new CheckValid();
 
-    public int inputId(Function<Integer, Boolean> checkExist) {
-        int id = 0;
-        boolean flag = false;
-        while (!flag) {
-            String number = scanner.nextLine();
-            if (!check.isNumber(number)) {
-                System.out.println("Not Number!! Input Again:");
-                continue;
-            }
-            id = Integer.parseInt(number);
-            if (Boolean.TRUE.equals(checkExist.apply(id))) {
-                System.out.println("Id exist!! Input Again");
-                continue;
-            }
-            flag = true;
-        }
-        return id;
-    }
+    InputId inputId = new InputId();
+
     public Author input() {
         System.out.println("Input ID:");
-        int id = inputId((authorId) -> check.checkExistId(authorId, "author"));
-
+        int id = inputId.input((authorId) -> check.checkExistId(authorId, "author"));
         System.out.println("Input Author Name:");
         String name = scanner.nextLine();
 
@@ -78,9 +62,8 @@ public class AuthorManager {
                 String nameAuthor = rs.getString("author_name");
                 int bookId = rs.getInt("book_id");
 
-                System.out.println(id);
-                System.out.println(nameAuthor);
-                System.out.println(bookId);
+                System.out.println(id + " | " + nameAuthor + " | " + bookId);
+
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -90,6 +73,6 @@ public class AuthorManager {
 
     public static void main(String[] args) {
         AuthorManager manager = new AuthorManager();
-        manager.create();
+        manager.getList();
     }
 }
