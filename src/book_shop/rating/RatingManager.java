@@ -24,55 +24,42 @@ public class RatingManager {
     CheckValid checkValid = new CheckValid();
     InputId inputId = new InputId();
 
-    boolean flag = false;
+    public int checkNotNumber(int number) {
+        boolean flag = false;
+        while (!flag) {
+            String number1 = scanner.nextLine();
+            if (!checkValid.isNumber(number1)) {
+                System.out.println("Not Number!! Input Again:");
+                continue;
+            }
+            number = Integer.parseInt(number1);
+            flag = true;
+        }
+        return number;
+    }
 
-    public Rating input( ) {
+
+    public Rating input() {
         System.out.println("Input ID:");
         int id = inputId.input((ratingId) -> checkValid.checkExistId(ratingId, "rating"));
         System.out.println("Input Star Rating");
-        int star_rating = 0;
-        while (!flag) {
-            String number1 = scanner.nextLine();
-            if (!checkValid.isNumber(number1)) {
-                System.out.println("Not Number!! Input Again:");
-                continue;
-            }
-            star_rating = Integer.parseInt(number1);
-            flag = true;
-
-        }
+        int starRating = 0;
+        starRating = checkNotNumber(starRating);
         System.out.println("Input  Book Id:");
         int bookId = 0;
-        while (!flag) {
-            String number1 = scanner.nextLine();
-            if (!checkValid.isNumber(number1)) {
-                System.out.println("Not Number!! Input Again:");
-                continue;
-            }
-            bookId = Integer.parseInt(number1);
-            flag = true;
-
-        }
-        bookManager.updateStar(star_rating, bookId);
+        bookId = checkNotNumber(bookId);
+        bookManager.updateStar(starRating, bookId);
         System.out.println("Input Comment:");
         String comment = scanner.nextLine();
         System.out.println("Input ReaderId:");
         int readerId = 0;
-        while (!flag) {
-            String number1 = scanner.nextLine();
-            if (!checkValid.isNumber(number1)) {
-                System.out.println("Not Number!! Input Again:");
-                continue;
-            }
-            readerId = Integer.parseInt(number1);
-            flag = true;
-        }
-        return new Rating(id, star_rating, bookId, comment, readerId);
+        readerId = checkNotNumber(readerId);
+        return new Rating(id, starRating, bookId, comment, readerId);
     }
 
-    public int create( ) {
+    public int create() {
         int kq = 0;
-        Rating  rating = input();
+        Rating rating = input();
         String query = " insert into rating value (?,?,?,?,?)";
         try {
             PreparedStatement ps = connection.prepareStatement(query);
@@ -95,16 +82,18 @@ public class RatingManager {
     }
 
     public List<Rating> getList() {
-        String query = "select * from rating";
+        String query = "SELECT b.id,book_name,b.rating_average FROM rating r, books b where r.book_id =b.id and b.id =? ";
         try {
             PreparedStatement ps = connection.prepareStatement(query);
+            System.out.println("Input Id Book");
+            int bookId1 = scanner.nextInt();
+            ps.setInt(1, bookId1);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 int id = rs.getInt("id");
-                String nameAuthor = rs.getString("star_rating");
-                int bookId = rs.getInt("book_id");
-                String comment = rs.getString("comment");
-                System.out.println(id + " | " + nameAuthor + " | " + bookId + " | " + comment);
+                String bookName = rs.getString("book_name");
+                int bookId = rs.getInt("rating_average");
+                System.out.println(id + " | " + bookName + " | " + bookId + " | ");
 
             }
         } catch (Exception e) {

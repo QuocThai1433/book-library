@@ -47,3 +47,7 @@ M
 src/book_shop/CheckValid.java,5\f\5ff13af97caa38a4ecebe43f51d6344c43e1c69b
 J
 src/book_shop/InputId.java,d\4\d4c0c0f5d623f4ca570251cf5e613ab18d9b410e
+=
+src/test.java,2\e\2e9f5287534e2ab86bcabfff7a3c5f9b053752ae
+R
+"src/book_shop/readers/Readers.java,e\3\e3e1ff42574696e35fa1d49a76420efc376beebe

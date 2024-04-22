@@ -1,14 +1,9 @@
 
-˜	java:S117!"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¿¨ıÂøÿÿÿÿ8Çğ1J$8d1a17ab-b187-47d8-a659-a8b774a93906
-†
-java:S2583."DChange this condition so that it does not always evaluate to "false"(°¨8œ¢ğ1J$73e148bc-8821-4607-9760-72d0ed01b138
-†
-java:S2583="DChange this condition so that it does not always evaluate to "false"(°¨8êÅ£ğ1J$9a6b5949-c767-4345-9f87-6041bd161f09
 y
-java:S1611"6Remove the parentheses around the "ratingId" parameter(ŠõÇÊ8çğ1J$33ab7faa-2997-498d-8efa-eda440467628
+java:S1611,"6Remove the parentheses around the "ratingId" parameter(ŠõÇÊ8ìêğ§ğ1J$a56854e4-c578-46c3-b632-ae0b63afd037
 z
-java:S6126u"2Replace this String concatenation with Text block.(ß¶´—øÿÿÿÿ8êğ1J$c663b890-43b1-4730-8718-2461f41593f3
+java:S6126j"2Replace this String concatenation with Text block.(ß¶´—øÿÿÿÿ8ñêğ§ğ1J$bfd55e36-6201-4ada-aa52-bc5089b8ac15
 s
-java:S1128"0Remove this unused import 'book_shop.book.Book'.(Ù©ÆØ8ˆ³ìğ1J$d4927494-2e2d-476a-8005-469bca34732d
+java:S1128"0Remove this unused import 'book_shop.book.Book'.(Ù©ÆØ8¤Ì‡ªğ1J$588360a8-9888-41a8-8a11-8ff73e76a162
 {
-java:S1128"8Remove this unused import 'java.util.function.Function'.(»³Í8ˆ³ìğ1J$0c0f5d92-a57b-46b9-b66c-6cb65a9616e3
+java:S1128"8Remove this unused import 'java.util.function.Function'.(»³Í8¤Ì‡ªğ1J$b17c4b2f-a14d-4c1a-b73e-faab5147c890

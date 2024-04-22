@@ -24,7 +24,7 @@ public class CategoryManager {
     public Category input(Category category) {
         System.out.println("Input ID:");
         int id = inputId.input((authorId) -> checkValid.checkExistId(authorId, "category"));
-        System.out.println("Input Category Name:");
+        System.out.println("Input Filter Name:");
         String name = scanner.nextLine();
 
         return new Category(id, name);

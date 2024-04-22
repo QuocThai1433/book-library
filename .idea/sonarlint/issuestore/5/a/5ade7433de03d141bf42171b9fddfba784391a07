@@ -1,7 +1,7 @@
 
-†
-java:S2583."DChange this condition so that it does not always evaluate to "false"(°¨8ÍŠ€ğ1J$bcf639de-1810-4e38-8422-c3498ffecb3c
-µ
-java:S1130Ş"qRemove the declaration of thrown exception 'java.text.ParseException', as it cannot be thrown from method's body.(ˆ…­Å8¤Ìğ1J$de17fd0b-f0c0-4f3e-a966-48373c8e69af
 {
-java:S1128"8Remove this unused import 'java.util.function.Function'.(»³Í8ìŠ€ğ1J$f4b344ec-ccd8-439a-9bb1-5415f57f9ca6
+java:S6126Ä"2Replace this String concatenation with Text block.(®½Ä¸ıÿÿÿÿ8×¥åªğ1J$81623d78-6ea3-4df6-9ad4-71ef4a4d27bc
+µ
+java:S1130‹"qRemove the declaration of thrown exception 'java.text.ParseException', as it cannot be thrown from method's body.(ˆ…­Å8Û¥åªğ1J$11c7169f-9b42-4736-97c5-3d7953b745e5
+{
+java:S1128"8Remove this unused import 'java.util.function.Function'.(»³Í8Û¥åªğ1J$072e453b-848f-461f-9d4f-faa1e9d0cca1

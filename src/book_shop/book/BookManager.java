@@ -5,8 +5,6 @@ import book_shop.CheckValid;
 import book_shop.ConnectDB;
 import book_shop.InputId;
 import book_shop.category.Category;
-import com.mysql.cj.jdbc.SuspendableXAConnection;
-import com.mysql.cj.protocol.Resultset;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -22,6 +20,46 @@ public class BookManager {
     InputId inputId = new InputId();
     boolean flag = false;
 
+    public int checkNotNumber(int number) {
+        boolean flag = false;
+        while (!flag) {
+            String number1 = scanner.nextLine();
+            if (!check.isNumber(number1)) {
+                System.out.println("Not Number!! Input Again:");
+                continue;
+            }
+            number = Integer.parseInt(number1);
+            flag = true;
+        }
+        return number;
+    }
+
+
+    public Book inputUpdate() {
+        System.out.println("Input Id Name:");
+        int id = scanner.nextInt();
+        scanner.nextLine();
+
+        System.out.println("Input Book Name:");
+        String bookName = scanner.nextLine();
+
+        System.out.println("Input Publication Year:");
+        int publicationYear = 0;
+        publicationYear = checkNotNumber(publicationYear);
+        System.out.println("Input quantity:");
+        int quantity = scanner.nextInt();
+
+        System.out.println("Input Price:");
+        float price = scanner.nextFloat();
+        System.out.println("Input Rating Average:");
+        float ratingAverage = scanner.nextFloat();
+        scanner.nextLine();
+        System.out.println("Input category Id:");
+        int categoryId = 0;
+        categoryId = checkNotNumber(categoryId);
+
+        return new Book(id, bookName, publicationYear, quantity, price, ratingAverage, categoryId);
+    }
 
     public Book inputBook() {
         String number = null;
@@ -32,7 +70,18 @@ public class BookManager {
         String bookName = scanner.nextLine();
 
         System.out.println("Input Publication Year:");
-        int publicationYear = scanner.nextInt();
+        int publicationYear = 0;
+        while (!flag) {
+            String number1 = scanner.nextLine();
+            if (!check.isNumber(number1)) {
+                System.out.println("Not Number!! Input Again:");
+                continue;
+            }
+            publicationYear = Integer.parseInt(number1);
+            flag = true;
+
+        }
+
 
         System.out.println("Input quantity:");
         int quantity = scanner.nextInt();
@@ -43,13 +92,14 @@ public class BookManager {
         float ratingAverage = scanner.nextInt();
         scanner.nextLine();
         System.out.println("Input category Id:");
-        int categoryId =0;
+        int categoryId = 0;
         while (!flag) {
             String number1 = scanner.nextLine();
             if (!check.isNumber(number1)) {
                 System.out.println("Not Number!! Input Again:");
                 continue;
-            }    categoryId = Integer.parseInt(number1);
+            }
+            categoryId = Integer.parseInt(number1);
             flag = true;
 
         }
@@ -93,8 +143,8 @@ public class BookManager {
 
     }
 
-    public int create( ) {
-       Book book = inputBook();
+    public int create() {
+        Book book = inputBook();
         Category category = new Category();
         String query = "insert into books value  (?,?,?,?,?,?,?)";
         int kq = 0;
@@ -122,6 +172,36 @@ public class BookManager {
 
     }
 
+    public int update() {
+        String query = "UPDATE books  SET book_name = ?, publication_year = ?, quantity = ?,price = ?,rating_average = ?,category_id = ? WHERE id = ?";
+        Book book = inputUpdate();
+        int kq = 0;
+        try {
+            PreparedStatement ps = connection.prepareStatement(query);
+            System.out.println("Input Id:");
+            ps.setInt(7, book.getId());
+
+            ps.setString(1, book.getBookName());
+            ps.setInt(2, book.getPublicationYear());
+            ps.setInt(3, book.getQuantity());
+            ps.setFloat(4, book.getPrice());
+            ps.setFloat(5, book.getRatingAverage());
+            if (check.checkExistId(book.getCategoryId(), "category")) {
+                ps.setInt(6, book.getCategoryId());
+
+            } else {
+                ps.setObject(6, null);
+
+            }
+            kq = ps.executeUpdate();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return kq;
+    }
+
+
     public List<Book> getListBook() {
         List<Book> bookList = new ArrayList<>();
         String query = "select * from books";
@@ -148,23 +228,31 @@ public class BookManager {
 
     public void filter() {
         int kq = 0;
-        String query = "SELECT * FROM books b, category c where b.category_id = c.id and c.category_name = ?";
+        String query = "SELECT a.author_name,b.book_name,c.category_name FROM author a\n" +
+                "right join books b\n" +
+                "on a.book_id = b.id\n" +
+                "right join category c\n" +
+                "on b.category_id =c.id\n" +
+                "WHERE c.category_name LIKE ? \n" +
+                "OR b.book_name LIKE ?\n" +
+                "or a.author_name like ?";
         try {
             PreparedStatement ps = ConnectDB.connectDB.prepareStatement(query);
             System.out.println("Input Category Name: ");
-            String categoryName = scanner.nextLine();
-            ps.setString(1, categoryName);
+            String characters = scanner.nextLine();
+            ps.setString(1, "%" + characters + "%");
+            ps.setString(2, "%" + characters + "%");
+            ps.setString(3, "%" + characters + "%");
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                int id = rs.getInt("id");
-                String bookName = rs.getString("book_name");
-                String publicationYear = rs.getString("publication_year");
-                String quantity = rs.getString("quantity");
-                int price = rs.getInt("price");
-                int ratingAverage = rs.getInt("rating_average");
-                float categoryId = rs.getFloat("category_id");
 
-                System.out.println(id + " | " + bookName + " | " + publicationYear + " | " + quantity + " | " + price + " | " + ratingAverage + " | " + categoryId);
+                String bookName = rs.getString("author_name");
+                String publicationYear = rs.getString("book_name");
+                String categoryName = rs.getString("category_name");
+
+
+
+                System.out.println(    bookName + " | " + publicationYear + " | "+categoryName );
 
             }
         } catch (Exception e) {
@@ -172,87 +260,9 @@ public class BookManager {
         }
     }
 
-
-//    public static List<Book> getListBook() {
-//        for (Book book : books
-//        ) {
-//            outputBook(book);
-//        }
-//        return null;
-//    }
-
-
-//    public static void writeFile(Book book) {
-//
-//        try {
-//            FileOutputStream fileOutputStream = new FileOutputStream("book.txt");
-//            ObjectOutputStream f = new ObjectOutputStream(fileOutputStream);
-//            f.writeObject(books);
-//            f.close();
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//    }
-
-//    public static void readFile() {
-//        try {
-//            FileInputStream inputStream = new FileInputStream("book.txt");
-//            ObjectInput objectInput = new ObjectInputStream(inputStream);
-//            List<Book> bookList = (List<Book>) objectInput.readObject();
-//            for (int i = 0; i < bookList.size(); i++) {
-//                System.out.println(outputBook(bookList.get(i)));
-//            }
-//            objectInput.close();
-//
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//    }
-
-//    public static void filterBook(List<Book> books) {
-////        String nameBook;
-////        inputList();
-////        System.out.println("Nhap sach can tim: ");
-////        nameBook = scanner.nextLine();
-////
-////        for (Book book : books) {
-////            if (nameBook.equals(book.getTenSach())) {
-////                System.out.println("Sach ban vua tim co trong danh sach:" + book.getTenSach());
-////            } else {
-////                System.out.println("Sach khong ton tai!!");
-////            }
-////
-////        }
-//    }
-
-//        public static void updateBook () {
-//
-//
-//            System.out.println("Nhap ma sach can sua:");
-//            int id = scanner.nextInt();
-//
-//            for (Book book1 : books) {
-//                if (id == book1.getMaSach()) {
-//                    System.out.println("Moi ban sua thong tin:\n");
-//
-//                    book1.setMaSach(inputBook().id);
-//                    book1.setTenSach(inputBook().tenSach);
-//                    book1.setTacGia(inputBook().tacGia);
-//                    book1.setNhaXuatBan(inputBook().nhaXuatBan);
-//                    book1.setNamXuatBan(inputBook().namXuatBan);
-//                    book1.setSoLuong(inputBook().soLuong);
-//                    book1.setGiaBan(inputBook().giaBan);
-//                } else {
-//                    System.out.println("Ma Sach khong ton tai");
-//                }
-
-
-//}}
-
-
     public static void main(String[] args) {
         BookManager manager = new BookManager();
-        manager.getListBook();
+        manager.filter();
 
 
     }

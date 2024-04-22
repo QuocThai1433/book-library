@@ -10,7 +10,6 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-import java.util.function.Function;
 
 public class PublisherManager {
      Connection connection = ConnectDB.getConnection();
@@ -20,7 +19,20 @@ public class PublisherManager {
      CheckValid checkValid = new CheckValid();
     InputId inputId = new InputId();
 
-    boolean flag = false;
+    public int checkNotNumber(int number) {
+        boolean flag = false;
+        while (!flag) {
+            String number1 = scanner.nextLine();
+            if (!checkValid.isNumber(number1)) {
+                System.out.println("Not Number!! Input Again:");
+                continue;
+            }
+            number = Integer.parseInt(number1);
+            flag = true;
+        }
+        return number;
+    }
+
 
     public  Publisher input( ) {
         System.out.println("Input ID:");
@@ -30,16 +42,7 @@ public class PublisherManager {
         String name = scanner.nextLine();
         System.out.println("Input  Book Id:");
         int bookId = 0;
-        while (!flag) {
-            String number1 = scanner.nextLine();
-            if (!checkValid.isNumber(number1)) {
-                System.out.println("Not Number!! Input Again:");
-                continue;
-            }
-            bookId= Integer.parseInt(number1);
-            flag = true;
-
-        }
+       bookId=checkNotNumber(bookId);
         return new Publisher(id, name,bookId);
     }
     public  int create() {

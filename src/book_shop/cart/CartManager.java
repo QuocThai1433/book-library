@@ -20,23 +20,25 @@ public class CartManager {
     CheckValid checkValid = new CheckValid();
     boolean flag = false;
 
-    public Cart input() {
-        String number = null;
-        int bookId = 0;
-        System.out.println("Input Book Id:");
+    public int checkNotNumber(int number) {
+        boolean flag = false;
         while (!flag) {
             String number1 = scanner.nextLine();
             if (!checkValid.isNumber(number1)) {
                 System.out.println("Not Number!! Input Again:");
                 continue;
             }
-            bookId = Integer.parseInt(number1);
+            number = Integer.parseInt(number1);
             flag = true;
-
         }
+        return number;
+    }
 
-        System.out.println("Input Book Name:");
-        String bookName = scanner.nextLine();
+    public Cart input() {
+        String number = null;
+        int bookId = 0;
+        System.out.println("Input Book Id:");
+      bookId = checkNotNumber(bookId);
         System.out.println("Input  Price:");
         float price = scanner.nextFloat();
         scanner.nextLine();
@@ -44,7 +46,7 @@ public class CartManager {
         int quantity = scanner.nextInt();
         updateQuantity(bookId, quantity);
         reduce(quantity);
-        return new Cart(bookId, bookName, price, quantity);
+        return new Cart(bookId, price, quantity);
     }
 
 
@@ -82,7 +84,7 @@ public class CartManager {
     public int create() {
         int kq = 0;
         Cart cart = input();
-        String query = " insert into carts value (?,?,?,?)";
+        String query = " insert into carts value (?,?,?)";
         try {
             PreparedStatement ps = connection.prepareStatement(query);
             if (checkValid.checkExistId(cart.getBook_id(), "books")) {
@@ -91,9 +93,8 @@ public class CartManager {
                 ps.setObject(1, null);
 
             }
-            ps.setString(2, cart.getBookName());
-            ps.setFloat(3, cart.getPrice());
-            ps.setInt(4, cart.getQuantity());
+            ps.setFloat(2, cart.getPrice());
+            ps.setInt(3, cart.getQuantity());
             kq = ps.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
@@ -109,10 +110,9 @@ public class CartManager {
             while (rs.next()) {
 
                 int bookId = rs.getInt("book_id");
-                String bookName = rs.getString("book_name");
                 int price = rs.getInt("price");
                 int quantity = rs.getInt("quantity");
-                System.out.println(bookId + " | " + bookName + " | " + price + " | " + quantity);
+                System.out.println(bookId + " | " +  " | " + price + " | " + quantity);
 
             }
         } catch (Exception e) {

@@ -1,15 +1,11 @@
 
+†
+java:S2583`"DChange this condition so that it does not always evaluate to "false"(°¨8®Ì—ªğ1J$d77be578-547c-47f6-b4e4-8d0f7c9fc01d
+€
+java:S1117"8Rename "flag" which hides the field declared at line 21.(ŸÿáÑÿÿÿÿÿ8´Ì—ªğ1J$63731982-a658-41e2-9c46-a0cb400d7f55
 ~
-java:S1611"6Remove the parentheses around the "authorId" parameter(Õ÷É•ÿÿÿÿÿ8½Åäœğ1J$dcd61b45-f5d6-4457-8b27-9da7edf43c61
-	java:S125°"<This block of commented-out lines of code should be removed.(€³™8ß°êœğ1J$241abbe7-6839-4c4c-a3b1-9dde38f0e152
-	java:S125¹"<This block of commented-out lines of code should be removed.(Áª8ß°êœğ1J$857974c6-cab6-46d7-9fd9-d4a69d5a229d
-	java:S125Å"<This block of commented-out lines of code should be removed.(àñİ¢8ß°êœğ1J$4d2dbac8-d638-45af-86f5-f1f519d642b0
-„	java:S125Ô"<This block of commented-out lines of code should be removed.(û¶Íáûÿÿÿÿ8ß°êœğ1J$ebcb5d32-b003-401a-a78e-d7e44bf36b2f
-„	java:S125ä"<This block of commented-out lines of code should be removed.(äÛÆõÿÿÿÿÿ8ß°êœğ1J$b15da462-b579-42ec-859e-f2fc4aa89cde
-	java:S125ú"<This block of commented-out lines of code should be removed.(ê„ê÷8ß°êœğ1J$698098c1-de49-480d-9bde-fb197f54be18
-
-java:S1128"FRemove this unused import 'com.mysql.cj.jdbc.SuspendableXAConnection'.(´´ç—ÿÿÿÿÿ8Ñ‡‡ğ1J$bda46584-a291-4948-996b-49a01ae967b6
-„
-java:S1128	"<Remove this unused import 'com.mysql.cj.protocol.Resultset'.(«‹’ûÿÿÿÿ8Ñ‡‡ğ1J$dbf416db-e73f-4a75-9f2a-7c698f381973
+java:S1611C"6Remove the parentheses around the "authorId" parameter(Õ÷É•ÿÿÿÿÿ8´Ì—ªğ1J$4c5b0add-76e3-41be-be58-76990a2d10fb
 {
-java:S1128"8Remove this unused import 'java.util.function.Function'.(»³Í8Ñ‡‡ğ1J$e4f8ce3f-cd85-47d8-a3bc-74593b579e0a
+java:S6126ç"2Replace this String concatenation with Text block.(¡şæãùÿÿÿÿ8¸Ì—ªğ1J$7b3d1057-9ef2-4e14-beb3-433393fa25bd
+{
+java:S1128"8Remove this unused import 'java.util.function.Function'.(»³Í8±Ä¦ªğ1J$9e830cc6-f93d-48df-a01a-e2bb8e029156

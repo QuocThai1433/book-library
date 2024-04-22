@@ -1,13 +1,13 @@
 
+‘
+java:S1104"UMake connectDB a static final constant or non-public and provide accessors if needed.(ˆ¤¢çJ$78f1a4b6-d95a-45ea-8755-655e99f842d4
 k
-java:S1104"UMake connectDB a static final constant or non-public and provide accessors if needed.(ˆ¤¢ç
-E
-java:S1444"/Make this "public static connectDB" field final(ˆ¤¢ç
-.
-java:S1700"Rename field "connectDB"(ˆ¤¢ç
-H
-java:S4925"-Remove this "Class.forName()", it is useless.(¹µÖÁüÿÿÿÿ
-Q
-java:S6437"6Revoke and change this password, as it is compromised.(éŠ±üÿÿÿÿ
-‡
-java:S1130"lRemove the declaration of thrown exception 'java.lang.Exception', as it cannot be thrown from method's body.(ÙØ¤Şıÿÿÿÿ
+java:S1444"/Make this "public static connectDB" field final(ˆ¤¢çJ$4ce310fe-4333-4c6b-bc80-f6e09b5b7a72
+T
+java:S1700"Rename field "connectDB"(ˆ¤¢çJ$4ba0df9f-3e87-4e03-892c-68b1f38d0543
+n
+java:S4925"-Remove this "Class.forName()", it is useless.(¹µÖÁüÿÿÿÿJ$a71874be-49b3-4950-b3a0-68d1ff5075d5
+w
+java:S6437"6Revoke and change this password, as it is compromised.(éŠ±üÿÿÿÿJ$cadd78c3-47db-4685-8e35-79ed7ac30abb
+­
+java:S1130"lRemove the declaration of thrown exception 'java.lang.Exception', as it cannot be thrown from method's body.(ÙØ¤ŞıÿÿÿÿJ$4513b832-8c04-4a32-9603-fd54bee67032

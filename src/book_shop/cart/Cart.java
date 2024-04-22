@@ -2,16 +2,15 @@ package book_shop.cart;
 
 public class Cart {
     private int book_id;
-    private String bookName;
+
     private float price;
     private int quantity;
 
     public Cart() {
     }
 
-    public Cart(int book_id, String bookName, float price, int quantity) {
+    public Cart(int book_id, float price, int quantity) {
         this.book_id = book_id;
-        this.bookName = bookName;
         this.price = price;
         this.quantity = quantity;
     }
@@ -28,9 +27,7 @@ public class Cart {
         this.price = price;
     }
 
-    public void setBookName(String bookName) {
-        this.bookName = bookName;
-    }
+
 
     public int getBook_id() {
         return book_id;
@@ -44,17 +41,6 @@ public class Cart {
         return price;
     }
 
-    public String getBookName() {
-        return bookName;
-    }
 
-    @Override
-    public String toString() {
-        return "Cart{" +
-                "book_id=" + book_id +
-                ", bookName='" + bookName + '\'' +
-                ", price=" + price +
-                ", quantity=" + quantity +
-                '}';
-    }
+
 }
