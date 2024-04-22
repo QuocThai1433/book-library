@@ -16,7 +16,7 @@ import java.util.Scanner;
 
 public class BookReaderManager {
 
-    Connection connection = ConnectDB.getConnection();
+    Connection connection = ConnectDB.getInstance().getConnection();
     Scanner scanner = new Scanner(System.in);
     List<BookReader> authors = new ArrayList<>();
     List<BookCategory> bookCategories = new ArrayList<>();

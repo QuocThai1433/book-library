@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class CartManager {
-    Connection connection = ConnectDB.getConnection();
+    Connection connection = ConnectDB.getInstance().getConnection();
     Scanner scanner = new Scanner(System.in);
     List<Cart> authors = new ArrayList<>();
 

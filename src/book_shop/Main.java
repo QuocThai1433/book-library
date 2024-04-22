@@ -5,7 +5,6 @@ import book_shop.book.BookManager;
 import book_shop.book_reader.BookReaderManager;
 import book_shop.book_reader.WriteExcel;
 import book_shop.cart.CartManager;
-import book_shop.category.Category;
 import book_shop.category.CategoryManager;
 import book_shop.publisher.PublisherManager;
 import book_shop.rating.RatingManager;
@@ -25,7 +24,6 @@ public class Main {
         CartManager cartManager = new CartManager();
         WriteExcel writeExcel = new WriteExcel();
         CategoryManager categoryManager = new CategoryManager();
-        Category category = new Category();
         boolean exit = false;
         Scanner scanner = new Scanner(System.in);
         int choose;
@@ -99,7 +97,7 @@ public class Main {
                     cartManager.getList();
                     break;
                 case 16:
-                    categoryManager.create(category);
+                    categoryManager.create();
                     break;
                 case 17:
                     categoryManager.getList();

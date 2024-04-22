@@ -11,7 +11,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class CheckValid {
-    Connection connection = ConnectDB.getConnection();
+    Connection connection = ConnectDB.getInstance().getConnection();
 
     public int parse(String str) {
         int id = Integer.parseInt(str);
