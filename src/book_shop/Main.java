@@ -33,7 +33,6 @@ public class Main {
         Readers readers = new Readers();
         RatingManager ratingManager = new RatingManager();
         CartManager cartManager = new CartManager();
-        Cart cart = new Cart();
         WriteExcel writeExcel = new WriteExcel();
         CategoryManager categoryManager = new CategoryManager();
         Category category = new Category();
@@ -63,7 +62,7 @@ public class Main {
            choose = scanner.nextInt();
            switch (choose) {
                case 1:
-                   bookManager.create(book);
+                   bookManager.create();
                    break;
                case 2:
                    bookManager.getListBook();
@@ -78,13 +77,13 @@ public class Main {
                    authorManager.getList();
                    break;
                case 6:
-                   publisherManager.create(publisher);
+                   publisherManager.create();
                    break;
                case 7:
                    publisherManager.getList();
                    break;
                case 8:
-                   readerManager.create(readers);
+                   readerManager.create();
                    break;
                case 9:
                    readerManager.getList();
@@ -102,7 +101,7 @@ public class Main {
                    ratingManager.getList();
                    break;
                case 14:
-                   cartManager.create(cart);
+                   cartManager.create();
                    break;
                case 15:
                    cartManager.getList();

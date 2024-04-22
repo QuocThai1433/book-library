@@ -1,3 +1,7 @@
 
-~
-java:S1611""6Remove the parentheses around the "authorId" parameter(ôàÑÿÿÿÿÿ8íª“¬ï1J$574987bc-4f11-4264-ab96-92f4b7b9131f
+†
+java:S2583."DChange this condition so that it does not always evaluate to "false"(°¨8ÍŠ€ğ1J$bcf639de-1810-4e38-8422-c3498ffecb3c
+µ
+java:S1130Ş"qRemove the declaration of thrown exception 'java.text.ParseException', as it cannot be thrown from method's body.(ˆ…­Å8¤Ìğ1J$de17fd0b-f0c0-4f3e-a966-48373c8e69af
+{
+java:S1128"8Remove this unused import 'java.util.function.Function'.(»³Í8ìŠ€ğ1J$f4b344ec-ccd8-439a-9bb1-5415f57f9ca6

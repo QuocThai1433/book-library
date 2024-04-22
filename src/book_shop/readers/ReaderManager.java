@@ -18,18 +18,19 @@ public class ReaderManager {
      InputId inputId = new InputId();
      CheckValid checkValid = new CheckValid();
 
-    public  Readers readers (Readers reader) {
+    public  Readers input () {
         int n = 0;
         System.out.println("Input id:");
-        int id = inputId.input((authorId) -> checkValid.checkExistId(authorId, "rating"));
+        int id = inputId.input((readerId) -> checkValid.checkExistId(readerId, "readers"));
         System.out.println("Input Name Reader:");
         String nameReader = scanner.nextLine();
         return new Readers(id, nameReader);
+
     }
 
 
-    public  int create(Readers reader) {
-        reader = readers(reader);
+    public  int create( ) {
+        Readers reader = input();
         String query = "insert into readers value  (?,?)";
         int kq = 0;
         try {

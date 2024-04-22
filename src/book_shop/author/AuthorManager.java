@@ -18,15 +18,24 @@ public class AuthorManager {
     static CheckValid check = new CheckValid();
 
     InputId inputId = new InputId();
+    boolean flag  = false;
 
     public Author input() {
         System.out.println("Input ID:");
         int id = inputId.input((authorId) -> check.checkExistId(authorId, "author"));
         System.out.println("Input Author Name:");
         String name = scanner.nextLine();
-
         System.out.println("Input Book Id:");
-        int bookId = scanner.nextInt();
+        int bookId =0;
+        while (!flag) {
+            String number1 = scanner.nextLine();
+            if (!check.isNumber(number1)) {
+                System.out.println("Not Number!! Input Again:");
+                continue;
+            }    bookId = Integer.parseInt(number1);
+            flag = true;
+
+        }
         return new Author(id, name, bookId);
     }
 
@@ -73,6 +82,6 @@ public class AuthorManager {
 
     public static void main(String[] args) {
         AuthorManager manager = new AuthorManager();
-        manager.getList();
+        manager.create();
     }
 }

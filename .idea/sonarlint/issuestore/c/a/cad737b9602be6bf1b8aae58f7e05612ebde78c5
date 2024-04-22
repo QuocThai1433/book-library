@@ -1,21 +1,15 @@
 
+~
+java:S1611"6Remove the parentheses around the "authorId" parameter(Õ÷É•ÿÿÿÿÿ8½Åäœð1J$dcd61b45-f5d6-4457-8b27-9da7edf43c61
+	java:S125°"<This block of commented-out lines of code should be removed.(€³™8ß°êœð1J$241abbe7-6839-4c4c-a3b1-9dde38f0e152
+	java:S125¹"<This block of commented-out lines of code should be removed.(Áª8ß°êœð1J$857974c6-cab6-46d7-9fd9-d4a69d5a229d
+	java:S125Å"<This block of commented-out lines of code should be removed.(àñÝ¢8ß°êœð1J$4d2dbac8-d638-45af-86f5-f1f519d642b0
+„	java:S125Ô"<This block of commented-out lines of code should be removed.(û¶Íáûÿÿÿÿ8ß°êœð1J$ebcb5d32-b003-401a-a78e-d7e44bf36b2f
+„	java:S125ä"<This block of commented-out lines of code should be removed.(äÛÆõÿÿÿÿÿ8ß°êœð1J$b15da462-b579-42ec-859e-f2fc4aa89cde
+	java:S125ú"<This block of commented-out lines of code should be removed.(ê„ê÷8ß°êœð1J$698098c1-de49-480d-9bde-fb197f54be18
+Ž
+java:S1128"FRemove this unused import 'com.mysql.cj.jdbc.SuspendableXAConnection'.(´´ç—ÿÿÿÿÿ8Ñ‡‡ð1J$bda46584-a291-4948-996b-49a01ae967b6
 „
-java:S1226T"AIntroduce a new variable instead of reusing the parameter "book".(ÞÕúç8â«Ç¬ï1J$49c050ab-94d7-4f7f-a9fe-85e70735325f
-y
-java:S1611"6Remove the parentheses around the "authorId" parameter(èóÝê8¬Ç¬ï1J$e3c03986-be2d-4e92-86aa-2bbe65f6792d
-y
-java:S1611."6Remove the parentheses around the "authorId" parameter(‘ÒÚŽ8‚¬Ç¬ï1J$36730b9c-aea2-4d9a-bb46-b61016934616
-
-java:S1611‘"6Remove the parentheses around the "authorId" parameter(â«ªèûÿÿÿÿ8úæëÞï1J$acc3d1c0-fc6b-4ffd-851e-0c2e99fbbc3f
-	java:S125§"<This block of commented-out lines of code should be removed.(€³™8‹¬Ç¬ï1J$d9ebc55f-8f41-4f5f-af06-87d1703d51f4
-	java:S125°"<This block of commented-out lines of code should be removed.(Áª8‹¬Ç¬ï1J$c1ca2cb6-cd19-4c4a-9317-2dd1a1539033
-	java:S125¼"<This block of commented-out lines of code should be removed.(àñÝ¢8‹¬Ç¬ï1J$160e5a94-c0c8-4bd4-9f81-d282a507a492
-„	java:S125Ë"<This block of commented-out lines of code should be removed.(û¶Íáûÿÿÿÿ8‹¬Ç¬ï1J$fcebc838-fd02-4f60-8c88-1090e6e3bb0e
-„	java:S125Û"<This block of commented-out lines of code should be removed.(äÛÆõÿÿÿÿÿ8‹¬Ç¬ï1J$1d6a297d-d785-443e-a03c-46740389da41
-	java:S125ñ"<This block of commented-out lines of code should be removed.(ê„ê÷8‹¬Ç¬ï1J$d90cb7ed-d367-4b8f-8cec-a0a764c8b980
-h
-java:S1128"FRemove this unused import 'com.mysql.cj.jdbc.SuspendableXAConnection'.(´´ç—ÿÿÿÿÿ8ØŸìÞï1
-^
-java:S1128	"<Remove this unused import 'com.mysql.cj.protocol.Resultset'.(«‹’ûÿÿÿÿ8ØŸìÞï1
-U
-java:S1128"8Remove this unused import 'java.util.function.Function'.(»³Íž8ØŸìÞï1
+java:S1128	"<Remove this unused import 'com.mysql.cj.protocol.Resultset'.(«‹’ûÿÿÿÿ8Ñ‡‡ð1J$dbf416db-e73f-4a75-9f2a-7c698f381973
+{
+java:S1128"8Remove this unused import 'java.util.function.Function'.(»³Íž8Ñ‡‡ð1J$e4f8ce3f-cd85-47d8-a3bc-74593b579e0a

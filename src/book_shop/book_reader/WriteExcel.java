@@ -17,6 +17,7 @@ import java.util.List;
 
 public class WriteExcel {
    static Connection connection= ConnectDB.getConnection();
+
     public static final int COLUMN_INDEX_ID = 0;
     public static final int COLUMN_INDEX_BOOKNAME = 1;
     public static final int COLUMN_INDEX_PUBLICATION_YEAR = 2;
@@ -33,12 +34,15 @@ public class WriteExcel {
         
         Sheet sheet = workbook.createSheet("Books"); // Create sheet with sheet name
         int rowIndex = 0;
-        // Write data
         rowIndex++;
+        Row headerRow = sheet.createRow(0);
+        String[] headers = {"id", "book_name", "publication_year","quantity", "price", "rating_average","category_id"};
+        for (int i = 0; i < headers.length; i++) {
+            Cell cell = headerRow.createCell(i);
+            cell.setCellValue(headers[i]);
+        }
         for (Book book : books) {
-            // Create row
             Row row = sheet.createRow(rowIndex);
-            // Write data on row
             writeBook(book, row);
             rowIndex++;
         }
@@ -63,21 +67,22 @@ public class WriteExcel {
         
         return workbook;
     }
-    
+
+
     private static List<Book> getListBooks() {
-        String query = "SELECT * FROM books;";
+        String query = "SELECT * FROM books";
         try {
             PreparedStatement ps = connection.prepareStatement(query);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-
                 int id = rs.getInt("id");
                 String bookName = rs.getString("book_name");
                 int publicationYear = rs.getInt("publication_year");
                 int quantity = rs.getInt("quantity");
-                float price = rs.getFloat("price");
+                int price = rs.getInt("price");
                 float ratingAverage = rs.getFloat("rating_average");
                 int categoryId = rs.getInt("category_id");
+                System.out.println(id + " | " + bookName + " | " + publicationYear + " | " + quantity + " | " + price + " | " + ratingAverage + " | " + categoryId);
                 Book book = new Book(id,bookName,publicationYear,quantity,price,ratingAverage, categoryId);
             books.add(book);
 
@@ -96,7 +101,9 @@ public class WriteExcel {
             cellStyleFormatNumber = workbook.createCellStyle();
             cellStyleFormatNumber.setDataFormat(format);
         }
-        
+//        Cell cell = row.createCell(TITLE_1);
+//        cell.setCellValue("hh");
+
         Cell cell = row.createCell(COLUMN_INDEX_ID);
         cell.setCellValue(book.getId());
         
@@ -105,22 +112,19 @@ public class WriteExcel {
         
         cell = row.createCell(COLUMN_INDEX_PUBLICATION_YEAR);
         cell.setCellValue(book.getPublicationYear());
-        cell.setCellStyle(cellStyleFormatNumber);
         
         cell = row.createCell(COLUMN_INDEX_QUANTITY);
         cell.setCellValue(book.getQuantity());
+
         cell = row.createCell(COLUMN_INDEX_PRICE);
-        
         cell.setCellValue(book.getPrice());
+
         cell = row.createCell(COLUMN_INDEX_RATING_AVERAGE);
         cell.setCellValue(book.getRatingAverage());
+
         cell = row.createCell(COLUMN_INDEX_CATEGORY_ID);
         cell.setCellValue(book.getCategoryId());
-        cell.setCellStyle(cellStyleFormatNumber);
-        int currentRow = row.getRowNum() + 1;
-        String columnPrice = CellReference.convertNumToColString(COLUMN_INDEX_PRICE);
-        String columnQuantity = CellReference.convertNumToColString(COLUMN_INDEX_QUANTITY);
-        cell.setCellFormula(columnPrice + currentRow + "*" + columnQuantity + currentRow);
+
     }
     
     public  void expotToExel() throws IOException {

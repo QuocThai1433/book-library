@@ -20,13 +20,13 @@ public class BookManager {
     CheckValid check = new CheckValid();
     Connection connection = ConnectDB.getConnection();
     InputId inputId = new InputId();
-
+    boolean flag = false;
 
 
     public Book inputBook() {
         String number = null;
         System.out.println("Input Book ID:");
-        int id = inputId.input((authorId) -> check.checkExistId(authorId, "author"));
+        int id = inputId.input((authorId) -> check.checkExistId(authorId, "books"));
 
         System.out.println("Input Book Name:");
         String bookName = scanner.nextLine();
@@ -43,8 +43,21 @@ public class BookManager {
         float ratingAverage = scanner.nextInt();
         scanner.nextLine();
         System.out.println("Input category Id:");
-        int categoryId = inputId.input((authorId) -> check.checkExistId(authorId, "author"));
-        return new Book(id, bookName, publicationYear, quantity, price, ratingAverage, categoryId);
+        int categoryId =0;
+        while (!flag) {
+            String number1 = scanner.nextLine();
+            if (!check.isNumber(number1)) {
+                System.out.println("Not Number!! Input Again:");
+                continue;
+            }    categoryId = Integer.parseInt(number1);
+            flag = true;
+
+        }
+
+        return new
+
+                Book(id, bookName, publicationYear, quantity, price, ratingAverage, categoryId);
+
     }
 
 
@@ -80,8 +93,8 @@ public class BookManager {
 
     }
 
-    public int create(Book book) {
-        book = inputBook();
+    public int create( ) {
+       Book book = inputBook();
         Category category = new Category();
         String query = "insert into books value  (?,?,?,?,?,?,?)";
         int kq = 0;
@@ -93,13 +106,10 @@ public class BookManager {
             statement.setInt(4, book.getQuantity());
             statement.setFloat(5, book.getPrice());
             statement.setFloat(6, book.getRatingAverage());
-            if (check.checkExistId(book.getCategoryId(),"category"))
-            {
+            if (check.checkExistId(book.getCategoryId(), "category")) {
                 statement.setInt(7, book.getCategoryId());
 
-            }
-            else
-            {
+            } else {
                 statement.setObject(7, null);
 
             }
@@ -127,7 +137,7 @@ public class BookManager {
                 int price = rs.getInt("price");
                 float ratingAverage = rs.getFloat("rating_average");
                 int categoryId = rs.getInt("category_id");
-                System.out.println(id +" | "+ bookName +" | "+ publicationYear +" | "+ quantity +" | "+ price +" | "+ ratingAverage +" | "+ categoryId );
+                System.out.println(id + " | " + bookName + " | " + publicationYear + " | " + quantity + " | " + price + " | " + ratingAverage + " | " + categoryId);
 
             }
         } catch (Exception e) {
@@ -136,17 +146,17 @@ public class BookManager {
         return bookList;
     }
 
-    public int filter() {
+    public void filter() {
         int kq = 0;
-        String query = "select * from books where category_id = ?";
+        String query = "SELECT * FROM books b, category c where b.category_id = c.id and c.category_name = ?";
         try {
             PreparedStatement ps = ConnectDB.connectDB.prepareStatement(query);
-            System.out.println("InputCategory: ");
-            int id = inputId.input((authorId) -> check.checkExistId(authorId, "rating"));
-            ps.setInt(1, id);
+            System.out.println("Input Category Name: ");
+            String categoryName = scanner.nextLine();
+            ps.setString(1, categoryName);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                id = rs.getInt("id");
+                int id = rs.getInt("id");
                 String bookName = rs.getString("book_name");
                 String publicationYear = rs.getString("publication_year");
                 String quantity = rs.getString("quantity");
@@ -154,13 +164,12 @@ public class BookManager {
                 int ratingAverage = rs.getInt("rating_average");
                 float categoryId = rs.getFloat("category_id");
 
-                System.out.println(id +" | "+ bookName +" | "+ publicationYear +" | "+ quantity +" | "+ price +" | "+ ratingAverage +" | "+ categoryId );
+                System.out.println(id + " | " + bookName + " | " + publicationYear + " | " + quantity + " | " + price + " | " + ratingAverage + " | " + categoryId);
 
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return kq;
     }
 
 

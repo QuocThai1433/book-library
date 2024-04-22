@@ -1,7 +1,5 @@
 
-
-java:S1226$"FIntroduce a new variable instead of reusing the parameter "publisher".(õÆ½Œúÿÿÿÿ8Ğ‰Ï¬ï1J$91007b78-25ff-4547-891d-e471b1cbfd7d
-y
-java:S1611"6Remove the parentheses around the "authorId" parameter(¶æŠ8á‰Ï¬ï1J$5378a8f8-6b17-4f80-a65e-0f6bc3b81ca1
-x
-java:S1611"6Remove the parentheses around the "authorId" parameter(¹Àv8á‰Ï¬ï1J$6ecb3b7f-152c-4d81-a87d-60655366d502
+
+java:S1611"9Remove the parentheses around the "publisherId" parameter(ŠË‹ûÿÿÿÿ8á‰Ï¬ï1J$b54f8a4f-d01e-4942-b8fb-df5096232256
+{
+java:S1128"8Remove this unused import 'java.util.function.Function'.(»³Í8Ûåûğ1J$9d2dd6d5-29ad-4e93-b6b9-625e797e4be2

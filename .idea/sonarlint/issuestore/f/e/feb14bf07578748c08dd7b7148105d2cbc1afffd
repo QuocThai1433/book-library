@@ -1,17 +1,14 @@
 
-š	java:S135"YReduce the total number of break and continue statements in this loop to use at most one.(°¨8òÄ®¬ï1J$f508e486-fc43-4b0c-b489-3b2bcc92d744
-˜	java:S1172"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(†ª†úÿÿÿÿ8óÄ®¬ï1J$990c0bb5-a0be-4948-a054-9837b5713d5e
-›
-java:S4276"XRefactor this code to use the more specialised Functional Interface 'Predicate<Integer>'(¡¤‰”8Å®¬ï1J$5ce5940d-2552-496e-928c-f0215e675390
-p
-java:S1172-"-Remove this unused method parameter "rating".(Ü‰Ú8Å®¬ï1J$295a76f5-034c-4392-b317-fec5e0a76fe7
-~
-java:S1611/"6Remove the parentheses around the "authorId" parameter(™­í¶üÿÿÿÿ8Å®¬ï1J$b77aa673-a74c-4433-b4a9-de31fb1c6ccd
-~
-java:S16116"6Remove the parentheses around the "authorId" parameter(¤±š«üÿÿÿÿ8‘Å®¬ï1J$b791d19d-c264-4afb-a948-060aa3a3ea8e
-~
-java:S1611;"6Remove the parentheses around the "authorId" parameter(±¶½ªùÿÿÿÿ8’Å®¬ï1J$7109c934-c759-4a57-a8e3-d68a94e09a2c
+˜	java:S117!"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¿¨ıÂøÿÿÿÿ8Çğ1J$8d1a17ab-b187-47d8-a659-a8b774a93906
+†
+java:S2583."DChange this condition so that it does not always evaluate to "false"(°¨8œ¢ğ1J$73e148bc-8821-4607-9760-72d0ed01b138
+†
+java:S2583="DChange this condition so that it does not always evaluate to "false"(°¨8êÅ£ğ1J$9a6b5949-c767-4345-9f87-6041bd161f09
+y
+java:S1611"6Remove the parentheses around the "ratingId" parameter(ŠõÇÊ8çğ1J$33ab7faa-2997-498d-8efa-eda440467628
 z
-java:S6126k"2Replace this String concatenation with Text block.(ß¶´—øÿÿÿÿ8—Å®¬ï1J$3fb005e3-d9ad-4380-8cf3-ffbc2af9f9ab
+java:S6126u"2Replace this String concatenation with Text block.(ß¶´—øÿÿÿÿ8êğ1J$c663b890-43b1-4730-8718-2461f41593f3
 s
-java:S1128"0Remove this unused import 'book_shop.book.Book'.(Ù©ÆØ8šÅ®¬ï1J$874916ea-d1c6-4d35-988b-dd3c5ee11449
+java:S1128"0Remove this unused import 'book_shop.book.Book'.(Ù©ÆØ8ˆ³ìğ1J$d4927494-2e2d-476a-8005-469bca34732d
+{
+java:S1128"8Remove this unused import 'java.util.function.Function'.(»³Í8ˆ³ìğ1J$0c0f5d92-a57b-46b9-b66c-6cb65a9616e3

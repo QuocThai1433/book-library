@@ -1,6 +1,7 @@
 package book_shop.rating;
 
 import book_shop.CheckValid;
+import book_shop.InputId;
 import book_shop.book.Book;
 import book_shop.book.BookManager;
 import student.ConnectDB;
@@ -14,55 +15,64 @@ import java.util.Scanner;
 import java.util.function.Function;
 
 public class RatingManager {
-     Connection connection = ConnectDB.getConnection();
-     Scanner scanner = new Scanner(System.in);
-     List<Rating> authors = new ArrayList<>();
-     List<RatingReader> ratingReaders = new ArrayList<>();
+    Connection connection = ConnectDB.getConnection();
+    Scanner scanner = new Scanner(System.in);
+    List<Rating> authors = new ArrayList<>();
+    List<RatingReader> ratingReaders = new ArrayList<>();
 
-     BookManager bookManager = new BookManager();
-     CheckValid checkValid = new CheckValid();
+    BookManager bookManager = new BookManager();
+    CheckValid checkValid = new CheckValid();
+    InputId inputId = new InputId();
 
-    public int inputId(Function<Integer, Boolean> checkExist) {
-        int id = 0;
-        boolean flag = false;
+    boolean flag = false;
 
+    public Rating input( ) {
+        System.out.println("Input ID:");
+        int id = inputId.input((ratingId) -> checkValid.checkExistId(ratingId, "rating"));
+        System.out.println("Input Star Rating");
+        int star_rating = 0;
         while (!flag) {
-            String number = scanner.nextLine();
-
-            if (!checkValid.isNumber(number)) {
+            String number1 = scanner.nextLine();
+            if (!checkValid.isNumber(number1)) {
                 System.out.println("Not Number!! Input Again:");
                 continue;
             }
-            id = Integer.parseInt(number);
-            if (Boolean.TRUE.equals(checkExist.apply(id))) {
-                System.out.println("Id exist!! Input Again");
+            star_rating = Integer.parseInt(number1);
+            flag = true;
+
+        }
+        System.out.println("Input  Book Id:");
+        int bookId = 0;
+        while (!flag) {
+            String number1 = scanner.nextLine();
+            if (!checkValid.isNumber(number1)) {
+                System.out.println("Not Number!! Input Again:");
                 continue;
             }
+            bookId = Integer.parseInt(number1);
             flag = true;
-        }
-        return id;
-    }
-    public  Rating input(Rating rating) {
-        System.out.println("Input ID:");
-        int id = inputId((authorId) -> checkValid.checkExistId(authorId, "rating"));
-        scanner.nextLine();
-        System.out.println("Input Star Rating");
-        int star_rating = scanner.nextInt();
-        scanner.nextLine();
 
-        System.out.println("Input  Book Id:");
-        int bookId = inputId((authorId) -> checkValid.checkExistId(authorId, "books"));
-        bookManager.updateStar(star_rating,bookId);
+        }
+        bookManager.updateStar(star_rating, bookId);
         System.out.println("Input Comment:");
         String comment = scanner.nextLine();
         System.out.println("Input ReaderId:");
-        int readerId = inputId((authorId) -> checkValid.checkExistId(authorId, "reader"));
+        int readerId = 0;
+        while (!flag) {
+            String number1 = scanner.nextLine();
+            if (!checkValid.isNumber(number1)) {
+                System.out.println("Not Number!! Input Again:");
+                continue;
+            }
+            readerId = Integer.parseInt(number1);
+            flag = true;
+        }
         return new Rating(id, star_rating, bookId, comment, readerId);
     }
 
-    public  int create(Rating rating) {
+    public int create( ) {
         int kq = 0;
-        rating = input(rating);
+        Rating  rating = input();
         String query = " insert into rating value (?,?,?,?,?)";
         try {
             PreparedStatement ps = connection.prepareStatement(query);
@@ -84,7 +94,7 @@ public class RatingManager {
         return kq;
     }
 
-    public  List<Rating> getList() {
+    public List<Rating> getList() {
         String query = "select * from rating";
         try {
             PreparedStatement ps = connection.prepareStatement(query);
@@ -94,7 +104,7 @@ public class RatingManager {
                 String nameAuthor = rs.getString("star_rating");
                 int bookId = rs.getInt("book_id");
                 String comment = rs.getString("comment");
-                System.out.println(id +" | " + nameAuthor + " | "+bookId + " | "+comment);
+                System.out.println(id + " | " + nameAuthor + " | " + bookId + " | " + comment);
 
             }
         } catch (Exception e) {
@@ -103,7 +113,7 @@ public class RatingManager {
         return authors;
     }
 
-    public  List<RatingReader> ratingBook() {
+    public List<RatingReader> ratingBook() {
         String query = "SELECT r.name_reader, ra.star_rating\n" +
                 " FROM book_shop.readers r, book_shop.rating ra\n" +
                 "where r.id = ra.reader_id\n" +
@@ -128,7 +138,7 @@ public class RatingManager {
     public static void main(String[] args) {
         Rating rating = new Rating();
         RatingReader ratingReader = new RatingReader();
-        RatingManager manager= new RatingManager();
+        RatingManager manager = new RatingManager();
         manager.getList();
     }
 }

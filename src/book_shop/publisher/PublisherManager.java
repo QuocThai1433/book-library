@@ -20,20 +20,31 @@ public class PublisherManager {
      CheckValid checkValid = new CheckValid();
     InputId inputId = new InputId();
 
+    boolean flag = false;
 
     public  Publisher input( ) {
         System.out.println("Input ID:");
-        int id = inputId.input((authorId) -> checkValid.checkExistId(authorId, "publisher"));
-        scanner.nextLine();
+        int id = inputId.input((publisherId) -> checkValid.checkExistId(publisherId, "publisher"));
+
         System.out.println("Input Publisher Name:");
         String name = scanner.nextLine();
         System.out.println("Input  Book Id:");
-        int bookId = inputId.input((authorId) -> checkValid.checkExistId(authorId, "books"));
+        int bookId = 0;
+        while (!flag) {
+            String number1 = scanner.nextLine();
+            if (!checkValid.isNumber(number1)) {
+                System.out.println("Not Number!! Input Again:");
+                continue;
+            }
+            bookId= Integer.parseInt(number1);
+            flag = true;
+
+        }
         return new Publisher(id, name,bookId);
     }
-    public  int create(Publisher publisher) {
+    public  int create() {
         int kq = 0;
-        publisher = input();
+       Publisher publisher = input();
         String query = " insert into publisher value (?,?,?)";
         try {
 
@@ -44,7 +55,7 @@ public class PublisherManager {
             if (checkValid.checkExistId(publisher.getBookId(), "books")) {
                 ps.setInt(3, publisher.getBookId());
             } else {
-                ps.setObject(1, null);
+                ps.setObject(3, null);
 
             }
             kq= ps.executeUpdate();
@@ -77,7 +88,7 @@ public class PublisherManager {
     public static void main(String[] args) {
         Publisher publisher = new Publisher();
         PublisherManager manager = new PublisherManager();
-        manager.create(publisher);
+        manager.create();
         manager.getList();
     }
 }

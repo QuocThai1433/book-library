@@ -18,20 +18,22 @@ public class CartManager {
     List<Cart> authors = new ArrayList<>();
 
     CheckValid checkValid = new CheckValid();
+    boolean flag = false;
 
     public Cart input() {
         String number = null;
         int bookId = 0;
-        do {
-            System.out.println("Input Book Id:");
-            number = scanner.nextLine();
-            if (checkValid.isNumber(number)) {
-                bookId = Integer.parseInt(number);
-            }else
-            {
+        System.out.println("Input Book Id:");
+        while (!flag) {
+            String number1 = scanner.nextLine();
+            if (!checkValid.isNumber(number1)) {
                 System.out.println("Not Number!! Input Again:");
+                continue;
             }
-        } while (!checkValid.isNumber(number));
+            bookId = Integer.parseInt(number1);
+            flag = true;
+
+        }
 
         System.out.println("Input Book Name:");
         String bookName = scanner.nextLine();
@@ -77,9 +79,9 @@ public class CartManager {
 
     }
 
-    public int create(Cart cart) {
+    public int create() {
         int kq = 0;
-        cart = input();
+        Cart cart = input();
         String query = " insert into carts value (?,?,?,?)";
         try {
             PreparedStatement ps = connection.prepareStatement(query);
@@ -110,7 +112,7 @@ public class CartManager {
                 String bookName = rs.getString("book_name");
                 int price = rs.getInt("price");
                 int quantity = rs.getInt("quantity");
-                System.out.println(bookId +" | " + bookName + " | "+price + " | "+quantity);
+                System.out.println(bookId + " | " + bookName + " | " + price + " | " + quantity);
 
             }
         } catch (Exception e) {
@@ -122,6 +124,6 @@ public class CartManager {
     public static void main(String[] args) {
         CartManager cartManager = new CartManager();
 
-        cartManager.getList();
+        cartManager.create();
     }
 }
