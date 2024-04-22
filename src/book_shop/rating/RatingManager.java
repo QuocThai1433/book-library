@@ -2,9 +2,8 @@ package book_shop.rating;
 
 import book_shop.CheckValid;
 import book_shop.InputId;
-import book_shop.book.Book;
 import book_shop.book.BookManager;
-import student.ConnectDB;
+import db.ConnectDB;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -12,7 +11,6 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-import java.util.function.Function;
 
 public class RatingManager {
     Connection connection = ConnectDB.getConnection();
@@ -104,9 +102,9 @@ public class RatingManager {
 
     public List<RatingReader> ratingBook() {
         String query = "SELECT r.name_reader, ra.star_rating\n" +
-                " FROM book_shop.readers r, book_shop.rating ra\n" +
-                "where r.id = ra.reader_id\n" +
-                "order by ra.star_rating desc";
+            " FROM book_shop.readers r, book_shop.rating ra\n" +
+            "where r.id = ra.reader_id\n" +
+            "order by ra.star_rating desc";
         try {
             PreparedStatement ps = connection.prepareStatement(query);
             ResultSet rs = ps.executeQuery();

@@ -2,7 +2,7 @@ package book_shop.category;
 
 import book_shop.CheckValid;
 import book_shop.InputId;
-import student.ConnectDB;
+import db.ConnectDB;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -10,7 +10,6 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-import java.util.function.Function;
 
 public class CategoryManager {
     Connection connection = ConnectDB.getConnection();
@@ -19,20 +18,18 @@ public class CategoryManager {
     CheckValid checkValid = new CheckValid();
     InputId inputId = new InputId();
 
-
-
-    public Category input(Category category) {
+    public Category input() {
         System.out.println("Input ID:");
-        int id = inputId.input((authorId) -> checkValid.checkExistId(authorId, "category"));
-        System.out.println("Input Filter Name:");
+        int id = inputId.input(authorId -> checkValid.checkExistId(authorId, "category"));
+        System.out.println("Input Category Name:");
         String name = scanner.nextLine();
 
         return new Category(id, name);
     }
 
-    public int create(Category category) {
+    public int create() {
         int kq = 0;
-        category = input(category);
+        Category category = input();
         String query = " insert into category value (?,?)";
         try {
             PreparedStatement ps = connection.prepareStatement(query);
@@ -40,7 +37,7 @@ public class CategoryManager {
             ps.setString(2, category.getCategoryName());
             kq = ps.executeUpdate();
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
         return kq;
     }
@@ -59,13 +56,12 @@ public class CategoryManager {
 
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
         return authors;
     }
 
     public static void main(String[] args) {
-        Category category = new Category();
         CategoryManager manager = new CategoryManager();
         manager.getList();
     }

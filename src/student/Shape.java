@@ -1,7 +1,7 @@
 package student;
 
 public interface Shape {
-     Float DT();
+    Float DT();
 
-     Float CV() ;
+    Float CV();
 }

@@ -1,22 +1,15 @@
 package book_shop;
 
-import book_shop.author.Author;
 import book_shop.author.AuthorManager;
-import book_shop.book.Book;
 import book_shop.book.BookManager;
-import book_shop.book_reader.BookReader;
 import book_shop.book_reader.BookReaderManager;
 import book_shop.book_reader.WriteExcel;
-import book_shop.cart.Cart;
 import book_shop.cart.CartManager;
 import book_shop.category.Category;
 import book_shop.category.CategoryManager;
-import book_shop.publisher.Publisher;
 import book_shop.publisher.PublisherManager;
-import book_shop.rating.Rating;
 import book_shop.rating.RatingManager;
 import book_shop.readers.ReaderManager;
-import book_shop.readers.Readers;
 
 import java.io.IOException;
 import java.util.Scanner;
@@ -35,7 +28,7 @@ public class Main {
         Category category = new Category();
         boolean exit = false;
         Scanner scanner = new Scanner(System.in);
-        int choose = 0;
+        int choose;
         do {
             System.out.println("1.Add Books:");
             System.out.println("2.Show Books:");
@@ -123,13 +116,14 @@ public class Main {
                 default:
                     break;
             }
+
             if (!exit) {
                 System.out.print("Bạn có muốn tiếp tục chương trình không? (y/n): ");
                 String continueChoice = scanner.next();
                 if (!continueChoice.equalsIgnoreCase("Y") &&
-                        !continueChoice.equalsIgnoreCase("y") &&
-                        !continueChoice.equalsIgnoreCase("Yes") &&
-                        !continueChoice.equalsIgnoreCase("yes")) {
+                    !continueChoice.equalsIgnoreCase("y") &&
+                    !continueChoice.equalsIgnoreCase("Yes") &&
+                    !continueChoice.equalsIgnoreCase("yes")) {
                     exit = true;
                 }
             }

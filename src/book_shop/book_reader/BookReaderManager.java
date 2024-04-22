@@ -1,8 +1,8 @@
 package book_shop.book_reader;
 
 import book_shop.CheckValid;
-import book_shop.ConnectDB;
 import book_shop.InputId;
+import db.ConnectDB;
 
 import java.sql.Connection;
 import java.sql.Date;
@@ -13,7 +13,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-import java.util.function.Function;
 
 public class BookReaderManager {
 
@@ -24,9 +23,6 @@ public class BookReaderManager {
     CheckValid checkValid = new CheckValid();
     String formatter = ("^(?:(?:31(\\/|-|\\.)(?:0?[13578]|1[02]))\\1|(?:(?:29|30)(\\/|-|\\.)(?:0?[13-9]|1[0-2])\\2))(?:(?:1[6-9]|[2-9]\\d)?\\d{2})$|^(?:29(\\/|-|\\.)0?2\\3(?:(?:(?:1[6-9]|[2-9]\\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\\d|2[0-8])(\\/|-|\\.)(?:(?:0?[1-9])|(?:1[0-2]))\\4(?:(?:1[6-9]|[2-9]\\d)?\\d{2})$");
     InputId inputId = new InputId();
-
-
-
 
 
     public int checkNotNumber(int number) {
@@ -194,25 +190,23 @@ public class BookReaderManager {
 
     public void showBorrowBooks() {
         String query = "SELECT r.name_reader,b.book_name,b.quantity, br.borrowed_day, br.return_day\n" +
-                " FROM books b\n" +
-                "inner join book_reader br\n" +
-                "on b.id = br.book_id\n" +
-                "inner join readers r\n" +
-                "on br.reader_id =r.id";
-        try{
-            PreparedStatement ps  = connection.prepareStatement(query);
-          ResultSet rs = ps.executeQuery();
-          while (rs.next())
-          {
-              String nameReader = rs.getString("name_reader");
-              String bookName = rs.getString("book_name");
-              int quantity = rs.getInt("quantity");
-              java.util.Date brdate = rs.getDate("borrowed_day");
-              java.util.Date rtdate = rs.getDate("return_day");
-              System.out.println(nameReader +" | "+ bookName +" | "+ quantity +" | "+ brdate + " | "+ rtdate);
-          }
-        }catch (Exception e)
-        {
+            " FROM books b\n" +
+            "inner join book_reader br\n" +
+            "on b.id = br.book_id\n" +
+            "inner join readers r\n" +
+            "on br.reader_id =r.id";
+        try {
+            PreparedStatement ps = connection.prepareStatement(query);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                String nameReader = rs.getString("name_reader");
+                String bookName = rs.getString("book_name");
+                int quantity = rs.getInt("quantity");
+                java.util.Date brdate = rs.getDate("borrowed_day");
+                java.util.Date rtdate = rs.getDate("return_day");
+                System.out.println(nameReader + " | " + bookName + " | " + quantity + " | " + brdate + " | " + rtdate);
+            }
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

@@ -4,7 +4,7 @@ public class Publisher {
     private int id;
     private String publisherName;
 
-    private  int  bookId;
+    private int bookId;
 
     public void setBookId(int bookId) {
         this.bookId = bookId;
@@ -17,11 +17,11 @@ public class Publisher {
     public Publisher() {
     }
 
-    public Publisher(int id, String publisherName,int bookId) {
+    public Publisher(int id, String publisherName, int bookId) {
         super();
         this.id = id;
         this.publisherName = publisherName;
-        this.bookId= bookId;
+        this.bookId = bookId;
     }
 
     public void setId(int id) {

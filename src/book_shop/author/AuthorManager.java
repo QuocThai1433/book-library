@@ -2,13 +2,14 @@ package book_shop.author;
 
 import book_shop.CheckValid;
 import book_shop.InputId;
-import student.ConnectDB;
+import db.ConnectDB;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.util.*;
-import java.util.function.Function;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
 
 public class AuthorManager {
     static Connection connection = ConnectDB.getConnection();

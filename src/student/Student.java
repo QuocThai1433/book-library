@@ -4,19 +4,19 @@ import java.io.Serializable;
 
 public class Student implements Serializable {
 
-    private  int id;
+    private int id;
 
-    private  String name;
+    private String name;
 
     private String major;
 
     private float gradle;
 
 
-    public Student()
-    {}
-    public Student (int  id,String name, String major, float gradle)
-    {
+    public Student() {
+    }
+
+    public Student(int id, String name, String major, float gradle) {
         this.id = id;
         this.name = name;
         this.major = major;

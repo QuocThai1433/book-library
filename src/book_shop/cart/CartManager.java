@@ -1,10 +1,8 @@
 package book_shop.cart;
 
 import book_shop.CheckValid;
-import book_shop.cart.Cart;
-import student.ConnectDB;
+import db.ConnectDB;
 
-import java.nio.charset.CharacterCodingException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -38,7 +36,7 @@ public class CartManager {
         String number = null;
         int bookId = 0;
         System.out.println("Input Book Id:");
-      bookId = checkNotNumber(bookId);
+        bookId = checkNotNumber(bookId);
         System.out.println("Input  Price:");
         float price = scanner.nextFloat();
         scanner.nextLine();
@@ -112,7 +110,7 @@ public class CartManager {
                 int bookId = rs.getInt("book_id");
                 int price = rs.getInt("price");
                 int quantity = rs.getInt("quantity");
-                System.out.println(bookId + " | " +  " | " + price + " | " + quantity);
+                System.out.println(bookId + " | " + " | " + price + " | " + quantity);
 
             }
         } catch (Exception e) {

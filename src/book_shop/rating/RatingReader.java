@@ -2,7 +2,7 @@ package book_shop.rating;
 
 public class RatingReader {
     private String nameReader;
-    public  int starRating;
+    public int starRating;
 
     public void setNameReader(String nameReader) {
         this.nameReader = nameReader;

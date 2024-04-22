@@ -2,21 +2,21 @@ package book_shop.book;
 
 
 import book_shop.CheckValid;
-import book_shop.ConnectDB;
 import book_shop.InputId;
 import book_shop.category.Category;
+import db.ConnectDB;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.util.*;
-import java.util.function.Function;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
 
 public class BookManager {
     Scanner scanner = new Scanner(System.in);
-    ArrayList<Book> books = new ArrayList<>();
     CheckValid check = new CheckValid();
-    Connection connection = ConnectDB.getConnection();
+    Connection connection = ConnectDB.getInstance().getConnection();
     InputId inputId = new InputId();
     boolean flag = false;
 
@@ -106,7 +106,7 @@ public class BookManager {
 
         return new
 
-                Book(id, bookName, publicationYear, quantity, price, ratingAverage, categoryId);
+            Book(id, bookName, publicationYear, quantity, price, ratingAverage, categoryId);
 
     }
 
@@ -130,10 +130,14 @@ public class BookManager {
 
     public void updateStar(float newRating, float bookId) {
         float ratingAverage = getAverage(bookId);
+        ratingAverage = (ratingAverage + newRating) / 2;
         String query = "update books set rating_average = ? where id = ? ";
         try {
-            PreparedStatement ps = ConnectDB.connectDB.prepareStatement(query);
-            ratingAverage = (ratingAverage + newRating) / 2;
+            Connection con = ConnectDB.getInstance().getConnection();
+            if (con == null) {
+                return;
+            }
+            PreparedStatement ps = con.prepareStatement(query);
             ps.setFloat(2, bookId);
             ps.setFloat(1, ratingAverage);
             ps.executeUpdate();
@@ -207,7 +211,7 @@ public class BookManager {
         String query = "select * from books";
         try {
 
-            PreparedStatement ps = ConnectDB.connectDB.prepareStatement(query);
+            PreparedStatement ps = ConnectDB.getInstance().getConnection().prepareStatement(query);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 int id = rs.getInt("id");
@@ -229,13 +233,13 @@ public class BookManager {
     public void filter() {
         int kq = 0;
         String query = "SELECT a.author_name,b.book_name,c.category_name FROM author a\n" +
-                "right join books b\n" +
-                "on a.book_id = b.id\n" +
-                "right join category c\n" +
-                "on b.category_id =c.id\n" +
-                "WHERE c.category_name LIKE ? \n" +
-                "OR b.book_name LIKE ?\n" +
-                "or a.author_name like ?";
+            "right join books b\n" +
+            "on a.book_id = b.id\n" +
+            "right join category c\n" +
+            "on b.category_id =c.id\n" +
+            "WHERE c.category_name LIKE ? \n" +
+            "OR b.book_name LIKE ?\n" +
+            "or a.author_name like ?";
         try {
             PreparedStatement ps = ConnectDB.connectDB.prepareStatement(query);
             System.out.println("Input Category Name: ");
@@ -251,8 +255,7 @@ public class BookManager {
                 String categoryName = rs.getString("category_name");
 
 
-
-                System.out.println(    bookName + " | " + publicationYear + " | "+categoryName );
+                System.out.println(bookName + " | " + publicationYear + " | " + categoryName);
 
             }
         } catch (Exception e) {

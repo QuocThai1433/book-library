@@ -28,7 +28,6 @@ public class Cart {
     }
 
 
-
     public int getBook_id() {
         return book_id;
     }
@@ -40,7 +39,6 @@ public class Cart {
     public float getPrice() {
         return price;
     }
-
 
 
 }

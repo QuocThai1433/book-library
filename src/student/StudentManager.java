@@ -1,6 +1,10 @@
 package student;
 
-import java.sql.*;
+import db.ConnectDB;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -29,7 +33,7 @@ public class StudentManager {
     }
 
     public static int create(Student student) {
-          inputStudent(student);
+        inputStudent(student);
         int kq = 0;
         try {
             String query = "insert into students value (?,?,?,?) ";
@@ -46,8 +50,8 @@ public class StudentManager {
         return kq;
     }
 
-    public static int update( Student student) {
-         inputStudent(student);
+    public static int update(Student student) {
+        inputStudent(student);
         int kq = 0;
         try {
             String query = "UPDATE students  SET nameStudent = ?, major=?,gradle=? WHERE ID = ?";
@@ -151,8 +155,7 @@ public class StudentManager {
 //        }
     }
 
-    public static void countStudent(Student student)
-    {
+    public static void countStudent(Student student) {
 //        try {
 //            String query= "select count(*) as tongsv  from students";
 //            PreparedStatement ps = connection.prepareStatement(query);
@@ -168,20 +171,20 @@ public class StudentManager {
 //        }
 
         try {
-            String query= "select count(*) as tongsv  from students";
+            String query = "select count(*) as tongsv  from students";
             PreparedStatement ps = connection.prepareStatement(query);
             ResultSet rs = ps.executeQuery();
-            if (rs.next())
-            {
+            if (rs.next()) {
                 rs.last();
-                System.out.println("Tong SV:"+rs.getRow());
+                System.out.println("Tong SV:" + rs.getRow());
             }
-        }catch (Exception e)
-        {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
+
     public static void main(String[] args) {
-        Student s= new Student();
-create(s)  ;  }
+        Student s = new Student();
+        create(s);
+    }
 }

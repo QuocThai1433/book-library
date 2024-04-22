@@ -5,8 +5,8 @@ public class Author {
     private String authorName;
     private int bookId;
 
-  public  Author ()
-  {}
+    public Author() {
+    }
 
     public Author(int id, String authorName, int bookId) {
         super();

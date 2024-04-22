@@ -2,7 +2,7 @@ package book_shop.publisher;
 
 import book_shop.CheckValid;
 import book_shop.InputId;
-import student.ConnectDB;
+import db.ConnectDB;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -12,11 +12,11 @@ import java.util.List;
 import java.util.Scanner;
 
 public class PublisherManager {
-     Connection connection = ConnectDB.getConnection();
+    Connection connection = ConnectDB.getConnection();
 
-     Scanner scanner = new Scanner(System.in);
-     List<Publisher> authors = new ArrayList<>();
-     CheckValid checkValid = new CheckValid();
+    Scanner scanner = new Scanner(System.in);
+    List<Publisher> authors = new ArrayList<>();
+    CheckValid checkValid = new CheckValid();
     InputId inputId = new InputId();
 
     public int checkNotNumber(int number) {
@@ -34,7 +34,7 @@ public class PublisherManager {
     }
 
 
-    public  Publisher input( ) {
+    public Publisher input() {
         System.out.println("Input ID:");
         int id = inputId.input((publisherId) -> checkValid.checkExistId(publisherId, "publisher"));
 
@@ -42,12 +42,13 @@ public class PublisherManager {
         String name = scanner.nextLine();
         System.out.println("Input  Book Id:");
         int bookId = 0;
-       bookId=checkNotNumber(bookId);
-        return new Publisher(id, name,bookId);
+        bookId = checkNotNumber(bookId);
+        return new Publisher(id, name, bookId);
     }
-    public  int create() {
+
+    public int create() {
         int kq = 0;
-       Publisher publisher = input();
+        Publisher publisher = input();
         String query = " insert into publisher value (?,?,?)";
         try {
 
@@ -61,15 +62,14 @@ public class PublisherManager {
                 ps.setObject(3, null);
 
             }
-            kq= ps.executeUpdate();
-        }
-        catch (Exception e) {
+            kq = ps.executeUpdate();
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return kq;
     }
 
-    public  List<Publisher> getList() {
+    public List<Publisher> getList() {
         String query = "select * from publisher";
         try {
             PreparedStatement ps = connection.prepareStatement(query);
@@ -79,7 +79,7 @@ public class PublisherManager {
                 int id = rs.getInt("id");
                 String nameAuthor = rs.getString("publisher_name");
                 int bookId = rs.getInt("book_id");
-                System.out.println(id +" | " + nameAuthor + " | "+bookId );
+                System.out.println(id + " | " + nameAuthor + " | " + bookId);
 
             }
         } catch (Exception e) {
