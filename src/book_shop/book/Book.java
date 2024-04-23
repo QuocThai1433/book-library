@@ -2,6 +2,7 @@ package book_shop.book;
 
 import java.io.Serializable;
 
+
 public class Book implements Serializable {
     int id;
     String bookName;

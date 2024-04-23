@@ -1,7 +1,5 @@
 package book_shop.book_reader;
 
-import book_shop.CheckValid;
-import book_shop.InputId;
 import db.ConnectDB;
 
 import java.sql.Connection;

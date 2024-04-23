@@ -106,7 +106,7 @@ public class Main {
                     ratingManager.create();
                     break;
                 case 19:
-                    writeExcel.expotToExel();
+                    writeExcel.exportToExel();
                     break;
                 case 20:
                     bookReaderManager.showBorrowBooks();
@@ -114,7 +114,7 @@ public class Main {
                 default:
                     break;
             }
-
+            
             if (!exit) {
                 System.out.print("Bạn có muốn tiếp tục chương trình không? (y/n): ");
                 String continueChoice = scanner.next();
@@ -125,7 +125,7 @@ public class Main {
                     exit = true;
                 }
             }
-
+            
         } while (!exit);
     }
 }
