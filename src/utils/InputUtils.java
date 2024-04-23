@@ -3,6 +3,7 @@ package utils;
 import db.ConnectDB;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.List;
@@ -12,10 +13,10 @@ import java.util.function.IntPredicate;
 public class InputUtils {
     private static final Scanner scanner = new Scanner(System.in);
     private static final int DEFAULT_RETRY_TIME = 3;
-
+    
     InputUtils() {
     }
-
+    
     public static int inputId(List<IntPredicate> checks) {
         while (true) {
             String number = scanner.nextLine();
@@ -31,11 +32,26 @@ public class InputUtils {
             }
         }
     }
-
+    
+    public static Date inputSqlDate(String format) {
+        while (true) {
+            String dateString = scanner.nextLine();
+            if (!DateUtils.checkFormat(dateString, format)) {
+                System.out.println("Not format date!! Input Again:");
+                continue;
+            }
+            return DateUtils.toSqlDate(dateString, format);
+        }
+    }
+    
+    public static Date inputSqlDate() {
+        return inputSqlDate("dd-MM-yyyy");
+    }
+    
     public static int inputId(IntPredicate check) {
         return inputId(List.of(check));
     }
-
+    
     public static int inputInteger(int retryTime) {
         int numberOfTries = 0;
         while (numberOfTries < retryTime) {
@@ -49,11 +65,11 @@ public class InputUtils {
         }
         throw new RuntimeException("Number of tries exceeded!");
     }
-
+    
     public static int inputInteger() {
         return inputInteger(DEFAULT_RETRY_TIME);
     }
-
+    
     public static boolean isNumber(String str) {
         try {
             Integer.parseInt(str);
@@ -62,11 +78,11 @@ public class InputUtils {
             return false;
         }
     }
-
+    
     public static IntPredicate checkExistIdFunc(String table) {
         return id -> checkExistId(id, table);
     }
-
+    
     public static boolean checkExistId(int id, String table) {
         try {
             Connection connection = ConnectDB.getInstance().getConnection();
@@ -82,7 +98,7 @@ public class InputUtils {
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-
+        
         return false;
     }
 }
