@@ -1,5 +1,5 @@
 
-“	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¨ÌÃù8ÞÖ´ªð1J$82857ec7-f7c3-4dc7-88e0-60d7c3314d10
-’	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ú«•U8ÞÖ´ªð1J$76d5b4f0-a04d-4440-aa12-eaa6ef6f6995
-n	java:S116"RRename this field "book_id" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(“ŠÍâ8´ö´ªð1
-•	java:S100 "NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¯Ú‰Ôÿÿÿÿÿ8âÖ´ªð1J$d50af0d6-c6e4-4704-8e4f-2a935eab7f9b
+“	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¨ÌÃù8ÞÖ´ªð1J$6e807a00-2e32-477a-9bea-f809dea9dd63
+’	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ú«•U8ÞÖ´ªð1J$94001afb-87d0-4c45-8e19-7d8e39694e4f
+”	java:S116"RRename this field "book_id" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(“ŠÍâ8´ö´ªð1J$74383334-1afc-49bf-b826-e6ebfd49cd41
+•	java:S100 "NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¯Ú‰Ôÿÿÿÿÿ8âÖ´ªð1J$2f145952-3409-46fb-8b88-178244b4633d

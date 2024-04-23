@@ -1,6 +1,7 @@
 package book_shop.cart;
 
 import book_shop.CheckValid;
+import book_shop.InputId;
 import book_shop.cart.Cart;
 import student.ConnectDB;
 
@@ -19,32 +20,20 @@ public class CartManager {
 
     CheckValid checkValid = new CheckValid();
     boolean flag = false;
+    InputId inputId = new InputId();
 
-    public int checkNotNumber(int number) {
-        boolean flag = false;
-        while (!flag) {
-            String number1 = scanner.nextLine();
-            if (!checkValid.isNumber(number1)) {
-                System.out.println("Not Number!! Input Again:");
-                continue;
-            }
-            number = Integer.parseInt(number1);
-            flag = true;
-        }
-        return number;
-    }
 
     public Cart input() {
         String number = null;
         int bookId = 0;
         System.out.println("Input Book Id:");
-      bookId = checkNotNumber(bookId);
+        bookId = inputId.inputNumber(bookId);
         System.out.println("Input  Price:");
         float price = scanner.nextFloat();
         scanner.nextLine();
         System.out.println("Input  Quantity:");
         int quantity = scanner.nextInt();
-        updateQuantity(bookId, quantity);
+
         reduce(quantity);
         return new Cart(bookId, price, quantity);
     }
@@ -96,6 +85,7 @@ public class CartManager {
             ps.setFloat(2, cart.getPrice());
             ps.setInt(3, cart.getQuantity());
             kq = ps.executeUpdate();
+            updateQuantity(cart.getBook_id(), cart.getQuantity());
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -112,7 +102,7 @@ public class CartManager {
                 int bookId = rs.getInt("book_id");
                 int price = rs.getInt("price");
                 int quantity = rs.getInt("quantity");
-                System.out.println(bookId + " | " +  " | " + price + " | " + quantity);
+                System.out.println(bookId + " | " + " | " + price + " | " + quantity);
 
             }
         } catch (Exception e) {

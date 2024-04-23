@@ -4,7 +4,6 @@ import book_shop.ConnectDB;
 import book_shop.book.Book;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.*;
-import org.apache.poi.ss.util.CellReference;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -96,13 +95,10 @@ public class WriteExcel {
     private static void writeBook(Book book, Row row) {
         if (cellStyleFormatNumber == null) {
             short format = (short) BuiltinFormats.getBuiltinFormat("#,##0");
-            //Create CellStyle
             Workbook workbook = row.getSheet().getWorkbook();
             cellStyleFormatNumber = workbook.createCellStyle();
             cellStyleFormatNumber.setDataFormat(format);
         }
-//        Cell cell = row.createCell(TITLE_1);
-//        cell.setCellValue("hh");
 
         Cell cell = row.createCell(COLUMN_INDEX_ID);
         cell.setCellValue(book.getId());
@@ -128,8 +124,8 @@ public class WriteExcel {
     }
     
     public  void expotToExel() throws IOException {
-        final List<Book> books = getListBooks();
+        final List<Book> bookList = getListBooks();
         final String excelFilePath = "D:/Downloads/books.xls";
-        writeExcel(books, excelFilePath);
+        writeExcel(bookList, excelFilePath);
     }
 }

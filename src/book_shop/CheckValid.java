@@ -1,23 +1,16 @@
 package book_shop;
 
-import book_shop.ConnectDB;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Stream;
 
 public class CheckValid {
     Connection connection = ConnectDB.getConnection();
 
     public int parse(String str) {
-        int id = Integer.parseInt(str);
-        return id;
+        return  Integer.parseInt(str);
     }
 
     public boolean isNumber(String str) {
@@ -45,16 +38,5 @@ public class CheckValid {
         return false;
     }
 
-    public  boolean checkDate(String date, String format) {
-        SimpleDateFormat dateFormat = new SimpleDateFormat(format);
-        dateFormat.setLenient(false);
-
-        try {
-            dateFormat.parse(date);
-            return true;
-        } catch (ParseException e) {
-            return false;
-        }
-    }
 
 }

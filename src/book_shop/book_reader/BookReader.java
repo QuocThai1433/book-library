@@ -26,19 +26,19 @@ public class BookReader {
         this.borrowDate = borrowDate;
         this.returnDate = returnDate;
     }
-    public void setBook_id(int bookId) {
+    public void setBookIdd(int bookId) {
         this.bookId = bookId;
     }
 
-    public void setReader_id(int readerId) {
+    public void setReaderId(int readerId) {
         this.readerId = readerId;
     }
 
-    public void setBorrow_date(Date borrowDate) {
+    public void setBorrowDate(Date borrowDate) {
         this.borrowDate = borrowDate;
     }
 
-    public void setReturn_date(Date returnDate) {
+    public void setReturnDate(Date returnDate) {
         this.returnDate = returnDate;
     }
 

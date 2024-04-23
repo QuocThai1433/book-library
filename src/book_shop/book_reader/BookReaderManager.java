@@ -1,5 +1,6 @@
 package book_shop.book_reader;
 
+import book_shop.CheckFormatDate;
 import book_shop.CheckValid;
 import book_shop.ConnectDB;
 import book_shop.InputId;
@@ -25,30 +26,18 @@ public class BookReaderManager {
     String formatter = ("^(?:(?:31(\\/|-|\\.)(?:0?[13578]|1[02]))\\1|(?:(?:29|30)(\\/|-|\\.)(?:0?[13-9]|1[0-2])\\2))(?:(?:1[6-9]|[2-9]\\d)?\\d{2})$|^(?:29(\\/|-|\\.)0?2\\3(?:(?:(?:1[6-9]|[2-9]\\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\\d|2[0-8])(\\/|-|\\.)(?:(?:0?[1-9])|(?:1[0-2]))\\4(?:(?:1[6-9]|[2-9]\\d)?\\d{2})$");
     InputId inputId = new InputId();
 
+    CheckFormatDate checkDate = new CheckFormatDate();
 
 
 
 
-    public int checkNotNumber(int number) {
-        boolean flag = false;
-        while (!flag) {
-            String number1 = scanner.nextLine();
-            if (!checkValid.isNumber(number1)) {
-                System.out.println("Not Number!! Input Again:");
-                continue;
-            }
-            number = Integer.parseInt(number1);
-            flag = true;
-        }
-        return number;
-    }
 
 
     public String checkFormat(String input) {
         boolean flag1 = false;
         while (!flag1) {
             String number1 = scanner.nextLine();
-            if (!checkValid.checkDate(number1, "dd-MM-yyyy")) {
+            if (!checkDate.checkDate(number1, "dd-MM-yyyy")) {
                 System.out.println("Not format date!! Input Again:");
                 continue;
             }
@@ -63,11 +52,11 @@ public class BookReaderManager {
 
         System.out.println("Input Book ID:");
         int bookId = 0;
-        bookId = checkNotNumber(bookId);
+        bookId = inputId.inputNumber(bookId);
 
         System.out.println("Input Reader Id:");
         int readId = 0;
-        readId = checkNotNumber(readId);
+        readId = inputId.inputNumber(readId);
         System.out.println("Input  Borrow Date:");
         String borrowDate = null;
         borrowDate = checkFormat(borrowDate);
@@ -193,12 +182,7 @@ public class BookReaderManager {
     }
 
     public void showBorrowBooks() {
-        String query = "SELECT r.name_reader,b.book_name,b.quantity, br.borrowed_day, br.return_day\n" +
-                " FROM books b\n" +
-                "inner join book_reader br\n" +
-                "on b.id = br.book_id\n" +
-                "inner join readers r\n" +
-                "on br.reader_id =r.id";
+        String query = "SELECT r.name_reader,b.book_name,b.quantity, br.borrowed_day, br.return_day FROM books b inner join book_reader br on b.id = br.book_id inner join readers r on br.reader_id =r.id";
         try{
             PreparedStatement ps  = connection.prepareStatement(query);
           ResultSet rs = ps.executeQuery();
@@ -264,7 +248,7 @@ public class BookReaderManager {
         }
     }
 
-    public static void main(String[] args) throws ParseException {
+    public static void main(String[] args)  {
         BookReaderManager manager = new BookReaderManager();
         manager.showBorrowBooks();
     }

@@ -19,19 +19,7 @@ public class PublisherManager {
      CheckValid checkValid = new CheckValid();
     InputId inputId = new InputId();
 
-    public int checkNotNumber(int number) {
-        boolean flag = false;
-        while (!flag) {
-            String number1 = scanner.nextLine();
-            if (!checkValid.isNumber(number1)) {
-                System.out.println("Not Number!! Input Again:");
-                continue;
-            }
-            number = Integer.parseInt(number1);
-            flag = true;
-        }
-        return number;
-    }
+
 
 
     public  Publisher input( ) {
@@ -42,7 +30,7 @@ public class PublisherManager {
         String name = scanner.nextLine();
         System.out.println("Input  Book Id:");
         int bookId = 0;
-       bookId=checkNotNumber(bookId);
+        bookId=inputId.inputNumber(bookId);
         return new Publisher(id, name,bookId);
     }
     public  int create() {

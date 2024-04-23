@@ -20,19 +20,6 @@ public class BookManager {
     InputId inputId = new InputId();
     boolean flag = false;
 
-    public int checkNotNumber(int number) {
-        boolean flag = false;
-        while (!flag) {
-            String number1 = scanner.nextLine();
-            if (!check.isNumber(number1)) {
-                System.out.println("Not Number!! Input Again:");
-                continue;
-            }
-            number = Integer.parseInt(number1);
-            flag = true;
-        }
-        return number;
-    }
 
 
     public Book inputUpdate() {
@@ -45,7 +32,7 @@ public class BookManager {
 
         System.out.println("Input Publication Year:");
         int publicationYear = 0;
-        publicationYear = checkNotNumber(publicationYear);
+        publicationYear = inputId.inputNumber(publicationYear);
         System.out.println("Input quantity:");
         int quantity = scanner.nextInt();
 
@@ -56,7 +43,7 @@ public class BookManager {
         scanner.nextLine();
         System.out.println("Input category Id:");
         int categoryId = 0;
-        categoryId = checkNotNumber(categoryId);
+        categoryId = inputId.inputNumber(categoryId);
 
         return new Book(id, bookName, publicationYear, quantity, price, ratingAverage, categoryId);
     }
@@ -84,25 +71,17 @@ public class BookManager {
 
 
         System.out.println("Input quantity:");
-        int quantity = scanner.nextInt();
-
+        int quantity=0;
+        quantity =inputId.inputNumber(quantity);
         System.out.println("Input Price:");
-        float price = scanner.nextFloat();
+        float price = 0;
+        price =inputId.inputNumber((int) price);
         System.out.println("Input Rating Average:");
-        float ratingAverage = scanner.nextInt();
-        scanner.nextLine();
+        float ratingAverage = 0;
+      ratingAverage = inputId.inputNumber((int) ratingAverage);
         System.out.println("Input category Id:");
         int categoryId = 0;
-        while (!flag) {
-            String number1 = scanner.nextLine();
-            if (!check.isNumber(number1)) {
-                System.out.println("Not Number!! Input Again:");
-                continue;
-            }
-            categoryId = Integer.parseInt(number1);
-            flag = true;
-
-        }
+       categoryId= inputId.inputNumber(categoryId);
 
         return new
 
@@ -228,14 +207,7 @@ public class BookManager {
 
     public void filter() {
         int kq = 0;
-        String query = "SELECT a.author_name,b.book_name,c.category_name FROM author a\n" +
-                "right join books b\n" +
-                "on a.book_id = b.id\n" +
-                "right join category c\n" +
-                "on b.category_id =c.id\n" +
-                "WHERE c.category_name LIKE ? \n" +
-                "OR b.book_name LIKE ?\n" +
-                "or a.author_name like ?";
+        String query = "SELECT a.author_name,b.book_name,c.category_name FROM author a right join books b on a.book_id = b.id right join category c on b.category_id =c.id WHERE c.category_name LIKE ?  OR b.book_name LIKE ? or a.author_name like ?";
         try {
             PreparedStatement ps = ConnectDB.connectDB.prepareStatement(query);
             System.out.println("Input Category Name: ");

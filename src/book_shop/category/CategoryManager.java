@@ -10,7 +10,6 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-import java.util.function.Function;
 
 public class CategoryManager {
     Connection connection = ConnectDB.getConnection();
@@ -21,7 +20,7 @@ public class CategoryManager {
 
 
 
-    public Category input(Category category) {
+    public Category input() {
         System.out.println("Input ID:");
         int id = inputId.input((authorId) -> checkValid.checkExistId(authorId, "category"));
         System.out.println("Input Filter Name:");
@@ -32,7 +31,7 @@ public class CategoryManager {
 
     public int create(Category category) {
         int kq = 0;
-        category = input(category);
+        category = input();
         String query = " insert into category value (?,?)";
         try {
             PreparedStatement ps = connection.prepareStatement(query);

@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="f3ddbea9-34a2-42fa-ac74-77c5bf926fed" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/aws.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/0/f/0f1b1c0a8d3de6f935fcaa123d5d9b55242ccdc7" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/2/4/24db32cc540e0fb4b439de60c56171891589e9bf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/2/c/2ce9f403c1df6329b61b5088fe4cadd138f62041" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/2/e/2e9f5287534e2ab86bcabfff7a3c5f9b053752ae" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/3/a/3a9b0747e02dcc6d83e677ef36dbc663fece5649" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/4/e/4e50d604a8383110f83c10fc28d4a0ee97bb9fd9" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/5/2/52dcc9a19a891b14f1ff95533e5490575ac3d8f8" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/5/a/5a852ed7afb466d9177f2b1da8e6714c32e56ddd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/5/a/5ade7433de03d141bf42171b9fddfba784391a07" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/5/f/5ff13af97caa38a4ecebe43f51d6344c43e1c69b" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/6/0/600efdff8845d5d1d58f3669857a77b9a371e654" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/7/5/75dd38d6db0c3cc66619d0dbf59e42a4a8af72bc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/8/8/88a9255124c95bdc913197c120a8d560edc59c8e" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/9/3/93cf27a8f61a243862c87ffcd19d0e5761db69f6" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/9/9/9938dfb4bc15d441891055d14aef9b44df1e3ed6" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/9/f/9fe84ebb15faf917b7def6236dba604453cc61e0" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/a/a/aa699e18e87571c055ab19dd0e6abc8a399a7744" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/b/9/b90679f2c3e56e07c4bbf35fc1ac44e5dc02d663" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/b/f/bfd9f09d63629caaf29a2345cf1aea204929d00f" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/c/a/cad737b9602be6bf1b8aae58f7e05612ebde78c5" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/d/4/d4c0c0f5d623f4ca570251cf5e613ab18d9b410e" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/e/3/e3e1ff42574696e35fa1d49a76420efc376beebe" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/e/c/ec1bb4aa3e125cdb54e35a7ca251a3b1da4dba5a" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/e/c/ec4b928676a13e3212713a5e936309c097d2de42" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/f/d/fdd6cbb8c1576bfe9f7759df12e71b6adc1b64d2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/f/e/feb14bf07578748c08dd7b7148105d2cbc1afffd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/0/f/0f1b1c0a8d3de6f935fcaa123d5d9b55242ccdc7" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/2/4/24db32cc540e0fb4b439de60c56171891589e9bf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/2/c/2ce9f403c1df6329b61b5088fe4cadd138f62041" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/2/e/2e9f5287534e2ab86bcabfff7a3c5f9b053752ae" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/3/a/3a9b0747e02dcc6d83e677ef36dbc663fece5649" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/4/e/4e50d604a8383110f83c10fc28d4a0ee97bb9fd9" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/5/2/52dcc9a19a891b14f1ff95533e5490575ac3d8f8" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/5/a/5a852ed7afb466d9177f2b1da8e6714c32e56ddd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/5/a/5ade7433de03d141bf42171b9fddfba784391a07" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/5/f/5ff13af97caa38a4ecebe43f51d6344c43e1c69b" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/6/0/600efdff8845d5d1d58f3669857a77b9a371e654" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/7/5/75dd38d6db0c3cc66619d0dbf59e42a4a8af72bc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/8/8/88a9255124c95bdc913197c120a8d560edc59c8e" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/9/3/93cf27a8f61a243862c87ffcd19d0e5761db69f6" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/9/9/9938dfb4bc15d441891055d14aef9b44df1e3ed6" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/9/f/9fe84ebb15faf917b7def6236dba604453cc61e0" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/a/a/aa699e18e87571c055ab19dd0e6abc8a399a7744" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/b/9/b90679f2c3e56e07c4bbf35fc1ac44e5dc02d663" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/b/f/bfd9f09d63629caaf29a2345cf1aea204929d00f" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/c/a/cad737b9602be6bf1b8aae58f7e05612ebde78c5" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/d/4/d4c0c0f5d623f4ca570251cf5e613ab18d9b410e" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/e/3/e3e1ff42574696e35fa1d49a76420efc376beebe" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/e/c/ec1bb4aa3e125cdb54e35a7ca251a3b1da4dba5a" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/e/c/ec4b928676a13e3212713a5e936309c097d2de42" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/f/d/fdd6cbb8c1576bfe9f7759df12e71b6adc1b64d2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/f/e/feb14bf07578748c08dd7b7148105d2cbc1afffd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/index.pb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/book.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/book_shop.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/books.xls" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/commons-collections4-4.4.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/commons-io-2.16.1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/log4j-api-2.23.1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/log4j-core-2.23.1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/mysql-connector-java-8.0.28.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/poi-5.2.5.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/poi-ooxml-5.2.5.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/xmlbeans-2.3.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/book_shop/CheckValid.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/book_shop/ConnectDB.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/book_shop/InputId.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/book_shop/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/book_shop/author/Author.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/book_shop/author/AuthorManager.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/book_shop/book/Book.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/book_shop/book/BookManager.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/book_shop/book_reader/BookCategory.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/book_shop/book_reader/BookReader.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/book_shop/book_reader/BookReaderManager.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/book_shop/book_reader/WriteExcel.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/book_shop/cart/Cart.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/book_shop/cart/CartManager.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/book_shop/category/Category.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/book_shop/category/CategoryManager.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/book_shop/publisher/Publisher.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/book_shop/publisher/PublisherManager.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/book_shop/rating/Rating.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/book_shop/rating/RatingManager.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/book_shop/rating/RatingReader.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/book_shop/readers/ReaderManager.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/book_shop/readers/Readers.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/student/Circle.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/student/ConnectDB.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/student/File.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/student/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/student/Shape.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/student/Student.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/student/StudentManager.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/student.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test_kt.iml" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
+  <component name="ProjectId" id="2efVg9n3Tme3q2WlNBb7WEXjqvo" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "ToolWindowRun.ShowToolbar": "false",
+    "last_opened_file_path": "D:/Downloads/QLSV/test_kt/.idea",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "preferences.fileTypes"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="book_shop.book_reader" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Downloads\QLSV\test_kt\.idea" />
+      <recent name="C:\Users\quoct\AppData\Roaming\JetBrains\IdeaIC2023.1\extensions" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.RatingManager">
+    <configuration name="BookManager" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="book_shop.book.BookManager" />
+      <module name="test_kt" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="book_shop.book.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="BookReaderManager" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="book_shop.book_reader.BookReaderManager" />
+      <module name="test_kt" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="book_shop.book_reader.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="book_shop.Main" />
+      <module name="test_kt" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="book_shop.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="RatingManager" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="book_shop.rating.RatingManager" />
+      <module name="test_kt" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="book_shop.rating.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="test" />
+      <module name="test_kt" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.RatingManager" />
+        <item itemvalue="Application.Main" />
+        <item itemvalue="Application.BookReaderManager" />
+        <item itemvalue="Application.BookManager" />
+        <item itemvalue="Application.test" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="f3ddbea9-34a2-42fa-ac74-77c5bf926fed" name="Changes" comment="" />
+      <created>1712295729115</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1712295729115</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/student/StudentManager.java</url>
+          <line>95</line>
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/student/StudentManager.java</url>
+          <line>31</line>
+          <option name="timeStamp" value="11" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/book_shop/readers/ReaderManager.java</url>
+          <line>22</line>
+          <option name="timeStamp" value="76" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/book_shop/rating/RatingManager.java</url>
+          <line>67</line>
+          <option name="timeStamp" value="84" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/book_shop/rating/RatingManager.java</url>
+          <line>66</line>
+          <option name="timeStamp" value="85" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/book_shop/book_reader/BookReaderManager.java</url>
+          <line>223</line>
+          <properties class="book_shop.book_reader.BookReaderManager" method="lateLog">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="83" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/test_kt$PublisherManager.ic" NAME="PublisherManager Coverage Results" MODIFIED="1712724103649" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>book_shop.publisher.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/test_kt$BookManager.ic" NAME="BookManager Coverage Results" MODIFIED="1712891114053" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>book_shop.book.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/test_kt$AuthorManager.ic" NAME="AuthorManager Coverage Results" MODIFIED="1713494200238" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>book_shop.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/test_kt$BookReaderManager.ic" NAME="BookReaderManager Coverage Results" MODIFIED="1713154428385" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>book_shop.book_reader.*</FILTER>
+    </SUITE>
+  </component>
+</project>

@@ -24,36 +24,25 @@ public class RatingManager {
     CheckValid checkValid = new CheckValid();
     InputId inputId = new InputId();
 
-    public int checkNotNumber(int number) {
-        boolean flag = false;
-        while (!flag) {
-            String number1 = scanner.nextLine();
-            if (!checkValid.isNumber(number1)) {
-                System.out.println("Not Number!! Input Again:");
-                continue;
-            }
-            number = Integer.parseInt(number1);
-            flag = true;
-        }
-        return number;
-    }
+
 
 
     public Rating input() {
         System.out.println("Input ID:");
         int id = inputId.input((ratingId) -> checkValid.checkExistId(ratingId, "rating"));
+
         System.out.println("Input Star Rating");
         int starRating = 0;
-        starRating = checkNotNumber(starRating);
+        starRating = inputId.inputNumber(starRating);
         System.out.println("Input  Book Id:");
         int bookId = 0;
-        bookId = checkNotNumber(bookId);
-        bookManager.updateStar(starRating, bookId);
+        bookId = inputId.inputNumber(bookId);
+
         System.out.println("Input Comment:");
         String comment = scanner.nextLine();
         System.out.println("Input ReaderId:");
         int readerId = 0;
-        readerId = checkNotNumber(readerId);
+        readerId = inputId.inputNumber(readerId);
         return new Rating(id, starRating, bookId, comment, readerId);
     }
 
@@ -71,17 +60,18 @@ public class RatingManager {
             if (checkValid.checkExistId(rating.getBookId(), "readers")) {
                 ps.setInt(5, rating.getReaderId());
             } else {
-                ps.setObject(1, null);
+                ps.setObject(5, null);
 
             }
             kq = ps.executeUpdate();
+            bookManager.updateStar(rating.getStarRating(), rating.getBookId());
         } catch (Exception e) {
             e.printStackTrace();
         }
         return kq;
     }
 
-    public List<Rating> getList() {
+    public List<Rating>    getList() {
         String query = "SELECT b.id,book_name,b.rating_average FROM rating r, books b where r.book_id =b.id and b.id =? ";
         try {
             PreparedStatement ps = connection.prepareStatement(query);
@@ -103,10 +93,7 @@ public class RatingManager {
     }
 
     public List<RatingReader> ratingBook() {
-        String query = "SELECT r.name_reader, ra.star_rating\n" +
-                " FROM book_shop.readers r, book_shop.rating ra\n" +
-                "where r.id = ra.reader_id\n" +
-                "order by ra.star_rating desc";
+        String query = "SELECT r.name_reader, ra.star_rating  FROM book_shop.readers r, book_shop.rating ra where r.id = ra.reader_id order by ra.star_rating desc";
         try {
             PreparedStatement ps = connection.prepareStatement(query);
             ResultSet rs = ps.executeQuery();
@@ -125,9 +112,9 @@ public class RatingManager {
 
 
     public static void main(String[] args) {
-        Rating rating = new Rating();
-        RatingReader ratingReader = new RatingReader();
+
         RatingManager manager = new RatingManager();
-        manager.getList();
-    }
-}
+
+        manager.create();
+
+}}

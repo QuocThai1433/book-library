@@ -1,28 +1,22 @@
 package book_shop;
 
-import book_shop.author.Author;
 import book_shop.author.AuthorManager;
-import book_shop.book.Book;
 import book_shop.book.BookManager;
-import book_shop.book_reader.BookReader;
 import book_shop.book_reader.BookReaderManager;
 import book_shop.book_reader.WriteExcel;
-import book_shop.cart.Cart;
 import book_shop.cart.CartManager;
 import book_shop.category.Category;
 import book_shop.category.CategoryManager;
-import book_shop.publisher.Publisher;
 import book_shop.publisher.PublisherManager;
-import book_shop.rating.Rating;
 import book_shop.rating.RatingManager;
 import book_shop.readers.ReaderManager;
-import book_shop.readers.Readers;
 
 import java.io.IOException;
+import java.text.ParseException;
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, ParseException {
         BookManager bookManager = new BookManager();
         BookReaderManager bookReaderManager = new BookReaderManager();
         AuthorManager authorManager = new AuthorManager();
@@ -56,7 +50,8 @@ public class Main {
             System.out.println("17.Show Category:");
             System.out.println("18.Add Rating:");
             System.out.println("19.Export To Excel:");
-            System.out.println("20.ShowBorrowBooks:");
+            System.out.println("20.BorrowBooks");
+            System.out.println("21.Show BorrowBooks:");
             System.out.println("Input Choose:");
             choose = scanner.nextInt();
             switch (choose) {
@@ -118,6 +113,9 @@ public class Main {
                     writeExcel.expotToExel();
                     break;
                 case 20:
+                    bookReaderManager.create();
+                    break;
+                case 21:
                     bookReaderManager.showBorrowBooks();
                     break;
                 default:

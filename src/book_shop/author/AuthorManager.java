@@ -7,8 +7,9 @@ import student.ConnectDB;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.util.*;
-import java.util.function.Function;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
 
 public class AuthorManager {
     static Connection connection = ConnectDB.getConnection();
@@ -20,19 +21,7 @@ public class AuthorManager {
     InputId inputId = new InputId();
     boolean flag = false;
 
-    public int checkNotNumber(int number) {
-        boolean flag = false;
-        while (!flag) {
-            String number1 = scanner.nextLine();
-            if (!check.isNumber(number1)) {
-                System.out.println("Not Number!! Input Again:");
-                continue;
-            }
-            number = Integer.parseInt(number1);
-            flag = true;
-        }
-        return number;
-    }
+
 
     public Author input() {
         System.out.println("Input ID:");
@@ -41,7 +30,7 @@ public class AuthorManager {
         String name = scanner.nextLine();
         System.out.println("Input Book Id:");
         int bookId = 0;
-        bookId = checkNotNumber(bookId);
+        bookId = inputId.inputNumber(bookId);
         return new Author(id, name, bookId);
     }
 
