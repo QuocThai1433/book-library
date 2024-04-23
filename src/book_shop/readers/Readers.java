@@ -1,34 +1,28 @@
 package book_shop.readers;
 
-import java.lang.String;
-
 public class Readers {
     private int id;
     private String nameReader;
 
-    public Readers()
-    {
+    public Readers() {
     }
 
-    public Readers(int id, String nameReader)
-    {
+    public Readers(int id, String nameReader) {
         super();
 
-        this.id=id;
-        this.nameReader=nameReader;
+        this.id = id;
+        this.nameReader = nameReader;
 
     }
+
     public void setId(int id) {
         this.id = id;
     }
 
 
-
-
     public void setNameReader(String nameReader) {
         this.nameReader = nameReader;
     }
-
 
 
     public String getNameReader() {
@@ -38,7 +32,6 @@ public class Readers {
     public int getId() {
         return id;
     }
-
 
 
     public String getHoTen() {

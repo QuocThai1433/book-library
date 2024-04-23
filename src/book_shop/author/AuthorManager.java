@@ -1,91 +1,85 @@
 package book_shop.author;
 
-import book_shop.CheckValid;
-import book_shop.InputId;
-import student.ConnectDB;
+import db.ConnectDB;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.util.*;
-import java.util.function.Function;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Scanner;
+
+import static constants.EntityConstant.AUTHOR;
+import static constants.EntityConstant.BOOKS;
+import static utils.InputUtils.checkExistIdFunc;
+import static utils.InputUtils.inputId;
 
 public class AuthorManager {
-    static Connection connection = ConnectDB.getConnection();
     static Scanner scanner = new Scanner(System.in);
-    static List<Author> authors = new ArrayList<>();
-
-    static CheckValid check = new CheckValid();
-
-    InputId inputId = new InputId();
-    boolean flag = false;
-
-    public int checkNotNumber(int number) {
-        boolean flag = false;
-        while (!flag) {
-            String number1 = scanner.nextLine();
-            if (!check.isNumber(number1)) {
-                System.out.println("Not Number!! Input Again:");
-                continue;
-            }
-            number = Integer.parseInt(number1);
-            flag = true;
-        }
-        return number;
-    }
-
+    
     public Author input() {
         System.out.println("Input ID:");
-        int id = inputId.input((authorId) -> check.checkExistId(authorId, "author"));
+        int id = inputId(checkExistIdFunc(AUTHOR));
+        
         System.out.println("Input Author Name:");
         String name = scanner.nextLine();
+        
         System.out.println("Input Book Id:");
-        int bookId = 0;
-        bookId = checkNotNumber(bookId);
+        int bookId = inputId(checkExistIdFunc(BOOKS));
+        
         return new Author(id, name, bookId);
     }
-
+    
     public int create() {
         int kq = 0;
         Author author = input();
         String query = " insert into author value (?,?,?)";
         try {
+            Connection connection = ConnectDB.getInstance().getConnection();
+            if (connection == null) {
+                return 0;
+            }
             PreparedStatement ps = connection.prepareStatement(query);
             ps.setInt(1, author.getId());
             ps.setString(2, author.getAuthorName());
-            if (check.checkExistId(author.getBookId(), "author")) {
-
-                ps.setInt(3, author.getBookId());
-            } else {
-                ps.setObject(3, null);
-            }
+            ps.setInt(3, author.getBookId());
             kq = ps.executeUpdate();
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
         return kq;
     }
-
+    
     public List<Author> getList() {
+        List<Author> authors = new ArrayList<>();
         String query = "select * from author";
         try {
+            Connection connection = ConnectDB.getInstance().getConnection();
+            if (connection == null) {
+                return Collections.emptyList();
+            }
             PreparedStatement ps = connection.prepareStatement(query);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-
-                int id = rs.getInt("id");
-                String nameAuthor = rs.getString("author_name");
-                int bookId = rs.getInt("book_id");
-
-                System.out.println(id + " | " + nameAuthor + " | " + bookId);
-
+                Author author = getAuthor(rs);
+                authors.add(author);
+                System.out.println(author.getId() + " | " + author.getAuthorName() + " | " + author.getBookId());
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
         return authors;
     }
-
+    
+    private Author getAuthor(ResultSet rs) throws SQLException {
+        int id = rs.getInt("id");
+        String nameAuthor = rs.getString("author_name");
+        int bookId = rs.getInt("book_id");
+        return new Author(id, nameAuthor, bookId);
+    }
+    
     public static void main(String[] args) {
         AuthorManager manager = new AuthorManager();
         manager.create();

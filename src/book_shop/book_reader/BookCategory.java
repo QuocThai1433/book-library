@@ -5,17 +5,17 @@ public class BookCategory {
     private String nameBook;
     private int categoryId;
     private String nameCategory;
-    public BookCategory ()
-    {
+
+    public BookCategory() {
 
     }
-    public BookCategory(int bookId ,String nameBook,int categoryId, String nameCategory)
-    {
+
+    public BookCategory(int bookId, String nameBook, int categoryId, String nameCategory) {
         super();
-        this.bookId =bookId;
-        this.nameBook= nameBook;
+        this.bookId = bookId;
+        this.nameBook = nameBook;
         this.categoryId = categoryId;
-        this.nameCategory= nameCategory;
+        this.nameCategory = nameCategory;
     }
 
     public void setNameBook(String nameBook) {

@@ -4,10 +4,10 @@ public class Rating {
     private int id;
     private int starRating;
 
-    private  int bookId;
+    private int bookId;
 
     private String comment;
-    private  int readerId;
+    private int readerId;
 
     public Rating() {
     }
@@ -22,10 +22,10 @@ public class Rating {
     public Rating(int id, int starRating, int bookId, String comment, int readerId) {
         super();
         this.id = id;
-        this.starRating =starRating;
+        this.starRating = starRating;
         this.bookId = bookId;
-        this.comment=comment;
-        this.readerId= readerId;
+        this.comment = comment;
+        this.readerId = readerId;
     }
 
     public void setStarRating(int starRating) {

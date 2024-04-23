@@ -5,17 +5,18 @@ public class Category {
     private String categoryName;
 
 
-    public Category ()
-    {}
-    public Category(int id, String categorName ) {
+    public Category() {
+    }
+
+    public Category(int id, String categorName) {
         super();
 
         this.id = id;
         this.categoryName = categorName;
     }
-    public Category(String categorName)
-    {
-        this.categoryName=categorName;
+
+    public Category(String categorName) {
+        this.categoryName = categorName;
 
     }
 
