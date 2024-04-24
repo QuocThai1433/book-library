@@ -1,13 +1,0 @@
-
-‘
-java:S1104"UMake connectDB a static final constant or non-public and provide accessors if needed.(ˆ¤¢çJ$07488fe6-898b-4cae-9f4c-8350d0cd10e6
-k
-java:S1444"/Make this "public static connectDB" field final(ˆ¤¢çJ$fa63ed03-84e8-49a7-a53a-eeb020b92fba
-T
-java:S1700"Rename field "connectDB"(ˆ¤¢çJ$678bde39-f0a4-4915-b0e2-c24e6b9353d3
-n
-java:S4925"-Remove this "Class.forName()", it is useless.(¹µÖÁüÿÿÿÿJ$47239da4-3cc1-4669-bd93-41ed2174aa81
-w
-java:S6437"6Revoke and change this password, as it is compromised.(éŠ±üÿÿÿÿJ$6b41a1b6-3bb7-41b4-95e6-b118159bc713
-­
-java:S1130"lRemove the declaration of thrown exception 'java.lang.Exception', as it cannot be thrown from method's body.(ÙØ¤ŞıÿÿÿÿJ$9be10b21-f832-437f-9c13-c0b857b3f5ef
