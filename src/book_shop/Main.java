@@ -26,7 +26,6 @@ public class Main {
         CartManager cartManager = new CartManager();
         WriteExcel writeExcel = new WriteExcel();
         CategoryManager categoryManager = new CategoryManager();
-        Category category = new Category();
         boolean exit = false;
         Scanner scanner = new Scanner(System.in);
         int choose = 0;
@@ -101,7 +100,7 @@ public class Main {
                     cartManager.getList();
                     break;
                 case 16:
-                    categoryManager.create(category);
+                    categoryManager.create();
                     break;
                 case 17:
                     categoryManager.getList();

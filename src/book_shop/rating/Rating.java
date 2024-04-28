@@ -2,7 +2,7 @@ package book_shop.rating;
 
 public class Rating {
     private int id;
-    private int starRating;
+    private float starRating;
 
     private  int bookId;
 
@@ -19,7 +19,7 @@ public class Rating {
         this.starRating = starRating;
     }
 
-    public Rating(int id, int starRating, int bookId, String comment, int readerId) {
+    public Rating(int id, float starRating, int bookId, String comment, int readerId) {
         super();
         this.id = id;
         this.starRating =starRating;
@@ -48,7 +48,7 @@ public class Rating {
         this.readerId = readerId;
     }
 
-    public int getStarRating() {
+    public float getStarRating() {
         return starRating;
     }
 

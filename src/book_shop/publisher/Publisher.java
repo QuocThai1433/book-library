@@ -28,15 +28,12 @@ public class Publisher {
         this.id = id;
     }
 
-    public void setPublisher_name(String publisher_name) {
-        this.publisherName = publisherName;
-    }
 
     public int getId() {
         return id;
     }
 
-    public String getPublisher_name() {
+    public String getPublisherName() {
         return publisherName;
     }
 }

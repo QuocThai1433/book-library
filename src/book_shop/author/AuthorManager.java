@@ -1,8 +1,8 @@
 package book_shop.author;
 
 import book_shop.CheckValid;
+import book_shop.ConnectDB;
 import book_shop.InputId;
-import student.ConnectDB;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -30,7 +30,7 @@ public class AuthorManager {
         String name = scanner.nextLine();
         System.out.println("Input Book Id:");
         int bookId = 0;
-        bookId = inputId.inputNumber(bookId);
+        bookId = inputId.inputNumber();
         return new Author(id, name, bookId);
     }
 

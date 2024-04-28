@@ -1,20 +1,15 @@
 package book_shop.book_reader;
 
-import book_shop.CheckFormatDate;
-import book_shop.CheckValid;
-import book_shop.ConnectDB;
-import book_shop.InputId;
+import book_shop.*;
 
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-import java.util.function.Function;
 
 public class BookReaderManager {
 
@@ -23,49 +18,43 @@ public class BookReaderManager {
     List<BookReader> authors = new ArrayList<>();
     List<BookCategory> bookCategories = new ArrayList<>();
     CheckValid checkValid = new CheckValid();
-    String formatter = ("^(?:(?:31(\\/|-|\\.)(?:0?[13578]|1[02]))\\1|(?:(?:29|30)(\\/|-|\\.)(?:0?[13-9]|1[0-2])\\2))(?:(?:1[6-9]|[2-9]\\d)?\\d{2})$|^(?:29(\\/|-|\\.)0?2\\3(?:(?:(?:1[6-9]|[2-9]\\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\\d|2[0-8])(\\/|-|\\.)(?:(?:0?[1-9])|(?:1[0-2]))\\4(?:(?:1[6-9]|[2-9]\\d)?\\d{2})$");
     InputId inputId = new InputId();
 
     CheckFormatDate checkDate = new CheckFormatDate();
 
 
-
-
-
-
-    public String checkFormat(String input) {
-        boolean flag1 = false;
-        while (!flag1) {
-            String number1 = scanner.nextLine();
-            if (!checkDate.checkDate(number1, "dd-MM-yyyy")) {
-                System.out.println("Not format date!! Input Again:");
-                continue;
+    public int inputMax() {
+        int bookId = 0;
+        int maxInput = 3;
+        for (int i = 0; i < maxInput; i++) {
+            bookId = inputId.inputNumber();
+            if (!checkValid.checkExistId(bookId, "books")) {
+                System.out.println("Id not Exist!! Input again");
+            } else {
+                return bookId;
             }
-            input = number1;
-            flag1 = true;
-
         }
-        return input;
+        return bookId;
     }
 
     public BookReader input() throws ParseException {
 
-        System.out.println("Input Book ID:");
-        int bookId = 0;
-        bookId = inputId.inputNumber(bookId);
 
+        System.out.println("Input Book ID:");
+        int bookId = inputMax();
         System.out.println("Input Reader Id:");
         int readId = 0;
-        readId = inputId.inputNumber(readId);
-        System.out.println("Input  Borrow Date:");
-        String borrowDate = null;
-        borrowDate = checkFormat(borrowDate);
-
-        java.sql.Date borrowSql = formatDate(borrowDate);
-        System.out.println("Input  Return Date Id:");
+        readId = inputId.inputNumber();
+        System.out.println("Input  Borrow Date (dd/MM/yyyy) :");
+        String borrowDate =  checkDate.checkFormat();
+        java.sql.Date borrowSql = checkDate.formatDate(borrowDate);
+        System.out.println("Input  Return Date Id (dd/MM/yyyy) :");
         String returnDate = null;
-        returnDate = checkFormat(returnDate);
-        java.sql.Date returnSql = formatDate(returnDate);
+        returnDate = checkDate.checkFormat();
+        java.sql.Date returnSql = checkDate.formatDate(returnDate);
+
+        checkDate.checkBorrowDate(returnSql, borrowSql);
+
         return new BookReader(bookId, readId, borrowSql, returnSql);
     }
 
@@ -173,30 +162,21 @@ public class BookReaderManager {
         }
     }
 
-    public java.sql.Date formatDate(String date) throws ParseException {
-        SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
-        java.util.Date dateUtil = format.parse(date);
-        return new java.sql.Date(dateUtil.getTime());
-
-
-    }
 
     public void showBorrowBooks() {
         String query = "SELECT r.name_reader,b.book_name,b.quantity, br.borrowed_day, br.return_day FROM books b inner join book_reader br on b.id = br.book_id inner join readers r on br.reader_id =r.id";
-        try{
-            PreparedStatement ps  = connection.prepareStatement(query);
-          ResultSet rs = ps.executeQuery();
-          while (rs.next())
-          {
-              String nameReader = rs.getString("name_reader");
-              String bookName = rs.getString("book_name");
-              int quantity = rs.getInt("quantity");
-              java.util.Date brdate = rs.getDate("borrowed_day");
-              java.util.Date rtdate = rs.getDate("return_day");
-              System.out.println(nameReader +" | "+ bookName +" | "+ quantity +" | "+ brdate + " | "+ rtdate);
-          }
-        }catch (Exception e)
-        {
+        try {
+            PreparedStatement ps = connection.prepareStatement(query);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                String nameReader = rs.getString("name_reader");
+                String bookName = rs.getString("book_name");
+                int quantity = rs.getInt("quantity");
+                java.util.Date brdate = rs.getDate("borrowed_day");
+                java.util.Date rtdate = rs.getDate("return_day");
+                System.out.println(nameReader + " | " + bookName + " | " + quantity + " | " + brdate + " | " + rtdate);
+            }
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -228,11 +208,11 @@ public class BookReaderManager {
             PreparedStatement ps = connection.prepareStatement(query);
             System.out.println("Input  Borrow Date 1 (dd-mm-yyyy):");
             String borrowDate = scanner.nextLine();
-            Date borrowDateSql1 = formatDate(borrowDate);
+            Date borrowDateSql1 = checkDate.formatDate(borrowDate);
 
             System.out.println("Input  Borrow Date 2 Id (dd-mm-yyyy) :");
             String returnDateSql = scanner.nextLine();
-            Date borrowDateSql2 = formatDate(returnDateSql);
+            Date borrowDateSql2 = checkDate.formatDate(returnDateSql);
             ps.setDate(1, borrowDateSql1);
             ps.setDate(2, borrowDateSql2);
             ResultSet rs = ps.executeQuery();
@@ -248,8 +228,8 @@ public class BookReaderManager {
         }
     }
 
-    public static void main(String[] args)  {
+    public static void main(String[] args) throws ParseException {
         BookReaderManager manager = new BookReaderManager();
-        manager.showBorrowBooks();
+        manager.create();
     }
 }

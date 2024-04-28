@@ -1,10 +1,9 @@
 package book_shop.rating;
 
 import book_shop.CheckValid;
+import book_shop.ConnectDB;
 import book_shop.InputId;
-import book_shop.book.Book;
 import book_shop.book.BookManager;
-import student.ConnectDB;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -12,7 +11,6 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-import java.util.function.Function;
 
 public class RatingManager {
     Connection connection = ConnectDB.getConnection();
@@ -32,17 +30,16 @@ public class RatingManager {
         int id = inputId.input((ratingId) -> checkValid.checkExistId(ratingId, "rating"));
 
         System.out.println("Input Star Rating");
-        int starRating = 0;
-        starRating = inputId.inputNumber(starRating);
+        float starRating = inputId.inputNumberFloat();
         System.out.println("Input  Book Id:");
         int bookId = 0;
-        bookId = inputId.inputNumber(bookId);
+        bookId = inputId.inputNumber();
 
         System.out.println("Input Comment:");
         String comment = scanner.nextLine();
         System.out.println("Input ReaderId:");
         int readerId = 0;
-        readerId = inputId.inputNumber(readerId);
+        readerId = inputId.inputNumber();
         return new Rating(id, starRating, bookId, comment, readerId);
     }
 
@@ -53,7 +50,7 @@ public class RatingManager {
         try {
             PreparedStatement ps = connection.prepareStatement(query);
             ps.setInt(1, rating.getId());
-            ps.setInt(2, rating.getStarRating());
+            ps.setFloat(2, rating.getStarRating());
             ps.setInt(3, rating.getBookId());
             ps.setString(4, rating.getComment());
 
@@ -76,14 +73,14 @@ public class RatingManager {
         try {
             PreparedStatement ps = connection.prepareStatement(query);
             System.out.println("Input Id Book");
-            int bookId1 = scanner.nextInt();
-            ps.setInt(1, bookId1);
+            int bookId =inputId.inputNumber();
+            ps.setInt(1, bookId);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 int id = rs.getInt("id");
                 String bookName = rs.getString("book_name");
-                int bookId = rs.getInt("rating_average");
-                System.out.println(id + " | " + bookName + " | " + bookId + " | ");
+                int ratingAverage = rs.getInt("rating_average");
+                System.out.println(id + " | " + bookName + " | " + ratingAverage + " | ");
 
             }
         } catch (Exception e) {
@@ -115,6 +112,6 @@ public class RatingManager {
 
         RatingManager manager = new RatingManager();
 
-        manager.create();
+        manager.getList();
 
 }}

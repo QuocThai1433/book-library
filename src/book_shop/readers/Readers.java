@@ -1,7 +1,5 @@
 package book_shop.readers;
 
-import java.lang.String;
-
 public class Readers {
     private int id;
     private String nameReader;
@@ -41,7 +39,4 @@ public class Readers {
 
 
 
-    public String getHoTen() {
-        return nameReader;
-    }
 }

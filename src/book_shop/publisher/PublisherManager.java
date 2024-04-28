@@ -1,8 +1,8 @@
 package book_shop.publisher;
 
 import book_shop.CheckValid;
+import book_shop.ConnectDB;
 import book_shop.InputId;
-import student.ConnectDB;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class PublisherManager {
+
      Connection connection = ConnectDB.getConnection();
 
      Scanner scanner = new Scanner(System.in);
@@ -30,7 +31,7 @@ public class PublisherManager {
         String name = scanner.nextLine();
         System.out.println("Input  Book Id:");
         int bookId = 0;
-        bookId=inputId.inputNumber(bookId);
+        bookId=inputId.inputNumber();
         return new Publisher(id, name,bookId);
     }
     public  int create() {
@@ -41,7 +42,7 @@ public class PublisherManager {
 
             PreparedStatement ps = connection.prepareStatement(query);
             ps.setInt(1, publisher.getId());
-            ps.setString(2, publisher.getPublisher_name());
+            ps.setString(2, publisher.getPublisherName());
             ps.setInt(3, publisher.getBookId());
             if (checkValid.checkExistId(publisher.getBookId(), "books")) {
                 ps.setInt(3, publisher.getBookId());

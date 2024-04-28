@@ -1,11 +1,9 @@
 package book_shop.cart;
 
 import book_shop.CheckValid;
+import book_shop.ConnectDB;
 import book_shop.InputId;
-import book_shop.cart.Cart;
-import student.ConnectDB;
 
-import java.nio.charset.CharacterCodingException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -27,12 +25,11 @@ public class CartManager {
         String number = null;
         int bookId = 0;
         System.out.println("Input Book Id:");
-        bookId = inputId.inputNumber(bookId);
+        bookId = inputId.inputNumber();
         System.out.println("Input  Price:");
-        float price = scanner.nextFloat();
-        scanner.nextLine();
+        float price = inputId.inputNumberFloat();
         System.out.println("Input  Quantity:");
-        int quantity = scanner.nextInt();
+        int quantity = inputId.inputNumber();
 
         reduce(quantity);
         return new Cart(bookId, price, quantity);
@@ -76,8 +73,8 @@ public class CartManager {
         String query = " insert into carts value (?,?,?)";
         try {
             PreparedStatement ps = connection.prepareStatement(query);
-            if (checkValid.checkExistId(cart.getBook_id(), "books")) {
-                ps.setInt(1, cart.getBook_id());
+            if (checkValid.checkExistId(cart.getBookId(), "books")) {
+                ps.setInt(1, cart.getBookId());
             } else {
                 ps.setObject(1, null);
 
@@ -85,7 +82,7 @@ public class CartManager {
             ps.setFloat(2, cart.getPrice());
             ps.setInt(3, cart.getQuantity());
             kq = ps.executeUpdate();
-            updateQuantity(cart.getBook_id(), cart.getQuantity());
+            updateQuantity(cart.getBookId(), cart.getQuantity());
         } catch (Exception e) {
             e.printStackTrace();
         }

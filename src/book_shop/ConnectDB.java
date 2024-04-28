@@ -9,7 +9,7 @@ public class ConnectDB {
     {
        try
        {
-           Class.forName("com.mysql.jdbc.Driver");
+           Class.forName("com.mysql.cj.jdbc.Driver");
            String url = "jdbc:mysql://localhost:3306/book_shop";
            String userName = "root";
            String password = "1234";
@@ -19,13 +19,14 @@ public class ConnectDB {
            e.printStackTrace();
        }return connectDB;
     }
-    public static void main(String[] args) throws Exception{
+    public static void main(String[] args) {
         if (getConnection()!=null)
         {
             System.out.println("Connect Success");
         }else
         {
             System.out.println("Connect Fail");
+            System.exit(1);
         }
     }
 }
