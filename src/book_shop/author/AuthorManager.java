@@ -7,6 +7,7 @@ import book_shop.InputId;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -28,10 +29,7 @@ public class AuthorManager {
         int id = inputId.input((authorId) -> check.checkExistId(authorId, "author"));
         System.out.println("Input Author Name:");
         String name = scanner.nextLine();
-        System.out.println("Input Book Id:");
-        int bookId = 0;
-        bookId = inputId.inputNumber();
-        return new Author(id, name, bookId);
+        return new Author(id, name);
     }
 
     public int create() {
@@ -42,12 +40,6 @@ public class AuthorManager {
             PreparedStatement ps = connection.prepareStatement(query);
             ps.setInt(1, author.getId());
             ps.setString(2, author.getAuthorName());
-            if (check.checkExistId(author.getBookId(), "author")) {
-
-                ps.setInt(3, author.getBookId());
-            } else {
-                ps.setObject(3, null);
-            }
             kq = ps.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
@@ -57,16 +49,25 @@ public class AuthorManager {
 
     public List<Author> getList() {
         String query = "select * from author";
+
+
         try {
             PreparedStatement ps = connection.prepareStatement(query);
             ResultSet rs = ps.executeQuery();
+            ResultSetMetaData metaData = rs.getMetaData();
+            int columnCount = metaData.getColumnCount();
             while (rs.next()) {
 
                 int id = rs.getInt("id");
                 String nameAuthor = rs.getString("author_name");
                 int bookId = rs.getInt("book_id");
+                for (int i = 1; i <= columnCount; i++) {
+                    System.out.print(" | "+ metaData.getColumnName(i)  );
+                }
+                System.out.println(); // New line after printing column names
 
-                System.out.println(id + " | " + nameAuthor + " | " + bookId);
+
+                System.out.println(" | " +id + "  |  " + nameAuthor );
 
             }
         } catch (Exception e) {
@@ -77,6 +78,6 @@ public class AuthorManager {
 
     public static void main(String[] args) {
         AuthorManager manager = new AuthorManager();
-        manager.create();
+        manager.getList();
     }
 }

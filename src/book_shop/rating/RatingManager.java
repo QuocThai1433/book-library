@@ -32,14 +32,13 @@ public class RatingManager {
         System.out.println("Input Star Rating");
         float starRating = inputId.inputNumberFloat();
         System.out.println("Input  Book Id:");
-        int bookId = 0;
-        bookId = inputId.inputNumber();
+        int bookId = inputId.inputNumber();
 
         System.out.println("Input Comment:");
         String comment = scanner.nextLine();
         System.out.println("Input ReaderId:");
-        int readerId = 0;
-        readerId = inputId.inputNumber();
+        int readerId = inputId.inputCheckExistId((readerIds -> checkValid.checkExistId(readerIds, "readers")));
+
         return new Rating(id, starRating, bookId, comment, readerId);
     }
 
@@ -54,7 +53,7 @@ public class RatingManager {
             ps.setInt(3, rating.getBookId());
             ps.setString(4, rating.getComment());
 
-            if (checkValid.checkExistId(rating.getBookId(), "readers")) {
+            if (checkValid.checkExistId(rating.getReaderId(), "readers")) {
                 ps.setInt(5, rating.getReaderId());
             } else {
                 ps.setObject(5, null);
@@ -112,6 +111,6 @@ public class RatingManager {
 
         RatingManager manager = new RatingManager();
 
-        manager.getList();
+        manager.create();
 
 }}

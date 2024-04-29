@@ -40,10 +40,12 @@ public class BookManager {
         float ratingAverage = scanner.nextFloat();
         scanner.nextLine();
         System.out.println("Input category Id:");
+        System.out.println("Input authorId:");
+        int authorId = scanner.nextInt();
 
         int categoryId = inputId.inputNumber();
 
-        return new Book(id, bookName, publicationYear, quantity, price, ratingAverage, categoryId);
+        return new Book(id, bookName, publicationYear, quantity, price, ratingAverage, categoryId, authorId);
     }
 
     public Book inputBook() {
@@ -75,14 +77,13 @@ public class BookManager {
         float price = inputId.inputNumberFloat();
         System.out.println("Input Rating Average:");
 
-        float ratingAverage =inputId.inputNumberFloat();
+        float ratingAverage = inputId.inputNumberFloat();
         System.out.println("Input category Id:");
         int categoryId = 0;
         categoryId = inputId.inputNumber();
-
-        return new
-
-                Book(id, bookName, publicationYear, quantity, price, ratingAverage, categoryId);
+        System.out.println("Input quantity:");
+        int authorId = scanner.nextInt();
+        return new Book(id, bookName, publicationYear, quantity, price, ratingAverage, categoryId, authorId);
 
     }
 
@@ -121,8 +122,7 @@ public class BookManager {
 
     public int create() {
         Book book = inputBook();
-        Category category = new Category();
-        String query = "insert into books value  (?,?,?,?,?,?,?)";
+        String query = "insert into books value  (?,?,?,?,?,?,?,?)";
         int kq = 0;
         try {
             PreparedStatement statement = connection.prepareStatement(query);
@@ -137,6 +137,13 @@ public class BookManager {
 
             } else {
                 statement.setObject(7, null);
+
+            }
+            if (check.checkExistId(book.getCategoryId(), "category")) {
+                statement.setInt(8, book.getAuthorId());
+
+            } else {
+                statement.setObject(8, null);
 
             }
             kq = statement.executeUpdate();
@@ -205,15 +212,15 @@ public class BookManager {
     public void filter() {
         int kq = 0;
         String query = """ 
-                SELECT b.*, a.author_name,b.book_name,c.category_name 
-                FROM author a 
-                right join books b on a.book_id = b.id 
-                right join category c on b.category_id =c.id 
-                WHERE c.category_name LIKE ?  OR b.book_name LIKE ? or a.author_name like ? 
+                SELECT b.*, a.author_name,b.book_name,c.category_name
+                FROM books b
+                left join author a on a.id = b.author_id
+                left join category c on b.category_id =c.id
+                WHERE c.category_name LIKE ?  OR b.book_name LIKE ? or a.author_name like ?
                 """;
         try {
             PreparedStatement ps = ConnectDB.connectDB.prepareStatement(query);
-            System.out.println("Input Name: ");
+            System.out.println("Search:");
             String characters = scanner.nextLine();
             ps.setString(1, "%" + characters + "%");
             ps.setString(2, "%" + characters + "%");
@@ -224,12 +231,12 @@ public class BookManager {
                 String bookName = rs.getString("book_name");
                 int publicationYear = rs.getInt("publication_year");
                 int quantity = rs.getInt("quantity");
-                float  price = rs.getFloat("price");
+                float price = rs.getFloat("price");
                 float ratingAverage = rs.getFloat("rating_average");
                 int categoryId = rs.getInt("category_id");
                 String authorName = rs.getString("author_name");
                 String categoryName = rs.getString("category_name");
-                System.out.println( id + " | " + bookName + " | " + categoryName +" | "+ publicationYear + " | " + quantity + " | " + price + " | "+ ratingAverage +" | " + categoryId + " | " + authorName + " | " + categoryName);
+                System.out.println(id + " | " + bookName + " | " + categoryName + " | " + publicationYear + " | " + quantity + " | " + price + " | " + ratingAverage + " | " + categoryId + " | " + authorName + " | " + categoryName);
 
             }
         } catch (Exception e) {

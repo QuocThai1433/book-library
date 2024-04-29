@@ -27,6 +27,27 @@ public class InputId {
         return id;
     }
 
+    public int inputCheckExistId(Function<Integer, Boolean> checkExist) {
+        int id = 0;
+        boolean flag = false;
+        while (!flag) {
+            String number = scanner.nextLine();
+            if (!checkValid.isNumber(number)) {
+                System.out.println("Not Number!! Input Again:");
+                continue;
+            }
+            id = Integer.parseInt(number);
+            if (!Boolean.TRUE.equals(checkExist.apply(id))) {
+                System.out.println("Id not exist!! Input Again");
+
+            } else {
+                flag = true;
+            }
+        }
+        return id;
+    }
+
+
     public int inputNumber() {
         int number = 0;
         boolean flag = false;
@@ -55,5 +76,21 @@ public class InputId {
             flag = true;
         }
         return number;
+    }
+
+
+    public int inputCheckExist(int id ) {
+
+        boolean flag = false;
+        while (!flag) {
+            id = scanner.nextInt();
+
+            if (!checkValid.checkExistId(id, "readers")) {
+                System.out.println("Id Not Exist!! Input Again:");
+                continue;
+            }
+            flag = true;
+        }
+        return id;
     }
 }

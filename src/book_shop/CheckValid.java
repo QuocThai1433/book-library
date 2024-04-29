@@ -3,9 +3,11 @@ package book_shop;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.Scanner;
 
 public class CheckValid {
     Connection connection = ConnectDB.getConnection();
+    Scanner scanner = new Scanner(System.in);
 
     public boolean isNumber(String str) {
         try {
@@ -15,6 +17,7 @@ public class CheckValid {
             return false;
         }
     }
+
     public boolean isNumberFloat(String str) {
         try {
             Float.parseFloat(str);
@@ -37,5 +40,20 @@ public class CheckValid {
         return false;
     }
 
-
+//    }  public boolean inputCheckExistId( int id, String table) {
+//        try {
+//            int kq = 0;
+//            String sql = "SELECT * FROM " + table + " WHERE id = ?";
+//            PreparedStatement ps = connection.prepareStatement(sql);
+//            while (!checkExistId(id, table)) {
+//                if (checkExistId(id, table)) {
+//                    return true;
+//                }else {}
+//
+//            }
+//        }catch (Exception e)
+//        {
+//            e.printStackTrace();
+//        }
+//        return fal
 }

@@ -81,8 +81,9 @@ public class WriteExcel {
                 int price = rs.getInt("price");
                 float ratingAverage = rs.getFloat("rating_average");
                 int categoryId = rs.getInt("category_id");
-                System.out.println(id + " | " + bookName + " | " + publicationYear + " | " + quantity + " | " + price + " | " + ratingAverage + " | " + categoryId);
-                Book book = new Book(id,bookName,publicationYear,quantity,price,ratingAverage, categoryId);
+                int authorId = rs.getInt("author_id");
+                System.out.println(id + " | " + bookName + " | " + publicationYear + " | " + quantity + " | " + price + " | " + ratingAverage + " | " + categoryId+ " | "+authorId);
+                Book book = new Book(id,bookName,publicationYear,quantity,price,ratingAverage, categoryId,authorId);
             books.add(book);
 
             }

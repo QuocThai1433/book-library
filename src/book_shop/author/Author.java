@@ -3,24 +3,14 @@ package book_shop.author;
 public class Author {
     private int id;
     private String authorName;
-    private int bookId;
-
   public  Author ()
   {}
 
-    public Author(int id, String authorName, int bookId) {
+    public Author(int id, String authorName ) {
         super();
         this.id = id;
         this.authorName = authorName;
-        this.bookId = bookId;
-    }
 
-    public void setBookId(int bookId) {
-        this.bookId = bookId;
-    }
-
-    public int getBookId() {
-        return bookId;
     }
 
     @Override
