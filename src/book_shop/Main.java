@@ -19,7 +19,15 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) throws IOException, ParseException {
-
+        Connection connection = ConnectDB.getConnection();
+        if (connection!=null)
+        {
+            System.out.println("Connect Success");
+        }else
+        {
+            System.out.println("Connect Fail");
+            System.exit(1);
+        }
         BookManager bookManager = new BookManager();
         BookReaderManager bookReaderManager = new BookReaderManager();
         AuthorManager authorManager = new AuthorManager();
@@ -29,7 +37,7 @@ public class Main {
         CartManager cartManager = new CartManager();
         WriteExcel writeExcel = new WriteExcel();
         CategoryManager categoryManager = new CategoryManager();
-        Connection connection = ConnectDB.getConnection();
+
         boolean exit = false;
         Scanner scanner = new Scanner(System.in);
         if (connection != null) {

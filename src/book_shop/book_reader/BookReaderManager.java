@@ -3,7 +3,6 @@ package book_shop.book_reader;
 import book_shop.*;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.text.ParseException;
@@ -44,13 +43,13 @@ public class BookReaderManager {
         int bookId = inputMax();
         System.out.println("Input Reader Id:");
         int readId = inputId.inputCheckExistId((id) -> checkValid.checkExistId(id, "readers"));
-
         System.out.println("Input  Borrow Date (dd-MM-yyyy):");
         String borrowDate = checkDate.checkFormat();
-        java.sql.Date borrowSql = checkDate.formatDate(borrowDate);
+        java.sql.Date borrowSql = checkDate.parseDate(borrowDate);
+
         System.out.println("Input  Return Date Id (dd-MM-yyyy):");
         String returnDate = checkDate.checkFormat();
-        java.sql.Date returnSql = checkDate.formatDate(returnDate);
+        java.sql.Date returnSql = checkDate.parseDate(returnDate);
         checkDate.checkBorrowDate(returnSql, borrowSql);
         return new BookReader(bookId, readId, borrowSql, returnSql);
     }
@@ -197,15 +196,17 @@ public class BookReaderManager {
         BookReader bookReader = new BookReader();
         try {
             PreparedStatement ps = connection.prepareStatement(query);
-            System.out.println("Input  Start Date (dd-mm-yyyy):");
-            String borrowDate = scanner.nextLine();
-            Date borrowDateSql1 = checkDate.formatDate(borrowDate);
+            System.out.println("Input Start Date (dd-mm-yyyy):");
+            String borrowDate = checkDate.checkFormat();
+            java.sql.Date borrowSql = checkDate.parseDate(borrowDate);
 
-            System.out.println("Input  End Date 2 Id (dd-mm-yyyy) :");
-            String returnDateSql = scanner.nextLine();
-            Date borrowDateSql2 = checkDate.formatDate(returnDateSql);
-            ps.setDate(1, borrowDateSql1);
-            ps.setDate(2, borrowDateSql2);
+
+            System.out.println("Input End Date Id (dd-mm-yyyy):");
+            String returnDate = checkDate.checkFormatReturn();
+            java.sql.Date returnSql = checkDate.parseDate(returnDate);
+            checkDate.checkBorrowDate(returnSql, borrowSql);
+            ps.setDate(1, borrowSql);
+            ps.setDate(2, returnSql);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 int bookId = rs.getInt("book_id");

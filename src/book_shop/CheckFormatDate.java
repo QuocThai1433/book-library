@@ -8,7 +8,7 @@ import java.util.Scanner;
 public class CheckFormatDate {
     Scanner scanner = new Scanner(System.in);
 
-    public java.sql.Date formatDate(String date) throws ParseException {
+    public java.sql.Date parseDate(String date) throws ParseException {
         SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
         java.util.Date dateUtil = format.parse(date);
         return new java.sql.Date(dateUtil.getTime());
@@ -44,16 +44,28 @@ public class CheckFormatDate {
         return input;
     }
 
-    public boolean checkBorrowDate( Date returnSql, Date borrowSql) throws ParseException {
+    public String checkFormatReturn() {
+        String input = null;
+        boolean flag1 = false;
+        while (!flag1) {
+            String number1 = scanner.nextLine();
+            if (!checkDate(number1, "dd-MM-yyyy") ) {
+                System.out.println("Not format date!! Input Again:");
+                continue;
+            }
+            input = number1;
+            flag1 = true;
+
+        }
+        return input;
+    }
+    public boolean checkBorrowDate(Date returnSql, Date borrowSql) throws ParseException {
         while (!returnSql.after(borrowSql)) {
             if (!returnSql.after(borrowSql)) {
-                System.out.println("Ngày trả không hợp lệ. Ngày trả phải sau ngày mượn ít nhất 1 ngày, nhập lại:");
-                returnSql = formatDate(checkFormat());
+                System.out.println("Invalid return date. The return date must be at least 1 day after the borrow date. Please enter again:");
+                returnSql = parseDate(checkFormat());
             }
         }
-        System.out.println("Ngày Trả Hợp Lệ!!");
         return true;
     }
-
-
 }

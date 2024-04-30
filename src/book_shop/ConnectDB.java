@@ -16,7 +16,8 @@ public class ConnectDB {
            connectDB= DriverManager.getConnection(url,userName, password);
        }catch (Exception e)
        {
-           e.printStackTrace();
+           System.out.println("Invalid username or password!!");
+
        }return connectDB;
     }
     public static void main(String[] args) {
