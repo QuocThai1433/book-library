@@ -5,7 +5,6 @@ import book_shop.book.BookManager;
 import book_shop.book_reader.BookReaderManager;
 import book_shop.book_reader.WriteExcel;
 import book_shop.cart.CartManager;
-import book_shop.category.Category;
 import book_shop.category.CategoryManager;
 import book_shop.publisher.PublisherManager;
 import book_shop.rating.RatingManager;
@@ -40,8 +39,6 @@ public class Main {
 
         boolean exit = false;
         Scanner scanner = new Scanner(System.in);
-        if (connection != null) {
-            System.out.println("Connect Success");
             int choose = 0;
             do {
 
@@ -103,7 +100,7 @@ public class Main {
                         bookReaderManager.totalBook();
                         break;
                     case 12:
-                        bookReaderManager.lateLog();
+                        bookReaderManager.lateDateFilter();
                         break;
                     case 13:
                         ratingManager.getList();
@@ -147,10 +144,5 @@ public class Main {
                 }
 
             } while (!exit);
-        } else {
-            System.out.println("Connect Fail");
-            System.exit(1);
         }
     }
-
-}

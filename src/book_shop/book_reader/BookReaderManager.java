@@ -1,6 +1,9 @@
 package book_shop.book_reader;
 
-import book_shop.*;
+import book_shop.CheckFormatDate;
+import book_shop.CheckValid;
+import book_shop.ConnectDB;
+import book_shop.InputId;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -191,7 +194,7 @@ public class BookReaderManager {
     }
 
 
-    public void lateLog() {
+    public void lateDateFilter() {
         String query = "SELECT * FROM book_reader WHERE borrowed_day > ? and borrowed_day <? ";
         BookReader bookReader = new BookReader();
         try {
@@ -202,9 +205,9 @@ public class BookReaderManager {
 
 
             System.out.println("Input End Date Id (dd-mm-yyyy):");
-            String returnDate = checkDate.checkFormatReturn();
+            String returnDate = checkDate.checkFormat();
             java.sql.Date returnSql = checkDate.parseDate(returnDate);
-            checkDate.checkBorrowDate(returnSql, borrowSql);
+            returnSql=checkDate.checkBorrowDate(returnSql, borrowSql);
             ps.setDate(1, borrowSql);
             ps.setDate(2, returnSql);
             ResultSet rs = ps.executeQuery();
@@ -222,6 +225,6 @@ public class BookReaderManager {
 
     public static void main(String[] args) throws ParseException {
         BookReaderManager manager = new BookReaderManager();
-        manager.create();
+        manager.lateDateFilter();
     }
 }

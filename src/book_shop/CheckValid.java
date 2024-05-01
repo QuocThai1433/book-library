@@ -38,22 +38,4 @@ public class CheckValid {
             e.printStackTrace();
         }
         return false;
-    }
-
-//    }  public boolean inputCheckExistId( int id, String table) {
-//        try {
-//            int kq = 0;
-//            String sql = "SELECT * FROM " + table + " WHERE id = ?";
-//            PreparedStatement ps = connection.prepareStatement(sql);
-//            while (!checkExistId(id, table)) {
-//                if (checkExistId(id, table)) {
-//                    return true;
-//                }else {}
-//
-//            }
-//        }catch (Exception e)
-//        {
-//            e.printStackTrace();
-//        }
-//        return fal
-}
+    }}
