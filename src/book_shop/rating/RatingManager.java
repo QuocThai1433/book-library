@@ -2,7 +2,7 @@ package book_shop.rating;
 
 import book_shop.CheckValid;
 import book_shop.ConnectDB;
-import book_shop.InputId;
+import book_shop.Input;
 import book_shop.book.BookManager;
 
 import java.sql.Connection;
@@ -20,7 +20,7 @@ public class RatingManager {
 
     BookManager bookManager = new BookManager();
     CheckValid checkValid = new CheckValid();
-    InputId inputId = new InputId();
+    Input inputId = new Input();
 
 
 

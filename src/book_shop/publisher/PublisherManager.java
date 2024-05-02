@@ -2,7 +2,7 @@ package book_shop.publisher;
 
 import book_shop.CheckValid;
 import book_shop.ConnectDB;
-import book_shop.InputId;
+import book_shop.Input;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -18,7 +18,7 @@ public class PublisherManager {
      Scanner scanner = new Scanner(System.in);
      List<Publisher> authors = new ArrayList<>();
      CheckValid checkValid = new CheckValid();
-    InputId inputId = new InputId();
+    Input inputId = new Input();
 
 
 

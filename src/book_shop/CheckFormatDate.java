@@ -29,6 +29,9 @@ public class CheckFormatDate {
     }
 
     public String checkFormat() {
+
+
+
         String input = null;
         boolean flag1 = false;
         while (!flag1) {

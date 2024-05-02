@@ -1,13 +1,15 @@
 package book_shop;
 
+import java.text.ParseException;
 import java.util.Scanner;
-import java.util.function.Function;
+import java.util.function.IntPredicate;
 
-public class InputId {
+public class Input {
     Scanner scanner = new Scanner(System.in);
     CheckValid checkValid = new CheckValid();
+    CheckFormatDate checkFormatDate  = new CheckFormatDate();
 
-    public int input(Function<Integer, Boolean> checkExist) {
+    public int input(IntPredicate checkExist) {
         int id = 0;
         boolean flag = false;
         while (!flag) {
@@ -17,7 +19,7 @@ public class InputId {
                 continue;
             }
             id = Integer.parseInt(number);
-            if (Boolean.TRUE.equals(checkExist.apply(id))) {
+            if (Boolean.TRUE.equals(checkExist.test(id))) {
                 System.out.println("Id exist!! Input Again");
 
             } else {
@@ -27,7 +29,7 @@ public class InputId {
         return id;
     }
 
-    public int inputCheckExistId(Function<Integer, Boolean> checkExist) {
+    public int inputCheckExistId(IntPredicate checkExist) {
         int id = 0;
         boolean flag = false;
         while (!flag) {
@@ -37,7 +39,7 @@ public class InputId {
                 continue;
             }
             id = Integer.parseInt(number);
-            if (!Boolean.TRUE.equals(checkExist.apply(id))) {
+            if (!Boolean.TRUE.equals(checkExist.test(id))) {
                 System.out.println("Id Not Exist!! Input Again");
 
             } else {
@@ -79,7 +81,12 @@ public class InputId {
         }
         return number;
     }
+    public java.sql.Date inputDate () throws ParseException {
 
+        String borrowDate = checkFormatDate.checkFormat();
+
+        return  checkFormatDate.parseDate(borrowDate);
+    }
 
 
 }

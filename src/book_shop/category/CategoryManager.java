@@ -2,7 +2,7 @@ package book_shop.category;
 
 import book_shop.CheckValid;
 import book_shop.ConnectDB;
-import book_shop.InputId;
+import book_shop.Input;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -16,11 +16,11 @@ public class CategoryManager {
     Scanner scanner = new Scanner(System.in);
     List<Category> authors = new ArrayList<>();
     CheckValid checkValid = new CheckValid();
-    InputId inputId = new InputId();
+    Input inputId = new Input();
 
 
 
-    public Category input() {
+    public Category     input() {
         System.out.println("Input ID:");
         int id = inputId.input((authorId) -> checkValid.checkExistId(authorId, "category"));
         System.out.println("Input  Name:");
@@ -31,7 +31,7 @@ public class CategoryManager {
 
     public int create( ) {
         int kq = 0;
-        Category   category = input();
+        Category category = input();
         String query = " insert into category value (?,?)";
         try {
             PreparedStatement ps = connection.prepareStatement(query);

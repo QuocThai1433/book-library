@@ -2,23 +2,21 @@ package book_shop.cart;
 
 import book_shop.CheckValid;
 import book_shop.ConnectDB;
-import book_shop.InputId;
+import book_shop.Input;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
-public class CartManager {
+    public class CartManager {
     Connection connection = ConnectDB.getConnection();
-    Scanner scanner = new Scanner(System.in);
     List<Cart> authors = new ArrayList<>();
 
     CheckValid checkValid = new CheckValid();
     boolean flag = false;
-    InputId inputId = new InputId();
+    Input inputId = new Input();
 
 
     public Cart input() {
@@ -30,7 +28,6 @@ public class CartManager {
         float price = inputId.inputNumberFloat();
         System.out.println("Input  Quantity:");
         int quantity = inputId.inputNumber();
-
         reduce(quantity);
         return new Cart(bookId, price, quantity);
     }
@@ -88,6 +85,7 @@ public class CartManager {
         }
         return kq;
     }
+
 
     public List<Cart> getList() {
         String query = "select * from carts";

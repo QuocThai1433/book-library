@@ -26,6 +26,9 @@ public class BookReader {
         this.borrowDate = borrowDate;
         this.returnDate = returnDate;
     }
+
+
+
     public void setBookIdd(int bookId) {
         this.bookId = bookId;
     }

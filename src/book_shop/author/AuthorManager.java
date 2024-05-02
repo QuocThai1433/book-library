@@ -2,7 +2,7 @@ package book_shop.author;
 
 import book_shop.CheckValid;
 import book_shop.ConnectDB;
-import book_shop.InputId;
+import book_shop.Input;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -19,7 +19,7 @@ public class AuthorManager {
 
     static CheckValid check = new CheckValid();
 
-    InputId inputId = new InputId();
+    Input inputId = new Input();
     boolean flag = false;
 
 
