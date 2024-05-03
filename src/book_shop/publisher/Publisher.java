@@ -6,15 +6,9 @@ public class Publisher {
 
     private  int  bookId;
 
-    public void setBookId(int bookId) {
-        this.bookId = bookId;
-    }
 
     public int getBookId() {
         return bookId;
-    }
-
-    public Publisher() {
     }
 
     public Publisher(int id, String publisherName,int bookId) {

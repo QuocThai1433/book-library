@@ -3,11 +3,8 @@ package book_shop;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.util.Scanner;
-
 public class CheckValid {
     Connection connection = ConnectDB.getConnection();
-    Scanner scanner = new Scanner(System.in);
 
     public boolean isNumber(String str) {
         try {

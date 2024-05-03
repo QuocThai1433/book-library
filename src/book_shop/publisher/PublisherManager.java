@@ -13,17 +13,15 @@ import java.util.Scanner;
 
 public class PublisherManager {
 
-     Connection connection = ConnectDB.getConnection();
+    Connection connection = ConnectDB.getConnection();
 
-     Scanner scanner = new Scanner(System.in);
-     List<Publisher> authors = new ArrayList<>();
-     CheckValid checkValid = new CheckValid();
+    Scanner scanner = new Scanner(System.in);
+    List<Publisher> authors = new ArrayList<>();
+    CheckValid checkValid = new CheckValid();
     Input inputId = new Input();
 
 
-
-
-    public  Publisher input( ) {
+    public Publisher input() {
         System.out.println("Input ID:");
         int id = inputId.input((publisherId) -> checkValid.checkExistId(publisherId, "publisher"));
 
@@ -31,12 +29,13 @@ public class PublisherManager {
         String name = scanner.nextLine();
         System.out.println("Input  Book Id:");
         int bookId = 0;
-        bookId=inputId.inputNumber();
-        return new Publisher(id, name,bookId);
+        bookId = inputId.inputNumber();
+        return new Publisher(id, name, bookId);
     }
-    public  int create() {
+
+    public int create() {
         int kq = 0;
-       Publisher publisher = input();
+        Publisher publisher = input();
         String query = " insert into publisher value (?,?,?)";
         try {
 
@@ -50,15 +49,14 @@ public class PublisherManager {
                 ps.setObject(3, null);
 
             }
-            kq= ps.executeUpdate();
-        }
-        catch (Exception e) {
+            kq = ps.executeUpdate();
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return kq;
     }
 
-    public  List<Publisher> getList() {
+    public List<Publisher> getList() {
         String query = "SELECT * " +
                 " FROM publisher";
         try {
@@ -69,7 +67,7 @@ public class PublisherManager {
                 int id = rs.getInt("id");
                 String nameAuthor = rs.getString("publisher_name");
                 int bookId = rs.getInt("book_id");
-                System.out.println(id +" | " + nameAuthor + " | "+bookId );
+                System.out.println(id + " | " + nameAuthor + " | " + bookId);
 
             }
         } catch (Exception e) {
@@ -79,7 +77,6 @@ public class PublisherManager {
     }
 
     public static void main(String[] args) {
-        Publisher publisher = new Publisher();
         PublisherManager manager = new PublisherManager();
         manager.create();
         manager.getList();

@@ -15,7 +15,6 @@ import java.util.List;
     List<Cart> authors = new ArrayList<>();
 
     CheckValid checkValid = new CheckValid();
-    boolean flag = false;
     Input inputId = new Input();
 
 

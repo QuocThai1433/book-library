@@ -9,16 +9,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.text.ParseException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
-
 public class BookReaderManager {
 
     Connection connection = ConnectDB.getConnection();
-    Scanner scanner = new Scanner(System.in);
-    List<BookReader> authors = new ArrayList<>();
-    List<BookCategory> bookCategories = new ArrayList<>();
+
     CheckValid checkValid = new CheckValid();
     Input input = new Input();
 
@@ -75,30 +69,6 @@ public class BookReaderManager {
         return kq;
     }
 
-    public List<BookCategory> filter() {
-        String query = "select b.id,b.book_name, c.id as categoryId,c.category_name from books b, category c where c.categozry_name like ? and b.category_id= c.id;\n ";
-        System.out.println("Input Category Name: ");
-        String categoryName = scanner.nextLine();
-        try {
-            PreparedStatement ps = connection.prepareStatement(query);
-            ps.setString(1, categoryName);
-            ResultSet rs = ps.executeQuery();
-            while (rs.next()) {
-
-                int bookId = rs.getInt("id");
-                String nameBook = rs.getString("book_name");
-                int categoryId = rs.getInt("categoryId");
-                String categoryName1 = rs.getString("category_name");
-                System.out.println(bookId + " | " + nameBook + " | " + categoryId + " | " + categoryName);
-
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return bookCategories;
-    }
-
     public void statistical() {
         String query = "select c.category_name,count(b.id) as total from books b INNER JOIN category c ON b.category_id = c.id group by c.category_name\n";
         try {
@@ -114,28 +84,6 @@ public class BookReaderManager {
             e.printStackTrace();
         }
 
-    }
-
-    public List<BookReader> getList() {
-        String query = "select *" +
-                " from book_reader";
-        try {
-            PreparedStatement ps = connection.prepareStatement(query);
-            ResultSet rs = ps.executeQuery();
-            while (rs.next()) {
-
-                int bookId = rs.getInt("book_id");
-                String readerId = rs.getString("reader_Id");
-                String borrowedDay = rs.getString("borrowed_day");
-                String returnDate = rs.getString("return_day");
-                System.out.println(bookId + " | " + readerId + " | " + borrowedDay + " | " + returnDate);
-
-
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return authors;
     }
 
     public void totalBook() {
@@ -166,26 +114,6 @@ public class BookReaderManager {
                 java.util.Date brdate = rs.getDate("borrowed_day");
                 java.util.Date rtdate = rs.getDate("return_day");
                 System.out.println(nameReader + " | " + bookName + " | " + quantity + " | " + brdate + " | " + rtdate);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-
-    public void report() {
-        String query = "SELECT *" +
-                " FROM books b  inner join book_reader br on b.id = br.book_id inner join readers r on br.reader_id =r.id";
-        try {
-            PreparedStatement ps = connection.prepareStatement(query);
-            ResultSet rs = ps.executeQuery();
-            while (rs.next()) {
-                int bookId = rs.getInt("id");
-                java.util.Date brdate = rs.getDate("borrowed_day");
-                java.util.Date rtdate = rs.getDate("return_day");
-                String nameReader = rs.getString("name_reader");
-                System.out.println(bookId + " | " + brdate + " | " + rtdate + " | " + nameReader);
-
             }
         } catch (Exception e) {
             e.printStackTrace();

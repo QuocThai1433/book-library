@@ -6,25 +6,11 @@ public class Cart {
     private float price;
     private int quantity;
 
-    public Cart() {
-    }
 
     public Cart(int bookId, float price, int quantity) {
         this.bookId = bookId;
         this.price = price;
         this.quantity = quantity;
-    }
-
-    public void setBookId(int bookId) {
-        this.bookId = bookId;
-    }
-
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
-    }
-
-    public void setPrice(float price) {
-        this.price = price;
     }
 
 

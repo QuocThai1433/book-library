@@ -19,44 +19,6 @@ public class BookManager {
     Connection connection = ConnectDB.getConnection();
     Input input = new Input();
 
-
-    public Book inputUpdate() {
-        Book book = new Book();
-        System.out.println("Input Id Name:");
-        int id = scanner.nextInt();
-
-        scanner.nextLine();
-
-        System.out.println("Input Book Name:");
-        String bookName = scanner.nextLine();
-
-        System.out.println("Input Publication Year:");
-        int publicationYear = input.inputNumber();
-        System.out.println("Input quantity:");
-        int quantity = scanner.nextInt();
-
-        System.out.println("Input Price:");
-        float price = input.inputNumberFloat();
-        System.out.println("Input Rating Average:");
-        float ratingAverage = scanner.nextFloat();
-        scanner.nextLine();
-        System.out.println("Input category Id:");
-        int categoryId = input.inputNumber();
-        System.out.println("Input authorId:");
-        int authorId = scanner.nextInt();
-
-
-        return new Book()
-                .id(id)
-                .bookName(bookName)
-                .publicationYear(publicationYear)
-                .quantity(quantity)
-                .price(price)
-                .ratingAverage(ratingAverage)
-                .categoryId(categoryId)
-                .authorId(authorId);
-    }
-
     public Book inputBook() {
         System.out.println("Input Book ID:");
         int id = input.input((authorId) -> check.checkExistId(authorId, "books"));
@@ -153,37 +115,6 @@ public class BookManager {
         return kq;
 
     }
-
-    public int update() {
-        String query = "UPDATE books  SET book_name = ?, publication_year = ?, quantity = ?,price = ?,rating_average = ?,category_id = ? WHERE id = ?";
-        Book book = inputUpdate();
-        int kq = 0;
-        try {
-            PreparedStatement ps = connection.prepareStatement(query);
-            System.out.println("Input Id:");
-            ps.setInt(7, book.getId());
-
-            ps.setString(1, book.getBookName());
-            ps.setInt(2, book.getPublicationYear());
-            ps.setInt(3, book.getQuantity());
-            ps.setFloat(4, book.getPrice());
-            ps.setFloat(5, book.getRatingAverage());
-            if (check.checkExistId(book.getCategoryId(), "category")) {
-                ps.setInt(6, book.getCategoryId());
-
-            } else {
-                ps.setObject(6, null);
-
-            }
-            kq = ps.executeUpdate();
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return kq;
-    }
-
-
     public Book getDataBook(ResultSet rs) {
         try {
 
@@ -231,7 +162,6 @@ public class BookManager {
     }
 
     public void filter() {
-        int kq = 0;
         String query = """ 
                 SELECT b.*, a.author_name,b.book_name,c.category_name
                 FROM books b

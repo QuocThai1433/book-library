@@ -20,8 +20,6 @@ public class AuthorManager {
     static CheckValid check = new CheckValid();
 
     Input inputId = new Input();
-    boolean flag = false;
-
 
 
     public Author input() {
@@ -61,14 +59,13 @@ public class AuthorManager {
 
                 int id = rs.getInt("id");
                 String nameAuthor = rs.getString("author_name");
-                int bookId = rs.getInt("book_id");
                 for (int i = 1; i <= columnCount; i++) {
-                    System.out.print(" | "+ metaData.getColumnName(i)  );
+                    System.out.print(" | " + metaData.getColumnName(i));
                 }
-                System.out.println(); // New line after printing column names
+                System.out.println();
 
 
-                System.out.println(" | " +id + "  |  " + nameAuthor );
+                System.out.println(" | " + id + "  |  " + nameAuthor);
 
             }
         } catch (Exception e) {

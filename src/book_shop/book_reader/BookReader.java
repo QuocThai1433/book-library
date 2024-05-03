@@ -8,10 +8,6 @@ public class BookReader {
     private Date borrowDate;
     private Date returnDate;
 
-
-    public BookReader() {
-    }
-
     public BookReader(int bookId, int readeId, Date borrowDate, Date returnDate) {
         super();
         this.bookId = bookId;
@@ -28,22 +24,6 @@ public class BookReader {
     }
 
 
-
-    public void setBookIdd(int bookId) {
-        this.bookId = bookId;
-    }
-
-    public void setReaderId(int readerId) {
-        this.readerId = readerId;
-    }
-
-    public void setBorrowDate(Date borrowDate) {
-        this.borrowDate = borrowDate;
-    }
-
-    public void setReturnDate(Date returnDate) {
-        this.returnDate = returnDate;
-    }
 
     public int getReaderId() {
         return readerId;

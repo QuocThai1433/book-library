@@ -28,13 +28,6 @@ public class Book implements Serializable {
         return this;
     }
 
-    public Book(int id, String bookName, int publicationYear, int quantity) {
-        super();
-        this.id = id;
-        this.bookName = bookName;
-        this.publicationYear = publicationYear;
-        this.quantity = quantity;
-    }
 
     public int getAuthorId() {
         return authorId;

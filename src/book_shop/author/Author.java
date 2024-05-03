@@ -2,11 +2,9 @@ package book_shop.author;
 
 public class Author {
     private int id;
-    private String authorName;
-  public  Author ()
-  {}
+    private final String authorName;
 
-    public Author(int id, String authorName ) {
+    public Author(int id, String authorName) {
         super();
         this.id = id;
         this.authorName = authorName;
@@ -20,10 +18,6 @@ public class Author {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public void setAuthorName(String authorName) {
-        this.authorName = authorName;
     }
 
     public int getId() {

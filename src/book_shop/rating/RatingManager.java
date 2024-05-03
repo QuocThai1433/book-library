@@ -16,7 +16,6 @@ public class RatingManager {
     Connection connection = ConnectDB.getConnection();
     Scanner scanner = new Scanner(System.in);
     List<Rating> authors = new ArrayList<>();
-    List<RatingReader> ratingReaders = new ArrayList<>();
 
     BookManager bookManager = new BookManager();
     CheckValid checkValid = new CheckValid();
@@ -67,7 +66,7 @@ public class RatingManager {
         return kq;
     }
 
-    public List<Rating>    getList() {
+    public List<Rating> getList() {
         String query = "SELECT b.id,book_name,b.rating_average FROM rating r, books b where r.book_id =b.id and b.id =? ";
         try {
             PreparedStatement ps = connection.prepareStatement(query);
@@ -86,24 +85,6 @@ public class RatingManager {
             e.printStackTrace();
         }
         return authors;
-    }
-
-    public List<RatingReader> ratingBook() {
-        String query = "SELECT r.name_reader, ra.star_rating  FROM book_shop.readers r, book_shop.rating ra where r.id = ra.reader_id order by ra.star_rating desc";
-        try {
-            PreparedStatement ps = connection.prepareStatement(query);
-            ResultSet rs = ps.executeQuery();
-            while (rs.next()) {
-
-                String nameReader = rs.getString("name_reader");
-                int starRating = rs.getInt("star_rating");
-                System.out.println(nameReader);
-                System.out.println(starRating);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return ratingReaders;
     }
 
 

@@ -9,16 +9,6 @@ public class Rating {
     private String comment;
     private  int readerId;
 
-    public Rating() {
-    }
-
-
-    public Rating(int id, int starRating) {
-        super();
-        this.id = id;
-        this.starRating = starRating;
-    }
-
     public Rating(int id, float starRating, int bookId, String comment, int readerId) {
         super();
         this.id = id;
@@ -28,25 +18,12 @@ public class Rating {
         this.readerId= readerId;
     }
 
-    public void setStarRating(int starRating) {
-        this.starRating = starRating;
-    }
 
-    public void setBookId(int bookId) {
-        this.bookId = bookId;
-    }
-
-    public void setComment(String comment) {
-        this.comment = comment;
-    }
 
     public void setId(int id) {
         this.id = id;
     }
 
-    public void setReaderId(int readerId) {
-        this.readerId = readerId;
-    }
 
     public float getStarRating() {
         return starRating;

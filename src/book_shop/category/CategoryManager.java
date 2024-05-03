@@ -65,7 +65,6 @@ public class CategoryManager {
     }
 
     public static void main(String[] args) {
-        Category category = new Category();
         CategoryManager manager = new CategoryManager();
         manager.getList();
     }
