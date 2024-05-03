@@ -10,13 +10,10 @@ public class Book implements Serializable {
     float price;
     float ratingAverage;
     int categoryId;
-
     int authorId;
 
     public Book() {
     }
-
-
 
     public Book id(int id) {
         this.id = id;
@@ -28,11 +25,9 @@ public class Book implements Serializable {
         return this;
     }
 
-
     public int getAuthorId() {
         return authorId;
     }
-
 
     public int getCategoryId() {
         return categoryId;
@@ -41,7 +36,6 @@ public class Book implements Serializable {
     public void setId(int id) {
         this.id = id;
     }
-
 
     public int getId() {
         return id;
@@ -63,11 +57,9 @@ public class Book implements Serializable {
         return quantity;
     }
 
-
     public String getBookName() {
         return bookName;
     }
-
 
     public Book publicationYear(int publicationYear) {
         this.publicationYear = publicationYear;
@@ -95,7 +87,7 @@ public class Book implements Serializable {
     }
 
     public Book categoryId(int categoryId) {
-        this.categoryId=categoryId;
+        this.categoryId = categoryId;
         return this;
     }
 }

@@ -3,7 +3,8 @@ package book_shop;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-public class CheckValid {
+
+public class ValidatorUtils {
     Connection connection = ConnectDB.getConnection();
 
     public boolean isNumber(String str) {
@@ -14,7 +15,6 @@ public class CheckValid {
             return false;
         }
     }
-
     public boolean isNumberFloat(String str) {
         try {
             Float.parseFloat(str);
@@ -35,4 +35,5 @@ public class CheckValid {
             e.printStackTrace();
         }
         return false;
-    }}
+    }
+}

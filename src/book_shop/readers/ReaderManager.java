@@ -1,8 +1,8 @@
 package book_shop.readers;
 
-import book_shop.CheckValid;
+import book_shop.ValidatorUtils;
 import book_shop.ConnectDB;
-import book_shop.Input;;
+import book_shop.InputHelper;;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -12,13 +12,13 @@ import java.util.List;
 import java.util.Scanner;
 
 public class ReaderManager {
-     Connection connection = ConnectDB.getConnection();
-     Scanner scanner = new Scanner(System.in);
+    Connection connection = ConnectDB.getConnection();
+    Scanner scanner = new Scanner(System.in);
 
-     Input inputId = new Input();
-     CheckValid checkValid = new CheckValid();
+    InputHelper inputId = new InputHelper();
+    ValidatorUtils checkValid = new ValidatorUtils();
 
-    public  Readers input () {
+    public Readers input() {
         int n = 0;
         System.out.println("Input id:");
         int id = inputId.input((readerId) -> checkValid.checkExistId(readerId, "readers"));
@@ -29,7 +29,7 @@ public class ReaderManager {
     }
 
 
-    public  int create( ) {
+    public int create() {
         Readers reader = input();
         String query = "insert into readers value  (?,?)";
         int kq = 0;
@@ -46,7 +46,7 @@ public class ReaderManager {
         return kq;
     }
 
-    public  List<ReaderManager> getList() {
+    public List<ReaderManager> getList() {
         List<ReaderManager> readerManagerList = new ArrayList<>();
         String query = "select * from readers";
         try {
@@ -56,7 +56,7 @@ public class ReaderManager {
             while (rs.next()) {
                 int id = rs.getInt("id");
                 String nameReader = rs.getString("name_reader");
-                System.out.println(id +" | " + nameReader );
+                System.out.println(id + " | " + nameReader);
 
             }
         } catch (Exception e) {

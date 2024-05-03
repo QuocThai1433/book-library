@@ -1,21 +1,15 @@
 package book_shop;
-
 import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Scanner;
 public class CheckFormatDate {
     Scanner scanner = new Scanner(System.in);
-
     public java.sql.Date parseDate(String date) throws ParseException {
         SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
         java.util.Date dateUtil = format.parse(date);
         return new java.sql.Date(dateUtil.getTime());
-
-
     }
-
-
     public boolean checkDate(String date, String format) {
         SimpleDateFormat dateFormat = new SimpleDateFormat(format);
         dateFormat.setLenient(false);
@@ -26,11 +20,7 @@ public class CheckFormatDate {
             return false;
         }
     }
-
     public String checkFormat() {
-
-
-
         String input = null;
         boolean flag1 = false;
         while (!flag1) {
@@ -52,6 +42,6 @@ public class CheckFormatDate {
                 returnSql = parseDate(checkFormat());
             }
         }
-         return returnSql;
+        return returnSql;
     }
 }

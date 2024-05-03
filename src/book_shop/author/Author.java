@@ -8,12 +8,6 @@ public class Author {
         super();
         this.id = id;
         this.authorName = authorName;
-
-    }
-
-    @Override
-    public String toString() {
-        return "author{" + "id=" + id + ", authorName='" + authorName + '\'' + '}';
     }
 
     public void setId(int id) {

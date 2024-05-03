@@ -1,8 +1,8 @@
 package book_shop.author;
 
-import book_shop.CheckValid;
+import book_shop.ValidatorUtils;
 import book_shop.ConnectDB;
-import book_shop.Input;
+import book_shop.InputHelper;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -16,11 +16,8 @@ public class AuthorManager {
     static Connection connection = ConnectDB.getConnection();
     static Scanner scanner = new Scanner(System.in);
     static List<Author> authors = new ArrayList<>();
-
-    static CheckValid check = new CheckValid();
-
-    Input inputId = new Input();
-
+    static ValidatorUtils check = new ValidatorUtils();
+    InputHelper inputId = new InputHelper();
 
     public Author input() {
         System.out.println("Input ID:");
@@ -46,27 +43,20 @@ public class AuthorManager {
     }
 
     public List<Author> getList() {
-        String query = "SELECT *" +
-                " FROM author";
-
-
+        String query = "SELECT *" + " FROM author";
         try {
             PreparedStatement ps = connection.prepareStatement(query);
             ResultSet rs = ps.executeQuery();
             ResultSetMetaData metaData = rs.getMetaData();
             int columnCount = metaData.getColumnCount();
             while (rs.next()) {
-
                 int id = rs.getInt("id");
                 String nameAuthor = rs.getString("author_name");
                 for (int i = 1; i <= columnCount; i++) {
                     System.out.print(" | " + metaData.getColumnName(i));
                 }
                 System.out.println();
-
-
                 System.out.println(" | " + id + "  |  " + nameAuthor);
-
             }
         } catch (Exception e) {
             e.printStackTrace();

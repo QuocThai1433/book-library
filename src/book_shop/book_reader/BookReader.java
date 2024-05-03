@@ -16,14 +16,11 @@ public class BookReader {
         this.returnDate = returnDate;
     }
 
-
     public BookReader(Date borrowDate, Date returnDate) {
         super();
         this.borrowDate = borrowDate;
         this.returnDate = returnDate;
     }
-
-
 
     public int getReaderId() {
         return readerId;

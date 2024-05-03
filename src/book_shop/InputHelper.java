@@ -4,10 +4,10 @@ import java.text.ParseException;
 import java.util.Scanner;
 import java.util.function.IntPredicate;
 
-public class Input {
+public class InputHelper {
     Scanner scanner = new Scanner(System.in);
-    CheckValid checkValid = new CheckValid();
-    CheckFormatDate checkFormatDate  = new CheckFormatDate();
+    ValidatorUtils checkValid = new ValidatorUtils();
+    CheckFormatDate checkFormatDate = new CheckFormatDate();
 
     public int input(IntPredicate checkExist) {
         int id = 0;
@@ -28,7 +28,6 @@ public class Input {
         }
         return id;
     }
-
     public int inputCheckExistId(IntPredicate checkExist) {
         int id = 0;
         boolean flag = false;
@@ -48,7 +47,7 @@ public class Input {
         }
         return id;
 
-                
+
     }
 
 
@@ -81,11 +80,10 @@ public class Input {
         }
         return number;
     }
-    public java.sql.Date inputDate () throws ParseException {
 
+    public java.sql.Date inputDate() throws ParseException {
         String borrowDate = checkFormatDate.checkFormat();
-
-        return  checkFormatDate.parseDate(borrowDate);
+        return checkFormatDate.parseDate(borrowDate);
     }
 
 

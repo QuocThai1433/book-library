@@ -1,8 +1,8 @@
 package book_shop.cart;
 
-import book_shop.CheckValid;
+import book_shop.ValidatorUtils;
 import book_shop.ConnectDB;
-import book_shop.Input;
+import book_shop.InputHelper;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -10,16 +10,13 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-    public class CartManager {
+public class CartManager {
     Connection connection = ConnectDB.getConnection();
     List<Cart> authors = new ArrayList<>();
-
-    CheckValid checkValid = new CheckValid();
-    Input inputId = new Input();
-
+    ValidatorUtils checkValid = new ValidatorUtils();
+    InputHelper inputId = new InputHelper();
 
     public Cart input() {
-        String number = null;
         int bookId = 0;
         System.out.println("Input Book Id:");
         bookId = inputId.inputNumber();
@@ -30,7 +27,6 @@ import java.util.List;
         reduce(quantity);
         return new Cart(bookId, price, quantity);
     }
-
 
     public float reduce(int id) {
         float kq = 0;
@@ -61,7 +57,6 @@ import java.util.List;
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
 
     public int create() {
@@ -74,7 +69,6 @@ import java.util.List;
                 ps.setInt(1, cart.getBookId());
             } else {
                 ps.setObject(1, null);
-
             }
             ps.setFloat(2, cart.getPrice());
             ps.setInt(3, cart.getQuantity());
@@ -86,7 +80,6 @@ import java.util.List;
         return kq;
     }
 
-
     public List<Cart> getList() {
         String query = "select *" +
                 " from carts";
@@ -94,12 +87,10 @@ import java.util.List;
             PreparedStatement ps = connection.prepareStatement(query);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-
                 int bookId = rs.getInt("book_id");
                 int price = rs.getInt("price");
                 int quantity = rs.getInt("quantity");
                 System.out.println(bookId + " | " + " | " + price + " | " + quantity);
-
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -109,7 +100,6 @@ import java.util.List;
 
     public static void main(String[] args) {
         CartManager cartManager = new CartManager();
-
         cartManager.create();
     }
 }

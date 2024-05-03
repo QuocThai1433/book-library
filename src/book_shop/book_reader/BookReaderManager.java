@@ -1,20 +1,21 @@
 package book_shop.book_reader;
 
 import book_shop.CheckFormatDate;
-import book_shop.CheckValid;
+import book_shop.ValidatorUtils;
 import book_shop.ConnectDB;
-import book_shop.Input;
+import book_shop.InputHelper;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.text.ParseException;
+
 public class BookReaderManager {
 
     Connection connection = ConnectDB.getConnection();
 
-    CheckValid checkValid = new CheckValid();
-    Input input = new Input();
+    ValidatorUtils checkValid = new ValidatorUtils();
+    InputHelper input = new InputHelper();
 
     CheckFormatDate checkDate = new CheckFormatDate();
 
@@ -32,7 +33,6 @@ public class BookReaderManager {
         }
         return bookId;
     }
-
     public BookReader input() throws ParseException {
         System.out.println("Input Book ID:");
         int bookId = inputMax();
@@ -45,8 +45,6 @@ public class BookReaderManager {
         returnSql = checkDate.checkBorrowDate(returnSql, borrowSql);
         return new BookReader(bookId, readId, borrowSql, returnSql);
     }
-
-
     public int create() throws ParseException {
         int kq = 0;
         BookReader bookReader = input();
@@ -57,7 +55,6 @@ public class BookReaderManager {
                 ps.setInt(1, bookReader.getBookId());
             } else {
                 ps.setObject(1, null);
-
             }
             ps.setInt(2, bookReader.getReaderId());
             ps.setDate(3, bookReader.getBorrowDate());
@@ -68,7 +65,6 @@ public class BookReaderManager {
         }
         return kq;
     }
-
     public void statistical() {
         String query = "select c.category_name,count(b.id) as total from books b INNER JOIN category c ON b.category_id = c.id group by c.category_name\n";
         try {
@@ -99,9 +95,6 @@ public class BookReaderManager {
             e.printStackTrace();
         }
     }
-
-
-
     public void showBorrowBooks() {
         String query = "SELECT r.name_reader,b.book_name,b.quantity, br.borrowed_day, br.return_day FROM books b inner join book_reader br on b.id = br.book_id inner join readers r on br.reader_id =r.id";
         try {
@@ -119,8 +112,6 @@ public class BookReaderManager {
             e.printStackTrace();
         }
     }
-
-
     public void lateDateFilter() {
 
         String query = "SELECT *" +
@@ -138,11 +129,9 @@ public class BookReaderManager {
                 java.util.Date brdate = rs.getDate("borrowed_day");
                 java.util.Date rtdate = rs.getDate("return_day");
                 System.out.println(bookId + " | " + brdate + " | " + rtdate + " | ");
-
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-
 }

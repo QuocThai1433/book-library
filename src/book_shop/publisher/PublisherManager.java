@@ -1,8 +1,8 @@
 package book_shop.publisher;
 
-import book_shop.CheckValid;
+import book_shop.ValidatorUtils;
 import book_shop.ConnectDB;
-import book_shop.Input;
+import book_shop.InputHelper;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -12,14 +12,11 @@ import java.util.List;
 import java.util.Scanner;
 
 public class PublisherManager {
-
     Connection connection = ConnectDB.getConnection();
-
     Scanner scanner = new Scanner(System.in);
     List<Publisher> authors = new ArrayList<>();
-    CheckValid checkValid = new CheckValid();
-    Input inputId = new Input();
-
+    ValidatorUtils checkValid = new ValidatorUtils();
+    InputHelper inputId = new InputHelper();
 
     public Publisher input() {
         System.out.println("Input ID:");
@@ -47,7 +44,6 @@ public class PublisherManager {
                 ps.setInt(3, publisher.getBookId());
             } else {
                 ps.setObject(3, null);
-
             }
             kq = ps.executeUpdate();
         } catch (Exception e) {
@@ -63,19 +59,16 @@ public class PublisherManager {
             PreparedStatement ps = connection.prepareStatement(query);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-
                 int id = rs.getInt("id");
                 String nameAuthor = rs.getString("publisher_name");
                 int bookId = rs.getInt("book_id");
                 System.out.println(id + " | " + nameAuthor + " | " + bookId);
-
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
         return authors;
     }
-
     public static void main(String[] args) {
         PublisherManager manager = new PublisherManager();
         manager.create();

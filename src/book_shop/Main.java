@@ -16,20 +16,17 @@ import java.text.ParseException;
 import java.util.Scanner;
 
 public class Main {
-    public static void checkConnect()
-    {
+    public static void checkConnect() {
         Connection connection = ConnectDB.getConnection();
-        if (connection!=null)
-        {
+        if (connection != null) {
             System.out.println("Connect Success");
-        }else
-        {
+        } else {
             System.out.println("Connect Fail");
             System.exit(1);
         }
     }
-    public  static  void menu()
-    {
+
+    public static void menu() {
         System.out.println("1.Add Books:");
         System.out.println("2.Show Books:");
         System.out.println("3.Filter Books:");
@@ -65,92 +62,86 @@ public class Main {
         CartManager cartManager = new CartManager();
         WriteExcel writeExcel = new WriteExcel();
         CategoryManager categoryManager = new CategoryManager();
-
         boolean exit = false;
         Scanner scanner = new Scanner(System.in);
         menu();
-
-            do {
-
-               int  choose = scanner.nextInt();
-                switch (choose) {
-                    case 1:
-                        bookManager.create();
-                        break;
-                    case 2:
-                        bookManager.getListBook();
-                        break;
-                    case 3:
-                        bookManager.filter();
-                        break;
-                    case 4:
-                        authorManager.create();
-                        break;
-                    case 5:
-                        authorManager.getList();
-                        break;
-                    case 6:
-                        publisherManager.create();
-                        break;
-                    case 7:
-                        publisherManager.getList();
-                        break;
-                    case 8:
-                        readerManager.create();
-                        break;
-                    case 9:
-                        readerManager.getList();
-                        break;
-                    case 10:
-                        bookReaderManager.statistical();
-                        break;
-                    case 11:
-                        bookReaderManager.totalBook();
-                        break;
-                    case 12:
-                        bookReaderManager.lateDateFilter();
-                        break;
-                    case 13:
-                        ratingManager.getList();
-                        break;
-                    case 14:
-                        cartManager.create();
-                        break;
-                    case 15:
-                        cartManager.getList();
-                        break;
-                    case 16:
-                        categoryManager.create();
-                        break;
-                    case 17:
-                        categoryManager.getList();
-                        break;
-                    case 18:
-                        ratingManager.create();
-                        break;
-                    case 19:
-                        writeExcel.expotToExel();
-                        break;
-                    case 20:
-                        bookReaderManager.create();
-                        break;
-                    case 21:
-                        bookReaderManager.showBorrowBooks();
-                        break;
-                    default:
-                        break;
+        do {
+            int choose = scanner.nextInt();
+            switch (choose) {
+                case 1:
+                    bookManager.create();
+                    break;
+                case 2:
+                    bookManager.getListBook();
+                    break;
+                case 3:
+                    bookManager.filter();
+                    break;
+                case 4:
+                    authorManager.create();
+                    break;
+                case 5:
+                    authorManager.getList();
+                    break;
+                case 6:
+                    publisherManager.create();
+                    break;
+                case 7:
+                    publisherManager.getList();
+                    break;
+                case 8:
+                    readerManager.create();
+                    break;
+                case 9:
+                    readerManager.getList();
+                    break;
+                case 10:
+                    bookReaderManager.statistical();
+                    break;
+                case 11:
+                    bookReaderManager.totalBook();
+                    break;
+                case 12:
+                    bookReaderManager.lateDateFilter();
+                    break;
+                case 13:
+                    ratingManager.getList();
+                    break;
+                case 14:
+                    cartManager.create();
+                    break;
+                case 15:
+                    cartManager.getList();
+                    break;
+                case 16:
+                    categoryManager.create();
+                    break;
+                case 17:
+                    categoryManager.getList();
+                    break;
+                case 18:
+                    ratingManager.create();
+                    break;
+                case 19:
+                    writeExcel.expotToExel();
+                    break;
+                case 20:
+                    bookReaderManager.create();
+                    break;
+                case 21:
+                    bookReaderManager.showBorrowBooks();
+                    break;
+                default:
+                    break;
+            }
+            if (!exit) {
+                System.out.print("Bạn có muốn tiếp tục chương trình không? (y/n): ");
+                String continueChoice = scanner.next();
+                if (!continueChoice.equalsIgnoreCase("Y") && !continueChoice.equalsIgnoreCase("y") && !continueChoice.equalsIgnoreCase("Yes") && !continueChoice.equalsIgnoreCase("yes")) {
+                    exit = true;
                 }
-                if (!exit) {
-                    System.out.print("Bạn có muốn tiếp tục chương trình không? (y/n): ");
-                    String continueChoice = scanner.next();
-                    if (!continueChoice.equalsIgnoreCase("Y") &&
-                            !continueChoice.equalsIgnoreCase("y") &&
-                            !continueChoice.equalsIgnoreCase("Yes") &&
-                            !continueChoice.equalsIgnoreCase("yes")) {
-                        exit = true;
-                    }
-                }
+            }
 
-            } while (!exit);
-        }
+        } while (!exit);
     }
+}
