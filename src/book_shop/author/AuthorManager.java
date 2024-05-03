@@ -48,7 +48,8 @@ public class AuthorManager {
     }
 
     public List<Author> getList() {
-        String query = "select * from author";
+        String query = "SELECT *" +
+                " FROM author";
 
 
         try {

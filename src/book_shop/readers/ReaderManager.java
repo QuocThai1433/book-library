@@ -51,7 +51,7 @@ public class ReaderManager {
         String query = "select * from readers";
         try {
 
-            PreparedStatement ps = ConnectDB.connectDB.prepareStatement(query);
+            PreparedStatement ps = connection.prepareStatement(query);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 int id = rs.getInt("id");

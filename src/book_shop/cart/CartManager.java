@@ -35,7 +35,8 @@ import java.util.List;
 
     public float reduce(int id) {
         float kq = 0;
-        String query = "select * from books where id = ?";
+        String query = "select *" +
+                " from books where id = ?";
         try {
             PreparedStatement ps = connection.prepareStatement(query);
             ps.setFloat(1, id);
@@ -88,7 +89,8 @@ import java.util.List;
 
 
     public List<Cart> getList() {
-        String query = "select * from carts";
+        String query = "select *" +
+                " from carts";
         try {
             PreparedStatement ps = connection.prepareStatement(query);
             ResultSet rs = ps.executeQuery();

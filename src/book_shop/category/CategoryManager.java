@@ -45,7 +45,8 @@ public class CategoryManager {
     }
 
     public List<Category> getList() {
-        String query = "select * from category";
+        String query = "select *" +
+                " from category";
         try {
             PreparedStatement ps = connection.prepareStatement(query);
             ResultSet rs = ps.executeQuery();

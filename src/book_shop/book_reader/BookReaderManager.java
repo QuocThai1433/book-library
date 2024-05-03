@@ -117,7 +117,8 @@ public class BookReaderManager {
     }
 
     public List<BookReader> getList() {
-        String query = "select * from book_reader";
+        String query = "select *" +
+                " from book_reader";
         try {
             PreparedStatement ps = connection.prepareStatement(query);
             ResultSet rs = ps.executeQuery();
@@ -173,7 +174,8 @@ public class BookReaderManager {
 
 
     public void report() {
-        String query = "SELECT * FROM books b  inner join book_reader br on b.id = br.book_id inner join readers r on br.reader_id =r.id";
+        String query = "SELECT *" +
+                " FROM books b  inner join book_reader br on b.id = br.book_id inner join readers r on br.reader_id =r.id";
         try {
             PreparedStatement ps = connection.prepareStatement(query);
             ResultSet rs = ps.executeQuery();
@@ -193,7 +195,8 @@ public class BookReaderManager {
 
     public void lateDateFilter() {
 
-        String query = "SELECT * FROM book_reader WHERE borrowed_day > ? and borrowed_day <? ";
+        String query = "SELECT *" +
+                "FROM book_reader WHERE borrowed_day > ? and borrowed_day <? ";
         try {
             PreparedStatement ps = connection.prepareStatement(query);
             java.sql.Date borrowDate = input.inputDate();

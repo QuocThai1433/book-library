@@ -16,8 +16,8 @@ import java.text.ParseException;
 import java.util.Scanner;
 
 public class Main {
-
-    public static void main(String[] args) throws IOException, ParseException {
+    public static void checkConnect()
+    {
         Connection connection = ConnectDB.getConnection();
         if (connection!=null)
         {
@@ -27,6 +27,35 @@ public class Main {
             System.out.println("Connect Fail");
             System.exit(1);
         }
+    }
+    public  static  void menu()
+    {
+        System.out.println("1.Add Books:");
+        System.out.println("2.Show Books:");
+        System.out.println("3.Filter Books:");
+        System.out.println("4.Add Author:");
+        System.out.println("5.Show Author:");
+        System.out.println("6.Add Publisher:");
+        System.out.println("7.Show Publisher:");
+        System.out.println("8.Add Readers:");
+        System.out.println("9.Show Readers:");
+        System.out.println("10.Statistical Books:");
+        System.out.println("11.Show Total Books:");
+        System.out.println("12.Show the borrowing and returning status of each Books:");
+        System.out.println("13.Show lists based on user ratings:");
+        System.out.println("14.Add Cart:");
+        System.out.println("18.Add Rating:");
+        System.out.println("15.Show Cart:");
+        System.out.println("16.Add Category:");
+        System.out.println("17.Show Category:");
+        System.out.println("19.Export To Excel:");
+        System.out.println("20.BorrowBooks");
+        System.out.println("21.Show BorrowBooks:");
+        System.out.println("Input Choose:");
+    }
+
+    public static void main(String[] args) throws ParseException, IOException {
+        checkConnect();
         BookManager bookManager = new BookManager();
         BookReaderManager bookReaderManager = new BookReaderManager();
         AuthorManager authorManager = new AuthorManager();
@@ -39,32 +68,11 @@ public class Main {
 
         boolean exit = false;
         Scanner scanner = new Scanner(System.in);
-            int choose = 0;
+        menu();
+
             do {
 
-                System.out.println("1.Add Books:");
-                System.out.println("2.Show Books:");
-                System.out.println("3.Filter Books:");
-                System.out.println("4.Add Author:");
-                System.out.println("5.Show Author:");
-                System.out.println("6.Add Publisher:");
-                System.out.println("7.Show Publisher:");
-                System.out.println("8.Add Readers:");
-                System.out.println("9.Show Readers:");
-                System.out.println("10.Statistical Books:");
-                System.out.println("11.Show Total Books:");
-                System.out.println("12.Show the borrowing and returning status of each Books:");
-                System.out.println("13.Show lists based on user ratings:");
-                System.out.println("14.Add Cart:");
-                System.out.println("18.Add Rating:");
-                System.out.println("15.Show Cart:");
-                System.out.println("16.Add Category:");
-                System.out.println("17.Show Category:");
-                System.out.println("19.Export To Excel:");
-                System.out.println("20.BorrowBooks");
-                System.out.println("21.Show BorrowBooks:");
-                System.out.println("Input Choose:");
-                choose = scanner.nextInt();
+               int  choose = scanner.nextInt();
                 switch (choose) {
                     case 1:
                         bookManager.create();

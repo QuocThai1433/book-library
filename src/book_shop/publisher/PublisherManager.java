@@ -59,7 +59,8 @@ public class PublisherManager {
     }
 
     public  List<Publisher> getList() {
-        String query = "select * from publisher";
+        String query = "SELECT * " +
+                " FROM publisher";
         try {
             PreparedStatement ps = connection.prepareStatement(query);
             ResultSet rs = ps.executeQuery();

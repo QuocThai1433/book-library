@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 
 public class ConnectDB {
-    public static Connection connectDB = null;
+      static Connection connect = null;
     public static Connection getConnection()
     {
        try
@@ -13,12 +13,12 @@ public class ConnectDB {
            String url = "jdbc:mysql://localhost:3306/book_shop";
            String userName = "root";
            String password = "1234";
-           connectDB= DriverManager.getConnection(url,userName, password);
+           connect = DriverManager.getConnection(url,userName, password);
        }catch (Exception e)
        {
            System.out.println("Invalid username or password!!");
 
-       }return connectDB;
+       }return connect;
     }
     public static void main(String[] args) {
         if (getConnection()!=null)

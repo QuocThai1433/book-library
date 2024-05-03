@@ -69,7 +69,8 @@ public class WriteExcel {
 
 
     private static List<Book> getListBooks() {
-        String query = "SELECT * FROM books";
+        String query = "SELECT *" +
+                " FROM books";
         try {
             PreparedStatement ps = connection.prepareStatement(query);
             ResultSet rs = ps.executeQuery();
@@ -83,7 +84,16 @@ public class WriteExcel {
                 int categoryId = rs.getInt("category_id");
                 int authorId = rs.getInt("author_id");
                 System.out.println(id + " | " + bookName + " | " + publicationYear + " | " + quantity + " | " + price + " | " + ratingAverage + " | " + categoryId+ " | "+authorId);
-                Book book = new Book(id,bookName,publicationYear,quantity,price,ratingAverage, categoryId,authorId);
+                Book book =
+                        new Book()
+                        .id(id)
+                        .bookName(bookName)
+                        .publicationYear(publicationYear)
+                        .quantity(quantity)
+                        .price(price)
+                        .ratingAverage(ratingAverage)
+                        .categoryId(categoryId)
+                        .authorId(authorId);
             books.add(book);
 
             }
@@ -126,7 +136,7 @@ public class WriteExcel {
     
     public  void expotToExel() throws IOException {
         final List<Book> bookList = getListBooks();
-        final String excelFilePath = "D:/Downloads/books.xls";
-        writeExcel(bookList, excelFilePath);
+
+        writeExcel(bookList, "D:/Downloads/books.xls");
     }
 }
