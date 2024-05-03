@@ -12,7 +12,7 @@ public class Book implements Serializable {
     int categoryId;
     int authorId;
 
-    public Book() {
+    public Book() { //initialization function
     }
 
     public Book id(int id) {

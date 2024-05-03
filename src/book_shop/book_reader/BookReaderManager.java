@@ -20,22 +20,10 @@ public class BookReaderManager {
     CheckFormatDate checkDate = new CheckFormatDate();
 
 
-    public int inputMax() {
-        int bookId = 0;
-        int maxInput = 3;
-        for (int i = 0; i < maxInput; i++) {
-            bookId = input.inputNumber();
-            if (!checkValid.checkExistId(bookId, "books")) {
-                System.out.println("Id not Exist!! Input again");
-            } else {
-                return bookId;
-            }
-        }
-        return bookId;
-    }
+
     public BookReader input() throws ParseException {
         System.out.println("Input Book ID:");
-        int bookId = inputMax();
+        int bookId = input.inputMax();
         System.out.println("Input Reader Id:");
         int readId = input.inputCheckExistId((id) -> checkValid.checkExistId(id, "readers"));
         System.out.println("Input  Borrow Date (dd-MM-yyyy):");

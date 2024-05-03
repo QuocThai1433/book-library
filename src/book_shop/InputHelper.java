@@ -9,6 +9,26 @@ public class InputHelper {
     ValidatorUtils checkValid = new ValidatorUtils();
     CheckFormatDate checkFormatDate = new CheckFormatDate();
 
+    public int inputMax() {
+        int bookId = 0;
+        int attempt = 0;
+        int maxInput = 3;
+        for (int i = 0; i < maxInput; i++) {
+            bookId = inputNumber();
+            if (!checkValid.checkExistId(bookId, "books")) {
+                attempt++;
+                System.out.println("Id not Exist!! Input again");
+
+            } else {
+                return bookId;
+            }if (attempt ==3)
+            {
+                System.exit(1);
+            }
+        }
+        return bookId;
+    }
+
     public int input(IntPredicate checkExist) {
         int id = 0;
         boolean flag = false;
@@ -28,6 +48,7 @@ public class InputHelper {
         }
         return id;
     }
+
     public int inputCheckExistId(IntPredicate checkExist) {
         int id = 0;
         boolean flag = false;

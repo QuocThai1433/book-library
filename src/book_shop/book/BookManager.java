@@ -161,7 +161,6 @@ public class BookManager {
             e.printStackTrace();
         }
     }
-
     public static void main(String[] args) {
         BookManager manager = new BookManager();
         manager.getListBook();
