@@ -21,8 +21,8 @@ public class InputHelper {
 
             } else {
                 return bookId;
-            }if (attempt ==3)
-            {
+            }
+            if (attempt == 3) {
                 System.exit(1);
             }
         }
@@ -53,12 +53,7 @@ public class InputHelper {
         int id = 0;
         boolean flag = false;
         while (!flag) {
-            String number = scanner.nextLine();
-            if (!checkValid.isNumber(number)) {
-                System.out.println("Not Number!! Input Again:");
-                continue;
-            }
-            id = Integer.parseInt(number);
+            inputNumber();
             if (!Boolean.TRUE.equals(checkExist.test(id))) {
                 System.out.println("Id Not Exist!! Input Again");
 
@@ -68,9 +63,7 @@ public class InputHelper {
         }
         return id;
 
-
     }
-
 
     public int inputNumber() {
         int number = 0;
@@ -107,5 +100,57 @@ public class InputHelper {
         return checkFormatDate.parseDate(borrowDate);
     }
 
+    public boolean checkNegativeNumbers(float number) {
+        if (number < 0) {
+            return  false;
+        }
+        return true;
+    }
+    public int inputNegativeInteger() {
+        int number =0;
+        boolean flag = false;
+        while (!flag) {
+            number = scanner.nextInt();
+            if (!checkNegativeNumbers(number)) {
+                System.out.println("Exclude negative numbers");
+                continue;
+            }
+            flag = true;
+        }
+        return number;
+    }
 
+    public float inputNegativeFloat() {
+        float number =0;
+        boolean flag = false;
+        while (!flag) {
+            number = scanner.nextFloat();
+            if (!checkNegativeNumbers(number)) {
+                System.out.println("Exclude negative numbers");
+                continue;
+            }
+            flag = true;
+        }
+        return number;
+    }
+
+
+    public float validRating() {
+        float number = 0;
+        boolean flag = false;
+        while (!flag) {
+            number = scanner.nextFloat();
+            if (!checkNegativeNumbers(number)) {
+                System.out.println("Exclude negative numbers");
+                continue;
+            }
+            if (number > 5) {
+                System.out.println("The number of stars should range from 1 to 5");
+                continue;
+            }
+            flag=true;
+        }
+        scanner.nextLine();
+        return number;
+    }
 }

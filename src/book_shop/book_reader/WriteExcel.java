@@ -63,7 +63,7 @@ public class WriteExcel {
         return workbook;
     }
 
-    private static List<Book> getListBooks() {
+    public   List<Book> getListBooks() {
         String query = "SELECT *" +
                 " FROM books";
         try {

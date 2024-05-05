@@ -1,15 +1,13 @@
 package book_shop.book;
 
-import book_shop.ValidatorUtils;
 import book_shop.ConnectDB;
 import book_shop.InputHelper;
+import book_shop.ValidatorUtils;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class BookManager {
@@ -40,7 +38,8 @@ public class BookManager {
 
     public float getAverage(float id) {
         float kq = 0;
-        String query = "SELECT *" + " from books where id = ?";
+        String query = "SELECT * " +
+                " from books where id = ?";
         try {
             PreparedStatement ps = connection.prepareStatement(query);
             ps.setFloat(1, id);
@@ -118,23 +117,6 @@ public class BookManager {
         return null;
     }
 
-    public List<Book> getListBook() {
-        List<Book> bookList = new ArrayList<>();
-        String query = "select * " + "from books";
-        try {
-            PreparedStatement ps = connection.prepareStatement(query);
-            ResultSet rs = ps.executeQuery();
-            while (rs.next()) {
-                Book book = getDataBook(rs);
-                System.out.println(book.getId() + " | " + book.getBookName() + " | " + book.getPublicationYear() + " | " + book.quantity + " | " + book.price + " | " + book.ratingAverage + " | " + book.categoryId);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        return bookList;
-    }
-
     public void filter() {
         String query = """ 
                 SELECT b.*, a.author_name,b.book_name,c.category_name
@@ -161,9 +143,10 @@ public class BookManager {
             e.printStackTrace();
         }
     }
+
     public static void main(String[] args) {
         BookManager manager = new BookManager();
-        manager.getListBook();
+     manager.create();
     }
 }
 

@@ -14,24 +14,23 @@ public class CartManager {
     Connection connection = ConnectDB.getConnection();
     List<Cart> authors = new ArrayList<>();
     ValidatorUtils checkValid = new ValidatorUtils();
-    InputHelper inputId = new InputHelper();
+    InputHelper inputHelper = new InputHelper();
 
     public Cart input() {
-        int bookId = 0;
+
         System.out.println("Input Book Id:");
-        bookId = inputId.inputNumber();
+        int id = inputHelper.input((ratingId) -> checkValid.checkExistId(ratingId, "carts"));
         System.out.println("Input  Price:");
-        float price = inputId.inputNumberFloat();
+        float price = inputHelper.inputNegativeFloat();
         System.out.println("Input  Quantity:");
-        int quantity = inputId.inputNumber();
+        int quantity = inputHelper.inputNegativeInteger();
         reduce(quantity);
-        return new Cart(bookId, price, quantity);
+        return new Cart(id, price, quantity);
     }
 
     public float reduce(int id) {
         float kq = 0;
-        String query = "select *" +
-                " from books where id = ?";
+        String query = "select *" + " from books where id = ?";
         try {
             PreparedStatement ps = connection.prepareStatement(query);
             ps.setFloat(1, id);
@@ -81,8 +80,7 @@ public class CartManager {
     }
 
     public List<Cart> getList() {
-        String query = "select *" +
-                " from carts";
+        String query = "select *" + " from carts";
         try {
             PreparedStatement ps = connection.prepareStatement(query);
             ResultSet rs = ps.executeQuery();

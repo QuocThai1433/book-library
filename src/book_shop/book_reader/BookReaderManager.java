@@ -53,7 +53,7 @@ public class BookReaderManager {
         }
         return kq;
     }
-    public void statistical() {
+    public void translate() {
         String query = "select c.category_name,count(b.id) as total from books b INNER JOIN category c ON b.category_id = c.id group by c.category_name\n";
         try {
             PreparedStatement ps = connection.prepareStatement(query);
@@ -61,8 +61,8 @@ public class BookReaderManager {
             while (rs.next()) {
                 String categoryName = rs.getString("category_name");
                 int total = rs.getInt("total");
-                System.out.println(categoryName);
-                System.out.println(total);
+                System.out.println(categoryName +" | " +total);
+
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -121,5 +121,11 @@ public class BookReaderManager {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public static void main(String[] args) {
+        BookReaderManager bookReader = new BookReaderManager();
+        bookReader.translate();
+
     }
 }

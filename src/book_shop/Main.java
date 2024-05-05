@@ -72,7 +72,7 @@ public class Main {
                     bookManager.create();
                     break;
                 case 2:
-                    bookManager.getListBook();
+                  writeExcel.getListBooks();
                     break;
                 case 3:
                     bookManager.filter();
@@ -96,7 +96,7 @@ public class Main {
                     readerManager.getList();
                     break;
                 case 10:
-                    bookReaderManager.statistical();
+                    bookReaderManager.translate();
                     break;
                 case 11:
                     bookReaderManager.totalBook();
